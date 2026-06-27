@@ -1,0 +1,16 @@
+{
+  "current_stage": "designer_visual",
+  "completed_stages": [
+    "researcher",
+    "pm",
+    "content_writer",
+    "designer",
+    "designer_visual"
+  ],
+  "qa_attempts": 0,
+  "failing_items": [],
+  "iteration_history": [],
+  "pending_agent": null,
+  "last_review": null,
+  "feedback": {}
+}

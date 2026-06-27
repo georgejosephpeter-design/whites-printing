@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Assets — Whites Printing Services LLC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: { primary: '#0f172a', secondary: '#1e293b', accent: '#112AD0' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .prose { max-width: 80ch; }
+        .prose pre { background: #1e293b; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+        .prose code { background: #1e293b; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875rem; }
+        .prose table { width: 100%; border-collapse: collapse; }
+        .prose th { background: #1e293b; padding: 0.75rem; text-align: left; font-weight: 600; }
+        .prose td { padding: 0.75rem; border-bottom: 1px solid #334155; }
+        .prose tr:hover { background: #1e293b/50; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200 min-h-screen">
+    <header class="bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="text-xl font-bold" style="color:#112AD0">Whites Printing Services LLC</a>
+                <nav class="flex gap-6 text-sm">
+                    <a href="../01_research/market_analysis.html" class="text-slate-400 hover:text-white transition">Research</a>
+                    <a href="../02_prd/product_requirements.html" class="text-slate-400 hover:text-white transition">PRD</a>
+                    <a href="../04_design/design_system.html" class="text-slate-400 hover:text-white transition">Design</a>
+                    <a href="../08_content/copy.html" class="text-slate-400 hover:text-white transition">Content</a>
+                    <a href="../03_architecture/system_design.html" class="text-slate-400 hover:text-white transition">Architecture</a>
+                    <a href="image_assets.html" class="text-blue-500 font-medium">Imagery</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-5xl mx-auto px-6 py-12">
+        <h1 class="text-4xl font-bold mb-8">Image Asset Production Plan — Whites Printing Services LLC</h1>
+<p class="text-slate-300 mb-4"><strong>Prepared for:</strong> Whites Printing Services LLC (whites.me)</p>
+<p class="text-slate-300 mb-4"><strong>Brand Colors:</strong> Navy #0A1F3F, White #FFFFFF, Cyan #00BCD4, Magenta #E91E63, Yellow #FDD835</p>
+<p class="text-slate-300 mb-4"><strong>Tagline:</strong> "Color Your Business"</p>
+<p class="text-slate-300 mb-4"><strong>Last Updated:</strong> June 2026</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">Table of Contents</h2>
+<p class="text-slate-300 mb-4">1. [Photography Production Brief](#1-photography-production-brief)</p>
+<p class="text-slate-300 mb-4">2. [Icon Production Spec](#2-icon-production-spec)</p>
+<p class="text-slate-300 mb-4">3. [Placeholder & Fallback Strategy](#3-placeholder--fallback-strategy)</p>
+<p class="text-slate-300 mb-4">4. [SVG Hero Background Pattern](#4-svg-hero-background-pattern)</p>
+<p class="text-slate-300 mb-4">5. [OG Image Spec](#5-og-image-spec)</p>
+<p class="text-slate-300 mb-4">6. [Favicon & App Icons](#6-favicon--app-icons)</p>
+<p class="text-slate-300 mb-4">7. [Image Optimization & Delivery](#7-image-optimization--delivery)</p>
+<p class="text-slate-300 mb-4">8. [Priority Matrix](#8-priority-matrix)</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">1. Photography Production Brief</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">1.1 Overview</h3>
+<p class="text-slate-300 mb-4">All photography must feature actual Whites-printed products in authentic Deira business contexts. No stock photography. Images must convey professionalism, quality, and the "Color Your Business" ethos. Warm lighting, shallow depth of field, navy/white branded accents throughout.</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">1.2 Equipment Recommendations for Photographer</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Camera: Full-frame DSLR or mirrorless (Canon EOS R5 / Sony A7IV or better)</li>
+<li class="text-slate-300">Lens: 24-70mm f/2.8 (versatile), 100mm f/2.8 macro (product details), 50mm f/1.8 (ambient)</li>
+<li class="text-slate-300">Lighting: Two softbox strobes + portable LED panel (Rotalux style)</li>
+<li class="text-slate-300">Tripod: Manfrotto or equivalent for consistent hero compositions</li>
+<li class="text-slate-300">Backdrop: Navy muslin, white seamless paper, branded backdrop with Whites logo</li>
+<li class="text-slate-300">Calibration: X-Rite ColorChecker Passport for accurate CMYK reproduction</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">1.3 Shot List</h3>
+<p class="text-slate-300 mb-4">All images saved to <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Frontend/public/images/</code> in appropriate subdirectory.</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">#</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Shot Name</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Description</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Purpose / Page</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Composition</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Aspect Ratio</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Orientation</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`hero-workspace`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Wide shot of the Whites print shop floor with equipment visible in background, well-lit, warm tones</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Homepage Hero</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Rule of thirds, equipment on left, negative space on right for text overlay</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16:9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`hero-cmyk-abstract`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Stacked neon business cards (cyan, magenta, yellow, navy) on white surface, shallow DOF, top-down</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Homepage Hero alt</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Flat lay, diagonally cascading</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16:9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-brochure`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Tri-fold brochure held open, showing crisp folds and vibrant color</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Brochures)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hands holding, shallow DOF, desk setting</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-businesscard`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Business card fan spread on navy desk mat, embossed or spot UV visible</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Business Cards)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Top-down fan arrangement</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-flyer`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Flyer stack on reception desk with natural window light</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Flyers)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Side angle, stack perspective</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-poster`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Large format poster on easel in a modern office lobby</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Posters)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Full poster visible, environmental</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-sticker`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Die-cut sticker sheet on MacBook lid, natural outdoor light</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Stickers)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Macro detail, laptop context</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-banner`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Roll-up banner at trade show or reception area</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Banners)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Full length, vertical composition</td><td class="border border-slate-700 px-4 py-2 text-slate-300">3:4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Portrait</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-folder`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Presentation folder with embossed logo on boardroom table</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Presentation Folders)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Top-down, angled slightly</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">10</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-notepad`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Branded notepad with pen on a cafe table</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Notepads)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Lifestyle, warm ambient</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">11</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-envelope`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hatch of branded envelopes with matching letterhead</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Envelopes)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Stacked, string-tied bundle</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">12</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-label`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Product label roll partially unrolled, macro detail of print</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Labels)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Extreme macro, sharp texture</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">13</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-invitation`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Wedding invitation set with envelope on marble surface</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Invitations)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Flat lay with botanical accents</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">14</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-booklet`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Saddle-stitched booklet open to centre spread</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Booklets)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Open pages, hands optional</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">15</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-calendar`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Wall calendar hanging in workspace, or desk calendar</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Calendars)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Environmental, desk or wall</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">16</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-packaging`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Branded product packaging box on retail shelf</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Packaging)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Shelf context, angled</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">17</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`service-ribbon`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Satin ribbon roll with printed logo, macro weave detail</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Sub-Pages (Ribbons)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Macro, draped curve</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">18</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`tech-canon-c10000vp`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Canon imagePRESS C10000VP hero shot — front view, powered on, with sample output on tray</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Technology Page hero</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Machine centred, output spread below</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16:9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">19</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`tech-wide-format`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Wide format printer with roll feed visible</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Technology Page / thumbnail</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Side angle, working state</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">20</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`tech-eco-solvent`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Eco-solvent printer printing on vinyl</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Technology Page / thumbnail</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Front action shot</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">21</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`tech-plotter-cutter`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Plotter cutter in operation, cutting vinyl decal</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Technology Page / thumbnail</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Angle showing blade arm</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">22</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`tech-binding`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Binding machine with finished spiral-bound book</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Technology Page / thumbnail</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Macro, finished product visible</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">23</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`about-workspace`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Team workspace from doorway — desks, natural light, no faces visible</td><td class="border border-slate-700 px-4 py-2 text-slate-300">About Page</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Wide environmental, warm light</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16:9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">24</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`about-delivery-team`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Milan & Razak at delivery van (from behind) or loading products</td><td class="border border-slate-700 px-4 py-2 text-slate-300">About Page</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Silhouette or back view, golden hour</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">25</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`about-reception`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Reception area with Whites branding visible on wall</td><td class="border border-slate-700 px-4 py-2 text-slate-300">About Page</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Symmetrical, clean</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4:3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Landscape</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">1.4 Styling Guidelines</h3>
+<p class="text-slate-300 mb-4"><strong>Lighting:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Hero and about shots: warm natural light (golden hour quality) supplemented by softboxes</li>
+<li class="text-slate-300">Product shots: diffused strobes at 45° with fill card — no harsh shadows</li>
+<li class="text-slate-300">Technology shots: ambient with LED panel for detail, avoid reflections on glossy panels</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Background:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Navy (#0A1F3F) and white surfaces as primary backgrounds</li>
+<li class="text-slate-300">Real wood desks (light oak, walnut) for lifestyle warmth</li>
+<li class="text-slate-300">Avoid busy patterns — keep focus on the printed product</li>
+<li class="text-slate-300">Whites-branded desk mats or coasters as subtle props</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Props:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Minimal — a quality pen, a coffee cup, a smartphone, reading glasses</li>
+<li class="text-slate-300">No food, no personal photos, no clutter</li>
+<li class="text-slate-300">Select props reinforce "professional business" context</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Models:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">No identifiable faces unless client provides written release</li>
+<li class="text-slate-300">Hands only for product demonstration (clean nails, no jewelry)</li>
+<li class="text-slate-300">Milan and Razak may appear from behind or engaged in work (side/back profile acceptable)</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">1.5 File Naming Convention</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+Frontend/public/images/{category}/{description}-{index}.webp
+Frontend/public/images/{category}/{description}-{index}.jpg
+</code></pre>
+<p class="text-slate-300 mb-4">Use kebab-case descriptions. Index only for multiple variants. Always provide WebP primary + JPEG fallback.</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">2. Icon Production Spec</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">2.1 Format & Styling</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Style:** Lucide-style SVG line icons</li>
+<li class="text-slate-300">**Stroke width:** 1.5px</li>
+<li class="text-slate-300">**Stroke linecap:** Round</li>
+<li class="text-slate-300">**Stroke linejoin:** Round</li>
+<li class="text-slate-300">**Default size:** 24×24px viewBox</li>
+<li class="text-slate-300">**Color rules:**</li>
+<li class="text-slate-300">Navy #0A1F3F stroke on white/light backgrounds (service cards, industry cards)</li>
+<li class="text-slate-300">White #FFFFFF stroke on navy/dark backgrounds (hero overlay, footer)</li>
+<li class="text-slate-300">Cyan #00BCD4 accent stroke on hover states</li>
+<li class="text-slate-300">Fill: none unless specified (solid only for social icons or special cases)</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">2.2 Service Icons (15) — `Frontend/public/images/icons/services/`</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">#</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Icon Name (Lucide)</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Display Name</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Description</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`printer`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Offset & Digital Printing</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Standard printer icon</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`file-text`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Brochures & Flyers</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Document with text lines</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`credit-card`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Business Cards</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Card silhouette</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`image`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Posters & Banners</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Framed image / landscape</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`sticker`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Stickers & Labels</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Square with rounded corners</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`scroll-text`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Roll-Up Banners</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Scroll unfurled</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`folder-open`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Presentation Folders</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Open folder</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`book-open`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Notepads & Booklets</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Open book</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`mail`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Envelopes & Letterheads</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Envelope flap</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">10</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`tag`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Product Labels</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Price tag</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">11</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`party-popper`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Invitation Cards</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Celebration popper (no emoji style — clean line)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">12</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`calendar`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Calendars</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Calendar grid</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">13</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`package`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Packaging</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Box with flap</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">14</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`ribbon`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Ribbons</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Curved ribbon</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">15</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`palette`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Custom Design Services</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Artist palette</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">2.3 Industry Icons (16) — `Frontend/public/images/icons/industries/`</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">#</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Icon Name (Lucide)</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Industry</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Description</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`building`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Real Estate</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Building front</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`shopping-bag`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Retail</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Shopping bag</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`utensils-crossed`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hospitality</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Crossed utensils</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`heart-pulse`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Healthcare</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Heart with pulse line</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`graduation-cap`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Education</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Graduation cap</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`briefcase`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Corporate</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Briefcase</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`church`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Religious</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Church building</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`music`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Entertainment</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Musical note</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`trophy`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Sports</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Trophy cup</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">10</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`palmtree`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Travel & Tourism</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Palm tree</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">11</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`land-plot`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Construction</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Construction site / blueprint</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">12</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`shirt`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Fashion</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T-shirt</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">13</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`truck`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Logistics</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Delivery truck</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">14</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`banknote`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Finance</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Bank note / currency</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">15</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`cake`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Events & Catering</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Cake slice</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">16</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`sparkles`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Beauty & Wellness</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Sparkle stars</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">2.4 UI & Navigation Icons (14) — `Frontend/public/images/icons/ui/`</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">#</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Icon Name (Lucide)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Purpose</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`menu`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Mobile hamburger nav</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`x`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Close / dismiss</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`chevron-right`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Next / forward nav</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`chevron-left`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Back / previous nav</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`chevron-down`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Dropdown expand</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`arrow-up-right`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">External link</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`phone`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Contact phone</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`mail`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Contact email</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`map-pin`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Location / address</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">10</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`clock`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Business hours</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">11</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`quote`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Testimonial quote mark</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">12</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`check-circle`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Feature checklist</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">13</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`download`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Download / file save</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">14</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`search`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Search toggle</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">2.5 Social Icons (4) — `Frontend/public/images/icons/social/`</h3>
+<p class="text-slate-300 mb-4">Standard brand icons (not Lucide) — solid fill, 20×20px within 24×24 viewBox:</p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Facebook (square <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">f</code>)</li>
+<li class="text-slate-300">Instagram (camera outline)</li>
+<li class="text-slate-300">LinkedIn (<code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">in</code>)</li>
+<li class="text-slate-300">WhatsApp (speech bubble with phone)</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">2.6 Size Variants</h3>
+<p class="text-slate-300 mb-4">Each SVG icon exported at these sizes:</p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300"><code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">24×24</code> — default (cards, nav, inline)</li>
+<li class="text-slate-300"><code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">32×32</code> — feature highlights</li>
+<li class="text-slate-300"><code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">48×48</code> — hero/hero section decorative</li>
+</ul>
+<p class="text-slate-300 mb-4">File naming: <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">{icon-name}-{size}.svg</code> (e.g., <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">printer-24.svg</code>)</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">3. Placeholder & Fallback Strategy</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">3.1 Placeholder Types</h3>
+<p class="text-slate-300 mb-4">All placeholders stored in <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Frontend/public/images/placeholders/</code>.</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">3.2 SVG Geometric Placeholders</h3>
+<p class="text-slate-300 mb-4">For each image slot, a geometric SVG placeholder is used until the real photograph is available. These follow a consistent navy/white/cyan geometric abstract style.</p>
+<p class="text-slate-300 mb-4"><strong>Pattern library (<code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Frontend/public/images/placeholders/patterns/</code>):</strong></p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">File</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Description</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Colors</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`pattern-dots.svg`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Repeating dot grid</td><td class="border border-slate-700 px-4 py-2 text-slate-300">#0A1F3F bg, rgba(255,255,255,0.05) dots</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`pattern-triangles.svg`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Subtle triangle mesh</td><td class="border border-slate-700 px-4 py-2 text-slate-300">#0A1F3F bg, #00BCD4 at 10% opacity lines</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`pattern-lines.svg`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Diagonal line hatch</td><td class="border border-slate-700 px-4 py-2 text-slate-300">#0A1F3F bg, #FDD835 at 8% opacity lines</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`pattern-circles.svg`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Concentric circle fragments</td><td class="border border-slate-700 px-4 py-2 text-slate-300">#0A1F3F bg, #E91E63 at 6% opacity arcs</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">3.3 Per-Category Placeholders</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">Category</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Placeholder File</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Description</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Hero</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`placeholder-hero.webp`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Navy gradient (#0A1F3F → #0C2B5F) with dot mesh overlay</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Services</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`placeholder-service.svg`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Navy card with cyan geometric icon silhouette</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Industries</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`placeholder-industry.svg`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Navy card with white icon silhouette on cyan circle</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Technology</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`placeholder-tech.svg`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Dark navy gradient with equipment silhouette outline</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">About</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`placeholder-about.svg`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Navy/dark gradient with abstract workspace outline</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Testimonials</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`placeholder-testimonial.svg`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">White card with navy quote mark and dashed border</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Offers</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`placeholder-offer.svg`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Navy/white diagonal split with "Coming Soon" text zone</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">3.4 `no-image.svg` Fallback</h3>
+<p class="text-slate-300 mb-4"><strong>Path:</strong> <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Frontend/public/images/placeholders/no-image.svg</code></p>
+<p class="text-slate-300 mb-4"><strong>Description:</strong> A simple centered icon (a crossed-out image frame) with the Whites navy/white color scheme. Used as the final fallback in <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm"><img></code> <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">onError</code> handlers.</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+ViewBox: 0 0 200 200
+Background: #F5F5F5
+Icon: image icon in #0A1F3F with diagonal line through it
+Text area: reserved below for optional label
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">3.5 Gradient Hero Placeholder</h3>
+<p class="text-slate-300 mb-4">Used on the homepage before the hero photograph loads:</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+Frontend/public/images/placeholders/placeholder-hero-gradient.png
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">1920×1080px (scaled down for progressive loading)</li>
+<li class="text-slate-300">Background: linear-gradient(135deg, #0A1F3F 0%, #1A2F5F 50%, #0C2B5F 100%)</li>
+<li class="text-slate-300">Overlay: <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">pattern-dots.svg</code> tiled at 30% opacity</li>
+<li class="text-slate-300">Whites logo centred, tagline below in white</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">3.6 Implementation</h3>
+<p class="text-slate-300 mb-4">In Next.js <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm"><Image></code> component:</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+<Image
+src="/images/hero/hero-workspace.webp"
+placeholder="blur"
+blurDataURL="/images/placeholders/placeholder-hero-gradient.png"
+onError={(e) => {
+e.target.src = "/images/placeholders/no-image.svg";
+}}
+/>
+</code></pre>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">4. SVG Hero Background Pattern</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">4.1 Specification</h3>
+<p class="text-slate-300 mb-4">Used as the decorative background mesh on the homepage hero section (and optionally as a repeating texture on other navy sections).</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">4.2 Dot Mesh Pattern</h3>
+<p class="text-slate-300 mb-4"><strong>Path:</strong> <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Frontend/public/images/placeholders/patterns/hero-mesh.svg</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<rect width="800" height="600" fill="#0A1F3F" />
+<defs>
+<pattern id="mesh" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+<circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.03)" />
+</pattern>
+<pattern id="mesh-large" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+<circle cx="60" cy="60" r="3" fill="rgba(255,255,255,0.04)" />
+</pattern>
+<radialGradient id="glow" cx="50%" cy="40%" r="60%">
+<stop offset="0%" stop-color="#00BCD4" stop-opacity="0.08" />
+<stop offset="50%" stop-color="#E91E63" stop-opacity="0.04" />
+<stop offset="100%" stop-color="#0A1F3F" stop-opacity="0" />
+</radialGradient>
+</defs>
+<rect width="800" height="600" fill="url(#mesh)" />
+<rect width="800" height="600" fill="url(#mesh-large)" />
+<rect width="800" height="600" fill="url(#glow)" />
+</svg>
+</code></pre>
+<p class="text-slate-300 mb-4"><strong>CSS implementation (preferred for performance):</strong></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+.hero-background {
+background-color: #0A1F3F;
+background-image:
+radial-gradient(circle at 20px 20px, rgba(255,255,255,0.03) 1.5px, transparent 1.5px),
+radial-gradient(circle at 60px 60px, rgba(255,255,255,0.04) 3px, transparent 3px),
+radial-gradient(ellipse at 50% 40%, rgba(0,188,212,0.08) 0%, rgba(233,30,99,0.04) 50%, transparent 100%);
+background-size: 40px 40px, 120px 120px, 100% 100%;
+}
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">4.3 Usage</h3>
+<p class="text-slate-300 mb-4">Applied as the base layer of the hero section. The hero photograph or abstract CMYK image appears as an overlay at 60% opacity on the right half, with text content on the left.</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">5. OG Image Spec</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.1 Overview</h3>
+<p class="text-slate-300 mb-4">Open Graph images for social sharing. All generated server-side or pre-rendered. Stored in <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Frontend/public/images/og/</code>.</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.2 Template</h3>
+<p class="text-slate-300 mb-4"><strong>Dimensions:</strong> 1200×630px (1.91:1 aspect ratio)</p>
+<p class="text-slate-300 mb-4"><strong>Format:</strong> PNG (lossless for text sharpness)</p>
+<p class="text-slate-300 mb-4"><strong>Max size:</strong> < 300KB per image</p>
+<p class="text-slate-300 mb-4"><strong>Layout (generic):</strong></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
++------------------------------------------------------------------+
+| [Nav bar: Whites "W" badge + "Whites Printing"]                  |
+|                                                                  |
+|                                           [CMYK accent bar       |
+|   H1: Page Title                        — Cyan #00BCD4          |
+|   Subtitle or tagline                   — Magenta #E91E63       |
+|                                           — Yellow #FDD835]     |
+|                                                                  |
+|   www.whites.me               "Color Your Business"             |
++------------------------------------------------------------------+
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.3 OG Images Required</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">#</td><td class="border border-slate-700 px-4 py-2 text-slate-300">File</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Page Title</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Variant</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`og-home.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Whites Printing Services LLC"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Home — includes tagline "Color Your Business"</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`og-services.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Printing Services — Whites Printing"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Services — generic</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`og-industries.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Industries We Serve — Whites Printing"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Industries</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`og-about.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"About Us — Whites Printing"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">About</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`og-technology.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Our Technology — Whites Printing"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Technology</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`og-contact.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Contact Us — Whites Printing"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Contact</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`og-offers.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Current Offers — Whites Printing"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Offers</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`og-404.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Page Not Found — Whites Printing"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">404</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.4 Per-Variant Details</h3>
+<p class="text-slate-300 mb-4"><strong>Generic template (<code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">og-home.png</code>):</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Background: vertical gradient #0A1F3F → #0C2B5F</li>
+<li class="text-slate-300">Whites circular badge logo (navy on transparent) in top-left at 60×60px</li>
+<li class="text-slate-300">"Whites Printing" text next to logo — Poppins SemiBold 28px, white</li>
+<li class="text-slate-300">Main title: "Color Your Business" — Poppins Bold 56px, centered vertically</li>
+<li class="text-slate-300">Subtitle: "Commercial Print Shop | Deira, Dubai" — Poppins Regular 22px, #00BCD4</li>
+<li class="text-slate-300">CMYK accent bar: 4 vertical stripes (cyan, magenta, yellow, navy) on the right edge, each 20px wide</li>
+<li class="text-slate-300">URL: whites.me — bottom-left, Poppins Regular 18px, rgba(255,255,255,0.6)</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Section variants:</strong> Replace title text per the table above. Maintain same layout structure.</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.5 HTML `<head>` Implementation</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+<meta property="og:title" content="Whites Printing Services LLC" />
+<meta property="og:description" content="Dubai's trusted commercial print shop — business cards, brochures, banners, packaging, and more. Color Your Business with Whites Printing." />
+<meta property="og:image" content="https://whites.me/images/og/og-home.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://whites.me/images/og/og-home.png" />
+</code></pre>
+<p class="text-slate-300 mb-4">Per-page overrides for <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">og:title</code> and <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">og:image</code>.</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">6. Favicon & App Icons</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">6.1 Overview</h3>
+<p class="text-slate-300 mb-4">Browser and mobile device icons using the simplified Whites "W" mark on a navy circle, derived from the circular badge logo.</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">6.2 Required Sizes & Files</h3>
+<p class="text-slate-300 mb-4">All stored at <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Frontend/public/</code> root (Next.js convention).</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">File</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Size</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Format</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Use Case</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`favicon.ico`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">48×48 (multi-size .ico)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ICO</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Legacy browsers, browser tab</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`favicon-16x16.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16×16</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Browsers preferring PNG</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`favicon-32x32.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">32×32</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Browsers preferring PNG</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`favicon-96x96.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">96×96</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Desktop shortcut</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`favicon.svg`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Vector</td><td class="border border-slate-700 px-4 py-2 text-slate-300">SVG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Modern browsers (vector favicon)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`icon-192x192.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">192×192</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Android Chrome, PWA</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`icon-512x512.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">512×512</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Android Chrome, PWA splash</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`apple-touch-icon.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">180×180</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">iOS Safari</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`apple-touch-icon-precomposed.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">180×180</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">iOS (pre-composed)</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">6.3 Design Spec</h3>
+<p class="text-slate-300 mb-4"><strong>Base SVG (<code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">favicon.svg</code>):</strong></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="100" y2="100">
+<stop offset="0%" stop-color="#0A1F3F" />
+<stop offset="100%" stop-color="#142D5E" />
+</linearGradient>
+</defs>
+<circle cx="50" cy="50" r="48" fill="url(#bg)" />
+<path d="M 35 68 L 35 30 L 50 30 Q 65 30 65 45 Q 65 55 55 58 L 65 68 L 55 68 L 45 58 L 45 68 Z" fill="#FFFFFF" />
+</svg>
+</code></pre>
+<p class="text-slate-300 mb-4"><strong>Description:</strong> A white "W" mark centered on a navy circular background. The "W" uses geometric angular strokes — wider at the bottom, meeting at the centre. The circle has a subtle navy gradient (#0A1F3F → #142D5E).</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">6.4 HTML `<head>` Implementation</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="msapplication-TileColor" content="#0A1F3F" />
+<meta name="theme-color" content="#0A1F3F" />
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">6.5 `site.webmanifest`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+{
+"name": "Whites Printing Services LLC",
+"short_name": "Whites Printing",
+"description": "Dubai's trusted commercial print shop",
+"start_url": "/",
+"display": "standalone",
+"background_color": "#0A1F3F",
+"theme_color": "#0A1F3F",
+"icons": [
+{ "src": "/icon-192x192.png", "sizes": "192x192", "type": "image/png" },
+{ "src": "/icon-512x512.png", "sizes": "512x512", "type": "image/png" }
+]
+}
+</code></pre>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">7. Image Optimization & Delivery</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">7.1 Compression Targets</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Image Type</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Format</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Max Size</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Quality Setting</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Hero photographs</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WebP</td><td class="border border-slate-700 px-4 py-2 text-slate-300">200KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">85%</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Hero placeholder</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WebP</td><td class="border border-slate-700 px-4 py-2 text-slate-300">50KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">60%</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Service feature images</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WebP</td><td class="border border-slate-700 px-4 py-2 text-slate-300">150KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">82%</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Technology photos</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WebP</td><td class="border border-slate-700 px-4 py-2 text-slate-300">150KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">82%</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">About photos</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WebP</td><td class="border border-slate-700 px-4 py-2 text-slate-300">150KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">82%</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Icons (SVG)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">SVG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">3KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">OG images</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">300KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Lossless</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Favicon 16×16</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">85%</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Favicon 32×32</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">2KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">85%</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Favicon 96×96</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">8KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">85%</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Favicon 192×192</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">20KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">85%</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Favicon 512×512</td><td class="border border-slate-700 px-4 py-2 text-slate-300">PNG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">50KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">85%</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Pattern SVGs</td><td class="border border-slate-700 px-4 py-2 text-slate-300">SVG</td><td class="border border-slate-700 px-4 py-2 text-slate-300">2KB</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4">JPEG fallback images: same dimensions as WebP, quality 80%, max size matching WebP targets.</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">7.2 Responsive Breakpoints & srcset</h3>
+<p class="text-slate-300 mb-4">Three breakpoints per image asset:</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Breakpoint</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Width</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Usage</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Small (mobile)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">480px</td><td class="border border-slate-700 px-4 py-2 text-slate-300"><640px viewports</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Medium (tablet)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">768px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">640-1024px viewports</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Large (desktop)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1200px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">>1024px viewports</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Naming convention:</strong></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+Frontend/public/images/{category}/{description}-{size}.webp
+</code></pre>
+<p class="text-slate-300 mb-4">Example:</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+Frontend/public/images/hero/hero-workspace-480.webp
+Frontend/public/images/hero/hero-workspace-768.webp
+Frontend/public/images/hero/hero-workspace-1200.webp
+</code></pre>
+<p class="text-slate-300 mb-4"><strong>Usage in Next.js:</strong></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+// Hero (above the fold) — priority load, eager
+<Image
+src="/images/hero/hero-workspace-1200.webp"
+srcSet="/images/hero/hero-workspace-480.webp 480w,
+/images/hero/hero-workspace-768.webp 768w,
+/images/hero/hero-workspace-1200.webp 1200w"
+sizes="(max-width: 640px) 480px,
+(max-width: 1024px) 768px,
+1200px"
+alt="Whites Printing workspace"
+priority
+width={1200}
+height={675}
+/>
+// Below the fold — lazy
+<Image
+src="/images/services/service-brochure-768.webp"
+srcSet="..."
+sizes="..."
+alt="Tri-fold brochure printing"
+loading="lazy"
+width={768}
+height={576}
+blurDataURL="/images/placeholders/placeholder-service.svg"
+placeholder="blur"
+/>
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">7.3 CDN Strategy</h3>
+<p class="text-slate-300 mb-4">All images served through Vercel's Edge Network / Next.js built-in image optimization.</p>
+<p class="text-slate-300 mb-4"><strong>Remote patterns config (<code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">next.config.js</code>):</strong></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+module.exports = {
+images: {
+formats: ['image/webp', 'image/avif'],
+deviceSizes: [480, 768, 1200, 1920],
+imageSizes: [16, 32, 48, 96, 192, 256],
+minimumCacheTTL: 31536000, // 1 year
+},
+};
+</code></pre>
+<p class="text-slate-300 mb-4">Next.js <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm"><Image></code> component automatically:</p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Serves WebP where browser supports it</li>
+<li class="text-slate-300">Generates AVIF where supported</li>
+<li class="text-slate-300">Resizes to requested dimensions</li>
+<li class="text-slate-300">Caches at edge for 1 year</li>
+<li class="text-slate-300">Applies quality optimizations</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">7.4 Lazy Loading Rules</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">Element</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Loading Strategy</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Priority</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Homepage hero image</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`eager` (default)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`priority={true}`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Above-the-fold service cards (first 6)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`eager`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`priority={true}`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Below-the-fold service cards (last 9)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`lazy`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Industry icons</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`lazy`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Service sub-page feature images</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`eager`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`priority={true}`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Technology hero</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`eager`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`priority={true}`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Technology thumbnails</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`lazy`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">About page images</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`lazy`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Testimonial logos</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`lazy`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Offer card images</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`lazy`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">OG images (never rendered on page)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Not applicable</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">7.5 Image Pipeline Script</h3>
+<p class="text-slate-300 mb-4">For batch conversion of photography to WebP + JPEG + resizing, use:</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+# Using sharp-cli or squoosh-cli
+npx sharp-cli input.jpg --output output.webp --quality 85 --resize 1200
+npx sharp-cli input.jpg --output output-480.webp --quality 85 --resize 480
+npx sharp-cli input.jpg --output output-768.webp --quality 85 --resize 768
+</code></pre>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">8. Priority Matrix</h2>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">Tier</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Category</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Items</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Deadline</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Tier 1 — Must Have for Launch**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hero photographs</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`hero-workspace` (at least one variant)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service icons (SVG)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All 15 service icons in 24×24, 32×32, 48×48</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Industry icons (SVG)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All 16 industry icons in 24×24</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">UI icons (SVG)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All 14 UI icons in 24×24</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Social icons (SVG)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All 4 social icons</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">OG image</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`og-home.png` (generic)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Favicon set</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All favicon sizes + `site.webmanifest`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hero mesh pattern</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`hero-mesh.svg` or CSS equivalent</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pattern placeholders</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All placeholder SVGs for image slots</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Tier 2 — Important**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Service feature images</td><td class="border border-slate-700 px-4 py-2 text-slate-300">At least 8 of 15 service photos (core services)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 2</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Technology hero</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Canon C10000VP hero shot</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 2</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Technology thumbnails</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Wide format, eco-solvent, plotter cutter</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 2</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">About workspace</td><td class="border border-slate-700 px-4 py-2 text-slate-300">workspace + reception photos</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 2</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Testimonial logos</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Client logos collected and optimized</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 2</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">OG variants</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`og-services.png`, `og-about.png`, `og-contact.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Pre-launch week 2</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Tier 3 — Nice to Have**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Remaining service photos</td><td class="border border-slate-700 px-4 py-2 text-slate-300">7 remaining service photos</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Post-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">All equipment detail shots</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Die cutter, ID printer, laminator, binding, creasing</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Post-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Coverage map graphic</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Stylized SVG map of Deira/Dubai coverage area</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Post-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">404 illustration</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Custom SVG illustration for 404 page</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Post-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Offer card images</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Offer-specific imagery</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Post-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Delivery team photo</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Milan & Razak back-view shot</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Post-launch week 1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">`og-offers.png`, `og-404.png`, `og-technology.png`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Remaining OG variants</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Post-launch week 1</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.1 File Manifest Summary</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Directory</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Files</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Tier</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/images/hero/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1 hero photo × 3 sizes + 1 alt × 3 sizes + WebP + JPEG = 12 files</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/images/services/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">15 feature photos × 3 sizes × 2 formats = 90 files</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T2/T3</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/images/industries/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16 industry SVGs = 16 files</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/images/about/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">3 photos × 3 sizes × 2 formats = 18 files</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T2</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/images/technology/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1 hero + 4 thumbnails × 3 sizes × 2 formats = 30 files</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T2/T3</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/images/testimonials/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Client logos (variable) × 2 formats = variable</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T2</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/images/icons/services/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">15 icons × 3 sizes × SVG = 45 files</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/images/icons/industries/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16 icons × 1 size × SVG = 16 files</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/images/icons/ui/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">14 icons × 1 size × SVG = 14 files</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/images/icons/social/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4 icons × 1 size × SVG = 4 files</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/images/og/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">8 OGs × 1 size × PNG = 8 files</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T1/T3</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/images/placeholders/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">~10 SVG + 2 PNG pattern files = 12 files</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`Frontend/public/` (root)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Favicon set = 9 files, site.webmanifest = 1 file</td><td class="border border-slate-700 px-4 py-2 text-slate-300">T1</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Total estimated asset count:</strong> ~275 files at launch completeness.</p>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">*End of Image Asset Production Plan*</p>
+    </main>
+    <footer class="border-t border-slate-800 mt-12 py-8">
+        <div class="max-w-5xl mx-auto px-6 text-center text-slate-500 text-sm">
+            Whites Printing Services LLC — Image Assets
+        </div>
+    </footer>
+</body>
+</html>

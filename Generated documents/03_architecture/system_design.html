@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Architecture — Whites Printing Services LLC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: { primary: '#0f172a', secondary: '#1e293b', accent: '#112AD0' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .prose { max-width: 80ch; }
+        .prose pre { background: #1e293b; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+        .prose code { background: #1e293b; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875rem; }
+        .prose table { width: 100%; border-collapse: collapse; }
+        .prose th { background: #1e293b; padding: 0.75rem; text-align: left; font-weight: 600; }
+        .prose td { padding: 0.75rem; border-bottom: 1px solid #334155; }
+        .prose tr:hover { background: #1e293b/50; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200 min-h-screen">
+    <header class="bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="text-xl font-bold" style="color:#112AD0">Whites Printing Services LLC</a>
+                <nav class="flex gap-6 text-sm">
+                    <a href="../01_research/market_analysis.html" class="text-slate-400 hover:text-white transition">Research</a>
+                    <a href="../02_prd/product_requirements.html" class="text-slate-400 hover:text-white transition">PRD</a>
+                    <a href="../04_design/design_system.html" class="text-slate-400 hover:text-white transition">Design</a>
+                    <a href="../08_content/copy.html" class="text-slate-400 hover:text-white transition">Content</a>
+                    <a href="system_design.html" class="text-blue-500 font-medium">Architecture</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-5xl mx-auto px-6 py-12">
+        <h1 class="text-4xl font-bold mb-8">System Design Document — Whites Printing Services LLC</h1>
+<p class="text-slate-300 mb-4">> <strong>Version:</strong> 1.0</p>
+<p class="text-slate-300 mb-4">> <strong>Project:</strong> Whites Printing Services LLC — Corporate Website</p>
+<p class="text-slate-300 mb-4">> <strong>Framework:</strong> Next.js 16.2.9 (App Router)</p>
+<p class="text-slate-300 mb-4">> <strong>Last Updated:</strong> 2026-06-27</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">Table of Contents</h2>
+<p class="text-slate-300 mb-4">1. [Directory Structure](#1-directory-structure)</p>
+<p class="text-slate-300 mb-4">2. [Component Tree](#2-component-tree)</p>
+<p class="text-slate-300 mb-4">3. [Route Design](#3-route-design)</p>
+<p class="text-slate-300 mb-4">4. [Data Models (TypeScript Interfaces)](#4-data-models-typescript-interfaces)</p>
+<p class="text-slate-300 mb-4">5. [Component Specifications](#5-component-specifications)</p>
+<p class="text-slate-300 mb-4">6. [API Route Design](#6-api-route-design)</p>
+<p class="text-slate-300 mb-4">7. [Data Flow Architecture](#7-data-flow-architecture)</p>
+<p class="text-slate-300 mb-4">8. [State Management](#8-state-management)</p>
+<p class="text-slate-300 mb-4">9. [Backend Architecture](#9-backend-architecture)</p>
+<p class="text-slate-300 mb-4">10. [SEO & Structured Data](#10-seo--structured-data)</p>
+<p class="text-slate-300 mb-4">11. [Implementation Order (6 Phases)](#11-implementation-order-6-phases)</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">1. Directory Structure</h2>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+Frontend/src/
+├── app/
+│   ├── globals.css                          # Design tokens from system
+│   ├── layout.tsx                           # Root layout: Montserrat+Inter fonts, Toaster, WhatsAppContext provider
+│   ├── page.tsx                             # Redirect to (home) group
+│   ├── not-found.tsx                        # 404 page
+│   ├── error.tsx                            # Root error boundary
+│   ├── loading.tsx                          # Root loading state
+│   ├── sitemap.ts                           # Dynamic sitemap generation
+│   ├── robots.ts                            # Robots.txt generation
+│   │
+│   ├── (home)/
+│   │   ├── layout.tsx                       # Homepage layout (Navbar + Footer + WhatsAppButton)
+│   │   └── page.tsx                         # Homepage composition
+│   │
+│   ├── (content)/
+│   │   ├── layout.tsx                       # Content layout (Navbar + Breadcrumbs + Footer + WhatsAppButton + BottomCTABar)
+│   │   │
+│   │   ├── services/
+│   │   │   ├── page.tsx                     # Services overview page
+│   │   │   ├── loading.tsx
+│   │   │   ├── error.tsx
+│   │   │   ├── not-found.tsx
+│   │   │   └── [slug]/
+│   │   │       ├── page.tsx                 # Service detail page (ServiceTemplate)
+│   │   │       ├── loading.tsx
+│   │   │       ├── error.tsx
+│   │   │       └── not-found.tsx
+│   │   │
+│   │   ├── industries/
+│   │   │   ├── page.tsx                     # Industries overview page
+│   │   │   ├── loading.tsx
+│   │   │   ├── error.tsx
+│   │   │   ├── not-found.tsx
+│   │   │   └── [slug]/
+│   │   │       ├── page.tsx                 # Industry detail page (IndustryTemplate)
+│   │   │       ├── loading.tsx
+│   │   │       ├── error.tsx
+│   │   │       └── not-found.tsx
+│   │   │
+│   │   ├── locations/
+│   │   │   └── [slug]/
+│   │   │       ├── page.tsx                 # Location SEO page
+│   │   │       ├── loading.tsx
+│   │   │       ├── error.tsx
+│   │   │       └── not-found.tsx
+│   │   │
+│   │   ├── about/
+│   │   │   ├── page.tsx
+│   │   │   ├── loading.tsx
+│   │   │   └── error.tsx
+│   │   │
+│   │   ├── contact/
+│   │   │   ├── page.tsx
+│   │   │   ├── loading.tsx
+│   │   │   └── error.tsx
+│   │   │
+│   │   ├── quote/
+│   │   │   ├── page.tsx
+│   │   │   ├── loading.tsx
+│   │   │   └── error.tsx
+│   │   │
+│   │   ├── faq/
+│   │   │   ├── page.tsx
+│   │   │   ├── loading.tsx
+│   │   │   └── error.tsx
+│   │   │
+│   │   ├── offers/
+│   │   │   ├── page.tsx
+│   │   │   ├── loading.tsx
+│   │   │   └── error.tsx
+│   │   │
+│   │   ├── technology/
+│   │   │   ├── page.tsx
+│   │   │   ├── loading.tsx
+│   │   │   └── error.tsx
+│   │   │
+│   │   └── privacy/
+│   │       ├── page.tsx
+│   │       ├── loading.tsx
+│   │       └── error.tsx
+│   │
+│   └── api/
+│       ├── quotes/
+│       │   └── route.ts                     # POST — submit quote request
+│       ├── callbacks/
+│       │   └── route.ts                     # POST — request callback
+│       ├── contact/
+│       │   └── route.ts                     # POST — contact form submission
+│       ├── upload/
+│       │   └── route.ts                     # POST — file upload handler
+│       └── content/
+│           └── [type]/
+│               └── route.ts                 # GET — return JSON for any content type
+│
+├── components/
+│   ├── layout/
+│   │   ├── Navbar.tsx                       # Sticky top nav with mobile drawer
+│   │   ├── Footer.tsx                       # 4-column footer
+│   │   ├── WhatsAppButton.tsx               # Floating WhatsApp CTA
+│   │   └── MobileDrawer.tsx                 # Slide-in mobile navigation
+│   │
+│   ├── home/
+│   │   ├── Hero.tsx                         # Hero section
+│   │   ├── ServiceGrid.tsx                  # Featured services grid
+│   │   ├── IndustryScroll.tsx               # Horizontal scrolling industries
+│   │   ├── WhyChoose.tsx                    # Why Whites section
+│   │   ├── TechnologyShowcase.tsx           # Equipment/tech section
+│   │   ├── TestimonialsSection.tsx          # Testimonial carousel
+│   │   ├── OffersSection.tsx                # Active offers display
+│   │   ├── CoverageMap.tsx                  # Map/area coverage section
+│   │   └── CTABanner.tsx                    # Call-to-action banner
+│   │
+│   ├── services/
+│   │   ├── ServiceCard.tsx                  # Card for service grid
+│   │   ├── ServiceTemplate.tsx              # Full service detail layout
+│   │   └── ServiceSidebar.tsx               # Sidebar nav for services
+│   │
+│   ├── industries/
+│   │   ├── IndustryCard.tsx                 # Card for industry grid
+│   │   └── IndustryTemplate.tsx             # Full industry detail layout
+│   │
+│   ├── forms/
+│   │   ├── QuoteForm.tsx                    # Multi-step quote form
+│   │   ├── CallbackForm.tsx                 # Quick callback form
+│   │   ├── ContactForm.tsx                  # Contact page form
+│   │   └── FileUpload.tsx                   # Drag-drop file uploader
+│   │
+│   ├── shared/
+│   │   ├── SectionWrapper.tsx               # Section container with padding/background
+│   │   ├── ScrollAnimate.tsx                # Intersection Observer wrapper
+│   │   ├── Breadcrumbs.tsx                  # Dynamic breadcrumb trail
+│   │   ├── CTABanner.tsx                    # Reusable CTA banner (shared)
+│   │   ├── BottomCTABar.tsx                 # Sticky bottom bar on mobile
+│   │   ├── TrustBadges.tsx                  # Payment/trust badges
+│   │   ├── GoogleReviewsWidget.tsx          # Google reviews embed
+│   │   └── FAQAccordion.tsx                 # Accordion for FAQs
+│   │
+│   └── about/
+│       ├── TeamSection.tsx                  # Team/competency section
+│       ├── EquipmentShowcase.tsx            # Equipment list with specs
+│       └── ProcessFlow.tsx                  # How-it-works flowchart
+│
+├── lib/
+│   ├── utils.ts                             # cn() utility
+│   ├── content.ts                           # Content retrieval helpers
+│   ├── types.ts                             # All TypeScript interfaces & enums
+│   ├── api.ts                               # Fetch wrappers for content API
+│   └── constants.ts                         # Site-wide constants (nav items, etc.)
+│
+├── data/
+│   ├── services.ts                          # 15 service entries
+│   ├── industries.ts                        # 16 industry entries
+│   ├── locations.ts                         # 15 location entries
+│   ├── faq.ts                               # FAQ entries by category
+│   ├── testimonials.ts                      # Testimonial entries
+│   ├── offers.ts                            # Current/past offers
+│   ├── team.ts                              # Team competencies
+│   ├── equipment.ts                         # Equipment list
+│   └── navigation.ts                        # Navigation structure
+│
+└── context/
+└── WhatsAppContext.tsx                   # WhatsApp pre-fill context
+</code></pre>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">2. Component Tree</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">Root Layout (`layout.tsx`)</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+<html>
+<body>
+<WhatsAppProvider>
+<Toaster />
+{children}
+</WhatsAppProvider>
+</body>
+</html>
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">Homepage — `(home)/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+HomePage
+├── Navbar                                      [shared/layout]
+├── <main>
+│   ├── Hero                                    [home]
+│   │   ├── ScrollAnimate                       [shared]
+│   │   └── CTABanner (inline CTA)              [shared]
+│   ├── ServiceGrid                             [home]
+│   │   ├── ScrollAnimate                       [shared]
+│   │   └── ServiceCard × 6                     [services]
+│   ├── IndustryScroll                          [home]
+│   │   ├── ScrollAnimate                       [shared]
+│   │   └── IndustryCard × 6                    [industries]
+│   ├── WhyChoose                               [home]
+│   │   └── ScrollAnimate                       [shared]
+│   ├── TechnologyShowcase                      [home]
+│   │   └── ScrollAnimate                       [shared]
+│   ├── TestimonialsSection                     [home]
+│   │   ├── ScrollAnimate                       [shared]
+│   │   └── TestimonialCard × 3–5               [inline]
+│   ├── OffersSection                           [home]
+│   │   └── ScrollAnimate                       [shared]
+│   ├── CoverageMap                             [home]
+│   │   └── ScrollAnimate                       [shared]
+│   └── CTABanner                               [home]
+│       └── ScrollAnimate                       [shared]
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout] (mobile only)
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">Services Overview — `services/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+ServicesPage
+├── Navbar                                      [shared/layout]
+├── Breadcrumbs                                 [shared]
+├── <main>
+│   ├── SectionWrapper (intro)                  [shared]
+│   ├── SectionWrapper (grid)
+│   │   └── ServiceCard × 15                    [services]
+│   └── CTABanner                               [shared]
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout]
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">Service Detail — `services/[slug]/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+ServiceDetailPage
+├── Navbar                                      [shared/layout]
+├── Breadcrumbs                                 [shared]
+├── <main>
+│   └── ServiceTemplate                         [services]
+│       ├── Hero (title, description, CTA)
+│       ├── Section (specs & turnaround)
+│       ├── Section (use cases)
+│       ├── FAQAccordion                        [shared]
+│       ├── ServiceSidebar                      [services]
+│       │   └── ServiceCard × 4                 [services] (related)
+│       └── CTABanner                           [shared]
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout]
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">Industries Overview — `industries/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+IndustriesPage
+├── Navbar                                      [shared/layout]
+├── Breadcrumbs                                 [shared]
+├── <main>
+│   ├── SectionWrapper (intro)                  [shared]
+│   ├── SectionWrapper (grid)
+│   │   └── IndustryCard × 16                   [industries]
+│   └── CTABanner                               [shared]
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout]
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">Industry Detail — `industries/[slug]/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+IndustryDetailPage
+├── Navbar                                      [shared/layout]
+├── Breadcrumbs                                 [shared]
+├── <main>
+│   └── IndustryTemplate                        [industries]
+│       ├── Hero (title, description, CTA)
+│       ├── Section (products used)
+│       ├── Section (why Whites)
+│       ├── ServiceCard × N                     [services] (relevant services)
+│       └── CTABanner                           [shared]
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout]
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">Location SEO — `locations/[slug]/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+LocationPage
+├── Navbar                                      [shared/layout]
+├── Breadcrumbs                                 [shared]
+├── <main>
+│   ├── SectionWrapper (area intro + map)
+│   ├── SectionWrapper (key sectors served)
+│   ├── SectionWrapper (nearby landmarks)
+│   ├── ServiceCard × N                         [services] (relevant)
+│   └── CTABanner (localized)                   [shared]
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout]
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">About — `about/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+AboutPage
+├── Navbar                                      [shared/layout]
+├── Breadcrumbs                                 [shared]
+├── <main>
+│   ├── SectionWrapper (company story)          [shared]
+│   ├── TeamSection                             [about]
+│   │   └── ScrollAnimate × N                   [shared]
+│   ├── EquipmentShowcase                       [about]
+│   │   └── ScrollAnimate × N                   [shared]
+│   ├── ProcessFlow                             [about]
+│   │   └── ScrollAnimate × N                   [shared]
+│   ├── TrustBadges                             [shared]
+│   └── CTABanner                               [shared]
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout]
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">Contact — `contact/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+ContactPage
+├── Navbar                                      [shared/layout]
+├── Breadcrumbs                                 [shared]
+├── <main>
+│   ├── SectionWrapper (contact details)
+│   │   ├── Address, Phone, Email, Map embed
+│   │   └── GoogleReviewsWidget                 [shared]
+│   └── SectionWrapper (form)
+│       └── ContactForm                         [forms]
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout]
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">Quote — `quote/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+QuotePage
+├── Navbar                                      [shared/layout]
+├── Breadcrumbs                                 [shared]
+├── <main>
+│   └── SectionWrapper
+│       └── QuoteForm                           [forms]
+│           ├── Step 1: Service selection
+│           ├── Step 2: Specifications
+│           ├── Step 3: File upload (FileUpload)  [forms]
+│           ├── Step 4: Contact details
+│           └── Step 5: Review & submit
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout]
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">FAQ — `faq/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+FAQPage
+├── Navbar                                      [shared/layout]
+├── Breadcrumbs                                 [shared]
+├── <main>
+│   ├── SectionWrapper (intro)
+│   └── SectionWrapper (accordions by category)
+│       └── FAQAccordion × N                    [shared]
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout]
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">Offers — `offers/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+OffersPage
+├── Navbar                                      [shared/layout]
+├── Breadcrumbs                                 [shared]
+├── <main>
+│   ├── SectionWrapper (active offers)
+│   │   └── OfferCard × N                       [inline]
+│   └── SectionWrapper (expired/past)
+│       └── OfferCard × N                       [inline]
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout]
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">Technology — `technology/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+TechnologyPage
+├── Navbar                                      [shared/layout]
+├── Breadcrumbs                                 [shared]
+├── <main>
+│   ├── SectionWrapper (overview)
+│   ├── EquipmentShowcase                       [about]
+│   ├── SectionWrapper (quality & finishing)
+│   └── CTABanner                               [shared]
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout]
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">Privacy — `privacy/page.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+PrivacyPage
+├── Navbar                                      [shared/layout]
+├── Breadcrumbs                                 [shared]
+├── <main>
+│   └── SectionWrapper (policy content)
+│       └── Prose content from data file
+├── Footer                                      [shared/layout]
+├── WhatsAppButton                              [shared/layout]
+└── BottomCTABar                                [shared/layout]
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">404 — `not-found.tsx`</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+NotFoundPage
+├── Navbar                                      [shared/layout]
+├── <main>
+│   ├── 404 illustration
+│   ├── Message + link home
+│   └── Search / quick links
+├── Footer                                      [shared/layout]
+└── WhatsAppButton                              [shared/layout]
+</code></pre>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">3. Route Design</h2>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Route</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Page File</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Layout</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Loading</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Error</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Not-Found</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Notes</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(home)/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(home)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Root `loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Root `error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Root `not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Nav + Footer in layout</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/services`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/services/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`services/loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`services/error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`services/not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Breadcrumbs in layout</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/services/[slug]`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/services/[slug]/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`[slug]/loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`[slug]/error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`[slug]/not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">generateStaticParams for 15 slugs</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/industries`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/industries/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`industries/loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`industries/error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`industries/not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300"></td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/industries/[slug]`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/industries/[slug]/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`[slug]/loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`[slug]/error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`[slug]/not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">generateStaticParams for 16 slugs</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/locations/[slug]`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/locations/[slug]/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`[slug]/loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`[slug]/error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`[slug]/not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">generateStaticParams for 15 slugs</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/about`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/about/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`about/loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`about/error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Root `not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300"></td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/contact`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/contact/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`contact/loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`contact/error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Root `not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300"></td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/quote`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/quote/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`quote/loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`quote/error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Root `not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300"></td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/faq`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/faq/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`faq/loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`faq/error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Root `not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300"></td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/offers`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/offers/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`offers/loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`offers/error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Root `not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300"></td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/technology`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/technology/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`technology/loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`technology/error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Root `not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300"></td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/privacy`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/privacy/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`(content)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`privacy/loading.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`privacy/error.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Root `not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300"></td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">`/*`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">None</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Catch-all 404</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Route Group Notes:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300"><code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">(home)/layout.tsx</code> — provides Navbar, Footer, WhatsAppButton, BottomCTABar. No Breadcrumbs (hero is full-bleed).</li>
+<li class="text-slate-300"><code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">(content)/layout.tsx</code> — provides Navbar, Breadcrumbs, Footer, WhatsAppButton, BottomCTABar. Breadcrumbs auto-generated from pathname.</li>
+<li class="text-slate-300">Root <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">layout.tsx</code> — wraps all groups with fonts, Toaster, WhatsAppContext.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">4. Data Models (TypeScript Interfaces)</h2>
+<p class="text-slate-300 mb-4">All interfaces in <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">src/lib/types.ts</code>:</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+// ─── Services ───────────────────────────────────────────────
+export interface Service {
+slug: string;
+title: string;
+shortTitle: string;
+description: string;
+longDescription: string;
+icon: string;                          // Lucide icon name
+iconLibrary?: 'lucide' | 'custom';    // default: 'lucide'
+useCases: string[];
+specs: string[];
+turnaround: string;                    // e.g. "24–48 hours"
+minOrder?: string;
+finishingOptions?: string[];
+faq: FAQEntry[];
+relatedServices: string[];             // slugs
+cta: {
+label: string;
+href: string;
+};
+metaTitle?: string;
+metaDescription?: string;
+}
+// ─── Industries ─────────────────────────────────────────────
+export interface Industry {
+slug: string;
+title: string;
+icon: string;
+description: string;
+products: string[];                    // service slugs commonly used
+whyWhites: string[];
+cta: {
+label: string;
+href: string;
+};
+metaTitle?: string;
+metaDescription?: string;
+}
+// ─── Locations ──────────────────────────────────────────────
+export interface Location {
+slug: string;
+title: string;                         // "Printing Services in Al Qusais"
+areaName: string;                      // "Al Qusais"
+distance: string;                      // e.g. "2.3 km from our shop"
+mapCoords: {
+lat: number;
+lng: number;
+};
+description: string;
+keySectors: string[];                  // industry slugs
+nearby: string[];                      // landmark names
+metaTitle?: string;
+metaDescription?: string;
+}
+// ─── FAQ ────────────────────────────────────────────────────
+export interface FAQEntry {
+id: string;
+question: string;
+answer: string;
+category: 'ordering' | 'design' | 'delivery' | 'payment' | 'general' | string;
+}
+// ─── Testimonials ───────────────────────────────────────────
+export interface Testimonial {
+id: string;
+quote: string;
+author: string;
+company: string;
+industry: string;
+rating: 1 | 2 | 3 | 4 | 5;
+isNamed: boolean;                      // false = "Happy Client, Dubai"
+avatarUrl?: string;
+date?: string;
+}
+// ─── Offers ─────────────────────────────────────────────────
+export interface Offer {
+id: string;
+title: string;
+description: string;
+validityStart: string;                 // ISO date string
+validityEnd: string;                   // ISO date string
+cta: {
+label: string;
+href: string;
+};
+active: boolean;
+terms?: string;
+discount?: string;                     // e.g. "20% OFF"
+}
+// ─── Team / Competencies ────────────────────────────────────
+export interface TeamMember {
+competency: string;                    // e.g. "Graphic Design"
+description: string;
+icon: string;                          // Lucide icon name
+}
+// ─── Equipment ──────────────────────────────────────────────
+export interface EquipmentItem {
+name: string;                          // e.g. "HP Latex 3600"
+type: 'printer' | 'cutter' | 'finishing' | 'binding' | 'other';
+description: string;
+specs: string[];
+isFlagship: boolean;
+icon: string;
+}
+// ─── Forms ──────────────────────────────────────────────────
+export interface QuoteFormData {
+name: string;
+phone: string;
+email?: string;
+company?: string;
+service: string;                       // service slug
+quantity?: number;
+files?: UploadedFile[];
+description?: string;
+deliveryRequired: boolean;
+installationRequired: boolean;
+}
+export interface CallbackFormData {
+name: string;
+phone: string;
+timePreference: 'morning' | 'afternoon' | 'evening' | 'any';
+description?: string;
+}
+export interface ContactFormData {
+name: string;
+phone?: string;
+email: string;
+subject: string;
+message: string;
+}
+export interface UploadedFile {
+name: string;
+size: number;                          // bytes
+type: string;                          // MIME type
+url: string;                           // path or CDN URL
+}
+// ─── Navigation ─────────────────────────────────────────────
+export interface NavigationItem {
+label: string;
+href: string;
+children?: NavigationItem[];
+icon?: string;
+}
+export interface Breadcrumb {
+label: string;
+href: string;
+}
+// ─── API Responses ──────────────────────────────────────────
+export interface ApiResponse<T = unknown> {
+success: boolean;
+message: string;
+data?: T;
+errors?: Record<string, string[]>;
+}
+export interface ContentResponse<T = unknown> {
+items: T[];
+total: number;
+type: string;
+}
+// ─── Context ────────────────────────────────────────────────
+export interface WhatsAppContextType {
+prefillMessage: string;
+setPrefillMessage: (msg: string) => void;
+phoneNumber: string;                   // "+971XXXXXXXXX"
+openWhatsApp: () => void;
+}
+</code></pre>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">5. Component Specifications</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.1 Layout Components</h3>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Navbar</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface NavbarProps {
+transparent?: boolean;  // transparent bg on hero pages, solid on scroll
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Sticky top navigation. Logo left, nav links center, CTA button right. Mobile: hamburger → MobileDrawer. Scroll listener adds shadow/opaque background on scrollY > 50px. Highlights active route.</li>
+<li class="text-slate-300">**Data source:** Client component (<code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">"use client"</code>). Reads <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">navigation.ts</code> via import.</li>
+<li class="text-slate-300">**Responsive:** Desktop: full horizontal nav. Tablet: condensed links + hamburger. Mobile: hamburger only.</li>
+<li class="text-slate-300">**States:** Normal, scrolled (bg-navy/white with shadow), mobile drawer open.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Footer</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface FooterProps {
+hideNewsletter?: boolean;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** 4-column footer: (1) Logo + description + social links, (2) Quick Links, (3) Services, (4) Contact info. Bottom bar with copyright + payment badges.</li>
+<li class="text-slate-300">**Data source:** Server component. Imports <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">navigation.ts</code> and <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">constants.ts</code>.</li>
+<li class="text-slate-300">**Responsive:** Desktop: 4 columns. Tablet: 2×2 grid. Mobile: stacked.</li>
+<li class="text-slate-300">**States:** Static — no loading/error states.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">WhatsAppButton</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface WhatsAppButtonProps {
+position?: 'bottom-right' | 'bottom-left';
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Fixed-position floating button. Uses WhatsAppContext to pre-fill message. Opens <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">wa.me</code> link in new tab. Accessible label.</li>
+<li class="text-slate-300">**Data source:** Client component (<code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">"use client"</code>). Reads WhatsAppContext.</li>
+<li class="text-slate-300">**Responsive:** Visible on all breakpoints. Slightly smaller on mobile (48px vs 56px).</li>
+<li class="text-slate-300">**States:** Normal, hover (scale 1.1), tooltip on first visit.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">MobileDrawer</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface MobileDrawerProps {
+open: boolean;
+onClose: () => void;
+items: NavigationItem[];
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Slide-in drawer from right (or left) for mobile navigation. Renders <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">items</code> recursively for sub-menus. Focus trap + body scroll lock when open. Backdrop overlay.</li>
+<li class="text-slate-300">**Data source:** Client component. Receives <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">items</code> as prop.</li>
+<li class="text-slate-300">**Responsive:** Hidden on desktop (display:none via Tailwind <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">lg:hidden</code>).</li>
+<li class="text-slate-300">**States:** Closed (translateX 100%), open (translateX 0), submenu expanded.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.2 Home Components</h3>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Hero</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface HeroProps {
+title: string;
+subtitle: string;
+ctaPrimary: { label: string; href: string };
+ctaSecondary?: { label: string; href: string };
+backgroundVideo?: string;
+backgroundImage?: string;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Full-viewport hero with navy gradient background, optional video/image, headline, subheadline, and two CTAs. CTA hierarchy: "Get a Quote" (primary/magenta), "WhatsApp Us" (secondary/cyan).</li>
+<li class="text-slate-300">**Data source:** Server component. Content from <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">constants.ts</code>.</li>
+<li class="text-slate-300">**Responsive:** Desktop: full height, text left-aligned. Mobile: reduced height (60vh), centered text, smaller headings.</li>
+<li class="text-slate-300">**States:** Normal, loading (skeleton if video).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">ServiceGrid</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface ServiceGridProps {
+services: Service[];
+limit?: number;
+columns?: 2 | 3 | 4;
+showAllLink?: boolean;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Grid of ServiceCards. Homepage shows 6 featured services with "View All" link. Uses <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">ScrollAnimate</code> for each row.</li>
+<li class="text-slate-300">**Data source:** Server component. Receives <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">services</code> as prop from page.</li>
+<li class="text-slate-300">**Responsive:** 4 cols desktop, 2 cols tablet, 1 col mobile.</li>
+<li class="text-slate-300">**States:** Empty (hidden if no services).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">IndustryScroll</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface IndustryScrollProps {
+industries: Industry[];
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Horizontal scrolling row of IndustryCards. Click/drag to scroll. Left/right arrow buttons on desktop.</li>
+<li class="text-slate-300">**Data source:** Server component. Receives <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">industries</code> as prop.</li>
+<li class="text-slate-300">**Responsive:** Desktop: horizontal scroll with arrows. Mobile: swipeable row.</li>
+<li class="text-slate-300">**States:** Empty (hidden), edge states (arrows disabled at ends).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">WhyChoose</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface WhyChooseProps {
+items: { icon: string; title: string; description: string }[];
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** 3- or 4-column grid highlighting unique selling points (quality, speed, support, expertise). Icon + heading + short blurb per item.</li>
+<li class="text-slate-300">**Data source:** Server component. Content from <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">constants.ts</code>.</li>
+<li class="text-slate-300">**Responsive:** 3 cols desktop, 2 cols tablet, 1 col mobile.</li>
+<li class="text-slate-300">**States:** Static.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">TechnologyShowcase</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface TechnologyShowcaseProps {
+items: EquipmentItem[];
+limit?: number;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Cards showing latest equipment/technology. Icons, names, brief specs. "See all technology" link.</li>
+<li class="text-slate-300">**Data source:** Server component. From <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">equipment.ts</code>.</li>
+<li class="text-slate-300">**Responsive:** 3 cols desktop, 2 cols tablet, 1 col mobile.</li>
+<li class="text-slate-300">**States:** Empty (hidden).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">TestimonialsSection</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface TestimonialsSectionProps {
+testimonials: Testimonial[];
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Carousel/slider of TestimonialCards. Auto-rotate every 5s, pause on hover. Dot navigation + prev/next arrows.</li>
+<li class="text-slate-300">**Data source:** Client component (carousel interactivity). Data from <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">testimonials.ts</code> via page.</li>
+<li class="text-slate-300">**Responsive:** Desktop: 3 cards visible. Tablet: 2 cards. Mobile: 1 card (single column).</li>
+<li class="text-slate-300">**States:** Loading (skeleton cards), empty (hidden), active slide, transitioning.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">OffersSection</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface OffersSectionProps {
+offers: Offer[];
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Displays active offers (filtered by <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">offer.active && validityEnd > now</code>). Cards with discount badge, title, validity dates, CTA.</li>
+<li class="text-slate-300">**Data source:** Server component. From <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">offers.ts</code>.</li>
+<li class="text-slate-300">**Responsive:** 2 cols desktop, 1 col mobile.</li>
+<li class="text-slate-300">**States:** No active offers (hidden section entirely).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">CoverageMap</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface CoverageMapProps {
+locations: Location[];
+centerLat?: number;
+centerLng?: number;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Map or visual showing service coverage across Dubai areas. Lists nearby areas. Could use a simple SVG map (Phase 1) or Google Maps embed (Phase 2).</li>
+<li class="text-slate-300">**Data source:** Server component. From <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">locations.ts</code>.</li>
+<li class="text-slate-300">**Responsive:** Desktop: map + list side-by-side. Mobile: stacked.</li>
+<li class="text-slate-300">**States:** Static.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">CTABanner</code> (home variant)</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface CTABannerProps {
+title: string;
+description: string;
+cta: { label: string; href: string };
+variant?: 'navy' | 'cyan' | 'magenta';
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Full-width call-to-action banner with background color, text, and CTA button. Used at bottom of homepage and as shared component on content pages.</li>
+<li class="text-slate-300">**Data source:** Server component. Receives content as props.</li>
+<li class="text-slate-300">**Responsive:** Text + button always stacked vertically on mobile, side-by-side on desktop.</li>
+<li class="text-slate-300">**States:** Static.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.3 Services Components</h3>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">ServiceCard</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface ServiceCardProps {
+service: Service;
+variant?: 'default' | 'compact' | 'sidebar';
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Clickable card for a service. Shows icon, title, short description, CTA. Hover lifts shadow + subtle icon color shift.</li>
+<li class="text-slate-300">**Data source:** Server component. Receives <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Service</code> object as prop.</li>
+<li class="text-slate-300">**Responsive:** Width dictated by parent grid.</li>
+<li class="text-slate-300">**States:** Normal, hover, active (clicked/selected).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">ServiceTemplate</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface ServiceTemplateProps {
+service: Service;
+relatedServices: Service[];
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Full-service detail layout. Sections: hero (title + description), specs table, use cases list, finishing options, turnaround, FAQ (accordion), related services sidebar, bottom CTA.</li>
+<li class="text-slate-300">**Data source:** Server component. Content from <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">services.ts</code>.</li>
+<li class="text-slate-300">**Responsive:** Desktop: content + sidebar layout. Mobile: single column, sidebar below.</li>
+<li class="text-slate-300">**States:** Loading (skeleton for each section), 404 (handled by <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">not-found.tsx</code>).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">ServiceSidebar</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface ServiceSidebarProps {
+currentSlug: string;
+services: Service[];
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Sticky sidebar listing all services. Highlights current. Links to each service page.</li>
+<li class="text-slate-300">**Data source:** Server component. From <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">services.ts</code>.</li>
+<li class="text-slate-300">**Responsive:** Desktop: sticky sidebar (top: 100px). Tablet: horizontal strip. Mobile: hidden (replaced by bottom nav/bottom bar).</li>
+<li class="text-slate-300">**States:** Normal, active (current).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.4 Industries Components</h3>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">IndustryCard</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface IndustryCardProps {
+industry: Industry;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Card for an industry. Icon, title, brief description. Hover effect.</li>
+<li class="text-slate-300">**Data source:** Server component.</li>
+<li class="text-slate-300">**Responsive:** Grid-based sizing.</li>
+<li class="text-slate-300">**States:** Normal, hover.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">IndustryTemplate</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface IndustryTemplateProps {
+industry: Industry;
+relevantServices: Service[];
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Full industry detail. Hero, products/services list (with links to service pages), why Whites section (bullet points), relevant ServiceCards, bottom CTA.</li>
+<li class="text-slate-300">**Data source:** Server component.</li>
+<li class="text-slate-300">**Responsive:** Content + sidebar or full width.</li>
+<li class="text-slate-300">**States:** Loading skeleton, 404.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.5 Form Components</h3>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">QuoteForm</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface QuoteFormProps {
+preSelectedService?: string;  // slug, pre-fills step 1
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Multi-step form (5 steps). Steps: (1) Select service category → specific service, (2) Quantity + specs, (3) File upload (FileUpload component), (4) Contact info (name, phone, email?, company?), (5) Review + submit. Progress bar at top. Validates each step before proceeding. Submits to <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">POST /api/quotes</code>. Shows success toast + WhatsApp prompt.</li>
+<li class="text-slate-300">**Data source:** Client component (<code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">"use client"</code>). Data from <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">services.ts</code> (list for dropdown). All state local.</li>
+<li class="text-slate-300">**Responsive:** Single column always (form width max 640px centered). File upload full-width.</li>
+<li class="text-slate-300">**States:** Step 1–5 active, validation error per field, submitting (loading spinner on submit button), success (confirmation message + WhatsApp CTA), error (API error message with retry).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">CallbackForm</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface CallbackFormProps {
+variant?: 'inline' | 'modal';
+onSuccess?: () => void;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Quick call-back form. Fields: name, phone, time preference (dropdown: morning/afternoon/evening/any), optional description. Inline or modal variant. Submits to <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">POST /api/callbacks</code>.</li>
+<li class="text-slate-300">**Data source:** Client component. Local state.</li>
+<li class="text-slate-300">**Responsive:** Full-width on mobile, compact on desktop.</li>
+<li class="text-slate-300">**States:** Empty, validation errors, submitting, success (thank you message), error.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">ContactForm</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface ContactFormProps {
+defaultSubject?: string;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Standard contact form. Fields: name, phone (optional), email, subject, message (textarea). Submits to <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">POST /api/contact</code>. Shows success toast.</li>
+<li class="text-slate-300">**Data source:** Client component. Local state.</li>
+<li class="text-slate-300">**Responsive:** Full-width single column.</li>
+<li class="text-slate-300">**States:** Empty, validation errors, submitting, success, error.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">FileUpload</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface FileUploadProps {
+files: UploadedFile[];
+onChange: (files: UploadedFile[]) => void;
+maxFiles?: number;        // default: 5
+maxSize?: number;         // default: 25 * 1024 * 1024 (25MB)
+accept?: string;          // default: ".pdf,.ai,.eps,.cdr,.psd,.jpg,.jpeg,.png,.tiff,.tif"
+disabled?: boolean;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Drag-and-drop file upload zone. Lists uploaded files with remove button. Shows file size, type. Validates count and size client-side before upload. Uploads each file to <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">POST /api/upload</code> and collects returned URLs.</li>
+<li class="text-slate-300">**Data source:** Client component. Controlled via props (parent manages state).</li>
+<li class="text-slate-300">**Responsive:** Full-width drop zone.</li>
+<li class="text-slate-300">**States:** Empty (drop zone with dashed border + "Drag files here or click to browse"), dragging (highlighted border + background), has files (list with progress per file), uploading (per-file progress indicator), error (per-file error message), max files reached (zone hidden/disabled), file too large (inline error).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.6 Shared Components</h3>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">SectionWrapper</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface SectionWrapperProps {
+children: React.ReactNode;
+className?: string;
+background?: 'white' | 'grey' | 'navy' | 'none';
+id?: string;               // for anchor links
+containerClass?: string;
+paddingY?: 'sm' | 'md' | 'lg' | 'xl' | 'none';
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Standard section container. Applies horizontal padding, vertical padding, background color, max-width container. Wraps children.</li>
+<li class="text-slate-300">**Data source:** Server component. Pure layout.</li>
+<li class="text-slate-300">**Responsive:** Container max 1200px, padding 24px desktop / 16px mobile.</li>
+<li class="text-slate-300">**States:** Static.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">ScrollAnimate</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface ScrollAnimateProps {
+children: React.ReactNode;
+animation?: 'fade-up' | 'fade-left' | 'fade-right' | 'scale-up';
+delay?: number;              // ms, default 0
+threshold?: number;          // 0–1, default 0.2
+className?: string;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Intersection Observer wrapper that triggers CSS animation when element enters viewport. Uses GPU-only transforms (<code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">translateY</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">translateX</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">scale</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">opacity</code>). Respects <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">prefers-reduced-motion</code>.</li>
+<li class="text-slate-300">**Data source:** Client component (<code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">"use client"</code>).</li>
+<li class="text-slate-300">**Responsive:** Same animation across breakpoints.</li>
+<li class="text-slate-300">**States:** Hidden (pre-intersection), visible (post-intersection, animated).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Breadcrumbs</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface BreadcrumbsProps {
+items: Breadcrumb[];
+homeLabel?: string;   // default "Home"
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Breadcrumb trail with <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Home > Parent > Current</code> structure. Last item is plain text (not link). Cheveron separator.</li>
+<li class="text-slate-300">**Data source:** Client or Server component. Items generated from pathname + content map.</li>
+<li class="text-slate-300">**Responsive:** Mobile: truncate to "Home > Current" with ellipsis for deep pages.</li>
+<li class="text-slate-300">**States:** Single item (home only — hidden).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">CTABanner</code> (shared variant)</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface CTABannerProps {
+title: string;
+description: string;
+cta: { label: string; href: string };
+variant?: 'navy' | 'cyan' | 'magenta';
+className?: string;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Reusable CTA banner used across content pages. Same as home variant but shared export from <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">shared/</code> folder.</li>
+<li class="text-slate-300">**Data source:** Server component.</li>
+<li class="text-slate-300">**Responsive:** Stacked on mobile, side-by-side on desktop.</li>
+<li class="text-slate-300">**States:** Static.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">BottomCTABar</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface BottomCTABarProps {
+whatsappMessage?: string;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Fixed bottom bar on mobile with 2–3 quick CTAs: "WhatsApp", "Get Quote", "Call Now". Persistent across content pages. Hidden on scroll down, shows on scroll up (or always visible).</li>
+<li class="text-slate-300">**Data source:** Client component. Reads WhatsAppContext.</li>
+<li class="text-slate-300">**Responsive:** Visible only on mobile (<640px). Hidden on tablet/desktop.</li>
+<li class="text-slate-300">**States:** Visible, hidden (scroll down behavior), action tapped.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">TrustBadges</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface TrustBadgesProps {
+badges?: ('payment' | 'secure' | 'delivery' | 'quality')[];
+showLabels?: boolean;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Row of trust indicators (payment methods, SSL, delivery guarantee, quality assurance). Icons + optional labels.</li>
+<li class="text-slate-300">**Data source:** Server component.</li>
+<li class="text-slate-300">**Responsive:** Center-aligned, wrap on mobile.</li>
+<li class="text-slate-300">**States:** Static.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">GoogleReviewsWidget</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface GoogleReviewsWidgetProps {
+googlePlaceId?: string;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Embed Google Reviews widget (iframe or custom widget using Google Places API). Falls back to manual testimonials display if Google integration not configured.</li>
+<li class="text-slate-300">**Data source:** Client component. Iframe embed or Google API call.</li>
+<li class="text-slate-300">**Responsive:** Full-width.</li>
+<li class="text-slate-300">**States:** Loading (skeleton), loaded, error (fallback to manual testimonials).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">FAQAccordion</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface FAQAccordionProps {
+items: FAQEntry[];
+allowMultiple?: boolean;   // default false
+defaultOpen?: string[];    // ids of items open by default
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Accordion component. Click question to expand/collapse answer. Chevron icon rotates on open. Smooth height animation.</li>
+<li class="text-slate-300">**Data source:** Client component. Items from data files.</li>
+<li class="text-slate-300">**Responsive:** Full-width single column.</li>
+<li class="text-slate-300">**States:** Closed, open (with answer visible), focus (keyboard navigation).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.7 About Components</h3>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">TeamSection</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface TeamSectionProps {
+members: TeamMember[];
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Grid of team competencies (not individual people — Whites is a service brand, not a team showcase). Each card: icon, competency name, description. Positions as "Our Expertise" section.</li>
+<li class="text-slate-300">**Data source:** Server component.</li>
+<li class="text-slate-300">**Responsive:** 3 cols desktop, 2 cols tablet, 1 col mobile.</li>
+<li class="text-slate-300">**States:** Static.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">EquipmentShowcase</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface EquipmentShowcaseProps {
+equipment: EquipmentItem[];
+showAll?: boolean;
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Equipment cards with name, type badge, description, key specs. Flagship items highlighted with accent border/icon. Used on both About and Technology pages.</li>
+<li class="text-slate-300">**Data source:** Server component.</li>
+<li class="text-slate-300">**Responsive:** 3 cols desktop, 2 cols tablet, 1 col mobile.</li>
+<li class="text-slate-300">**States:** Empty (hidden).</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">#### <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">ProcessFlow</code></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface ProcessFlowProps {
+steps: { title: string; description: string; icon: string }[];
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Description:** Vertical or horizontal "how it works" flow. Desktop: horizontal timeline with arrows between steps. Mobile: vertical timeline with connecting line.</li>
+<li class="text-slate-300">**Data source:** Server component.</li>
+<li class="text-slate-300">**Responsive:** Horizontal desktop, vertical mobile.</li>
+<li class="text-slate-300">**States:** Static.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">6. API Route Design</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">`POST /api/quotes`</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Purpose:** Submit a quote request — sends email notification + WhatsApp auto-reply to customer.</li>
+<li class="text-slate-300">**Request body:**</li>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface QuoteRequestBody extends QuoteFormData {
+_honeypot?: string;        // spam prevention
+timestamp?: number;
+}
+</code></pre>
+<li class="text-slate-300">**Response:**</li>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+ApiResponse<{ quoteId: string }>
+// 201 on success, 400 on validation error, 500 on server error
+</code></pre>
+<li class="text-slate-300">**Logic:**</li>
+<p class="text-slate-300 mb-4">1. Validate required fields (name, phone, service)</p>
+<p class="text-slate-300 mb-4">2. Check honeypot field — if filled, return 200 anyway but discard</p>
+<p class="text-slate-300 mb-4">3. Sanitize all inputs</p>
+<p class="text-slate-300 mb-4">4. Generate unique <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">quoteId</code> (e.g. <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Q-{timestamp}-{random4}</code>)</p>
+<p class="text-slate-300 mb-4">5. Store in database (if available) or log</p>
+<p class="text-slate-300 mb-4">6. Send email via Resend SDK to <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">orders@whitesprinting.ae</code> with all form data + file URLs</p>
+<p class="text-slate-300 mb-4">7. Send WhatsApp auto-reply to customer via Twilio API (or return wa.me link if Twilio not configured)</p>
+<p class="text-slate-300 mb-4">8. Return success with <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">quoteId</code></p>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">`POST /api/callbacks`</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Purpose:** Request a callback — sends email notification.</li>
+<li class="text-slate-300">**Request body:**</li>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface CallbackRequestBody extends CallbackFormData {
+_honeypot?: string;
+timestamp?: number;
+}
+</code></pre>
+<li class="text-slate-300">**Response:**</li>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+ApiResponse<null>
+// 201 on success, 400 on validation error, 500 on server error
+</code></pre>
+<li class="text-slate-300">**Logic:**</li>
+<p class="text-slate-300 mb-4">1. Validate name and phone</p>
+<p class="text-slate-300 mb-4">2. Check honeypot</p>
+<p class="text-slate-300 mb-4">3. Send email via Resend to <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">orders@whitesprinting.ae</code></p>
+<p class="text-slate-300 mb-4">4. Return success</p>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">`POST /api/contact`</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Purpose:** Submit contact form — sends email notification.</li>
+<li class="text-slate-300">**Request body:**</li>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+interface ContactRequestBody extends ContactFormData {
+_honeypot?: string;
+timestamp?: number;
+}
+</code></pre>
+<li class="text-slate-300">**Response:**</li>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+ApiResponse<null>
+// 201 on success, 400 on validation error, 500 on server error
+</code></pre>
+<li class="text-slate-300">**Logic:**</li>
+<p class="text-slate-300 mb-4">1. Validate name, email, subject, message</p>
+<p class="text-slate-300 mb-4">2. Check honeypot</p>
+<p class="text-slate-300 mb-4">3. Send email via Resend to <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">info@whitesprinting.ae</code></p>
+<p class="text-slate-300 mb-4">4. Auto-reply with "Thank you for contacting us" email to sender</p>
+<p class="text-slate-300 mb-4">5. Return success</p>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">`POST /api/upload`</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Purpose:** Upload a single file and return its accessible URL.</li>
+<li class="text-slate-300">**Request:** <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">multipart/form-data</code> with field <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">file</code></li>
+<li class="text-slate-300">**Response:**</li>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+ApiResponse<UploadedFile>
+// 201 on success, 400 on validation error, 413 on file too large, 500 on error
+</code></pre>
+<li class="text-slate-300">**Validation:**</li>
+<li class="text-slate-300">Max file size: 25MB (check before processing)</li>
+<li class="text-slate-300">Allowed MIME types: <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">application/pdf</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">application/postscript</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">application/illustrator</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">image/vnd.adobe.photoshop</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">image/jpeg</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">image/png</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">image/tiff</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">application/x-coreldraw</code> (and variations)</li>
+<li class="text-slate-300">Sanitize filename (remove special chars, limit length to 50 chars)</li>
+<li class="text-slate-300">**Logic:**</li>
+<p class="text-slate-300 mb-4">1. Receive file from <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">formData</code></p>
+<p class="text-slate-300 mb-4">2. Validate size and type</p>
+<p class="text-slate-300 mb-4">3. Generate safe filename: <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">{timestamp}-{random6}-{original.ext}</code></p>
+<p class="text-slate-300 mb-4">4. Store: dev → <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">/uploads/</code> directory, prod → S3 bucket</p>
+<p class="text-slate-300 mb-4">5. Return URL: dev → <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">/uploads/{filename}</code>, prod → <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">https://cdn.whitesprinting.ae/{filename}</code></p>
+<p class="text-slate-300 mb-4">6. Schedule cleanup of unclaimed uploads > 24h (optional)</p>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">`GET /api/content/[type]`</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Purpose:** Return JSON for any content type. Used by client components if dynamic fetching needed, or for external tools.</li>
+<li class="text-slate-300">**Parameters:** <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">[type]</code> — one of: <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">services</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">industries</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">locations</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">faq</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">testimonials</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">offers</code></li>
+<li class="text-slate-300">**Query params:** <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">?slug=xxx</code> (optional, filter to one item)</li>
+<li class="text-slate-300">**Response:**</li>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+ContentResponse<Service | Industry | Location | FAQEntry | Testimonial | Offer>
+// 200 with items array, 404 if type unknown
+</code></pre>
+<li class="text-slate-300">**Logic:**</li>
+<p class="text-slate-300 mb-4">1. Map <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">type</code> to data file import</p>
+<p class="text-slate-300 mb-4">2. If <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">slug</code> provided, filter to single item (return as single-item array)</p>
+<p class="text-slate-300 mb-4">3. Return JSON response</p>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">7. Data Flow Architecture</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">7.1 Static Content Flow (data/*.ts → Server Components)</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+data/services.ts ──► import ──► app/services/page.tsx (Server Component)
+│
+├── render ServiceCard × 15
+│
+└── generateStaticParams
+│
+▼
+app/services/[slug]/page.tsx
+import single service
+render ServiceTemplate
+</code></pre>
+<p class="text-slate-300 mb-4">All data files are TypeScript modules imported directly by Server Components at build time. No runtime fetching needed for content pages. This is the default data flow for Phase 1.</p>
+<p class="text-slate-300 mb-4"><strong>Optional API path (for client-side use):</strong></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+data/*.ts ──► api/content/[type]/route.ts ──► fetch() ──► Client Component
+│
+└── GET /api/content/services?slug=xyz
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">7.2 Form Submission Flow (Client → API Route → Email + WhatsApp)</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+QuoteForm (Client Component)
+│
+├── Validate fields client-side
+│
+├── Upload files one-by-one ──► POST /api/upload ──► returns URLs
+│       │                                                │
+│       └── Progress tracked per file                    ▼
+│                                                   UploadedFile[]
+│
+└── POST /api/quotes { ...formData, files: UploadedFile[] }
+│
+├── Validate + sanitize
+│
+├── Send email via Resend ──► orders@whitesprinting.ae
+│       │
+│       └── HTML template with all quote details + file links
+│
+└── Send WhatsApp auto-reply ──► customer's phone
+│
+└── "Thank you for your enquiry! We'll get back to you within 2 hours."
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">7.3 File Upload Flow</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+User drops file ──► FileUpload component (client)
+│
+├── Validate size (≤25MB) + type (allowed extensions)
+│
+├── Display progress bar
+│
+└── POST /api/upload (multipart/form-data)
+│
+├── Dev: write to /public/uploads/{filename}
+├── Prod: stream to S3 bucket via presigned URL or SDK
+│
+└── Return { name, size, type, url }
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">7.4 Google Reviews Flow</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+GoogleReviewsWidget (Client Component)
+│
+├── Option A: Embed iframe via Google Place Reviews widget
+│       └── <iframe src="https://widget.google.com/..." />
+│
+└── Option B: Fetch via Google Places API (requires API key)
+└── Display custom review cards with ratings
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">7.5 Analytics Flow</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+GTM script in layout.tsx <head>
+│
+└── Events:
+├── page_view ──► GA4 (automatic via GTM)
+├── form_submit (quote/callback/contact) ──► GA4 custom event
+├── whatsapp_click ──► GA4 custom event
+├── phone_click ──► GA4 custom event
+└── file_upload ──► GA4 custom event
+Events fired in client components via:
+</code></pre>
+<p class="text-slate-300 mb-4">window.dataLayer.push({</p>
+<p class="text-slate-300 mb-4">event: 'form_submit',</p>
+<p class="text-slate-300 mb-4">formType: 'quote',</p>
+<p class="text-slate-300 mb-4">service: 'business-cards',</p>
+<p class="text-slate-300 mb-4">});</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+</code></pre>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">8. State Management</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.1 Philosophy: Server-First</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Server Components** are the default. All content data is imported directly from <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">data/*.ts</code>.</li>
+<li class="text-slate-300">**Client Components** are used only when interactivity is needed (forms, animations, mobile drawer, carousel).</li>
+<li class="text-slate-300">No global state library (no Redux, Zustand, etc.). React Context used sparingly.</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.2 WhatsAppContext</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+// src/context/WhatsAppContext.tsx
+"use client";
+const WhatsAppContext = createContext<WhatsAppContextType>({...});
+export function WhatsAppProvider({ children }: { children: React.ReactNode }) {
+const [prefillMessage, setPrefillMessage] = useState('');
+const phoneNumber = '+97143311247';  // Whites Printing phone
+const openWhatsApp = useCallback(() => {
+const encoded = encodeURIComponent(prefillMessage);
+window.open(`https://wa.me/${phoneNumber}?text=${encoded}`, '_blank');
+}, [prefillMessage, phoneNumber]);
+return (
+<WhatsAppContext.Provider value={{ prefillMessage, setPrefillMessage, phoneNumber, openWhatsApp }}>
+{children}
+</WhatsAppContext.Provider>
+);
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Usage:** Every content page calls <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">setPrefillMessage</code> in <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">generateMetadata</code> or page component to set context-aware pre-fill. E.g., on Business Cards service page: <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">setPrefillMessage("Hi! I'm interested in Business Card printing. Can you tell me more?")</code>.</li>
+<li class="text-slate-300">**WhatsAppButton** reads context to open the correct <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">wa.me</code> link.</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.3 Scroll Animation State</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Managed locally with Intersection Observer inside <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm"><ScrollAnimate></code>.</li>
+<li class="text-slate-300">No global scroll state.</li>
+<li class="text-slate-300">Each <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm"><ScrollAnimate></code> instance tracks its own <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">isVisible</code> state.</li>
+<li class="text-slate-300">Respects <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">prefers-reduced-motion</code> media query.</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.4 Form State</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Local <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">useState</code> / <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">useReducer</code> per form.</li>
+<li class="text-slate-300">No persistence across page navigation.</li>
+<li class="text-slate-300">Validation via zod schemas defined locally in each form component.</li>
+<li class="text-slate-300">Submission state: <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">idle → submitting → success | error</code>.</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.5 Navigation State</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Mobile drawer open/close: local state in <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">Navbar</code>.</li>
+<li class="text-slate-300">Active route: determined by <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">usePathname()</code> from Next.js.</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">9. Backend Architecture</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">9.1 All-in-Next.js (Phase 1)</h3>
+<p class="text-slate-300 mb-4">For Phase 1 (MVP), all backend logic lives in Next.js API routes. No separate backend server.</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Concern</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Implementation</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**API routes**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`src/app/api/*` — Next.js Route Handlers</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Email**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Resend SDK (`resend` npm package)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**File storage (dev)**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`public/uploads/` directory</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**File storage (prod)**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">AWS S3 bucket (TBD)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**WhatsApp notifications**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Twilio API (preferred) or `wa.me` link fallback</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Form validation**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">zod schemas in API routes</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Rate limiting**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`@upstash/ratelimit` or custom IP-based limit</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**CORS**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Next.js handles natively for same-origin requests</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">9.2 Future Backend Extraction (Phase 2+)</h3>
+<p class="text-slate-300 mb-4">If a separate backend is needed later, the structure would be:</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+Backend/
+├── src/
+│   ├── routes/
+│   │   ├── quotes.ts
+│   │   ├── callbacks.ts
+│   │   ├── contact.ts
+│   │   ├── upload.ts
+│   │   └── content.ts
+│   ├── services/
+│   │   ├── email.ts          # Resend integration
+│   │   ├── whatsapp.ts       # Twilio integration
+│   │   ├── storage.ts        # S3 integration
+│   │   └── validation.ts     # zod schemas
+│   ├── middleware/
+│   │   ├── rateLimit.ts
+│   │   ├── auth.ts           # If admin API needed
+│   │   └── errorHandler.ts
+│   ├── models/
+│   │   └── ...               # Database models (Prisma / Drizzle)
+│   ├── config/
+│   │   └── env.ts
+│   └── index.ts
+├── package.json
+├── tsconfig.json
+└── ... (Dockerfile, etc.)
+</code></pre>
+<p class="text-slate-300 mb-4">The API route handlers in Next.js would be refactored to call external backend endpoints instead of handling logic directly.</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">9.3 Environment Variables</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+# .env.local
+RESEND_API_KEY=re_xxxxxxxxxxxx
+TWILIO_ACCOUNT_SID=ACxxxx
+TWILIO_AUTH_TOKEN=xxxx
+TWILIO_WHATSAPP_FROM=+14155238886    # Twilio WhatsApp sandbox or number
+# Email recipients
+QUOTES_EMAIL=orders@whitesprinting.ae
+CONTACT_EMAIL=info@whitesprinting.ae
+# File upload (dev: local, prod: S3)
+UPLOAD_PROVIDER=local                # or 's3'
+S3_BUCKET_NAME=whites-printing-uploads
+S3_REGION=me-central-1
+S3_ACCESS_KEY_ID=xxxx
+S3_SECRET_ACCESS_KEY=xxxx
+# Google
+NEXT_PUBLIC_GOOGLE_PLACE_ID=xxxx
+NEXT_PUBLIC_GTM_ID=GTM-xxxx
+# Site
+NEXT_PUBLIC_SITE_URL=https://www.whitesprinting.ae
+NEXT_PUBLIC_WHATSAPP_NUMBER=+97143311247
+</code></pre>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">10. SEO & Structured Data</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">10.1 JSON-LD Schemas</h3>
+<p class="text-slate-300 mb-4">All structured data injected via <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm"><script type="application/ld+json"></code> in the relevant pages.</p>
+<p class="text-slate-300 mb-4">#### LocalBusiness (homepage + contact page)</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+const localBusinessSchema = {
+"@context": "https://schema.org",
+"@type": "LocalBusiness",
+"name": "Whites Printing Services LLC",
+"image": "https://www.whitesprinting.ae/og-image.jpg",
+"url": "https://www.whitesprinting.ae",
+"telephone": "+97143311247",
+"email": "info@whitesprinting.ae",
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "Shop 5, Al Qusais Industrial Area 1",
+"addressLocality": "Dubai",
+"addressCountry": "AE"
+},
+"geo": {
+"@type": "GeoCoordinates",
+"latitude": 25.2854,
+"longitude": 55.3604
+},
+"openingHoursSpecification": [
+{ "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday–Saturday", "opens": "08:00", "closes": "19:00" }
+],
+"priceRange": "$$",
+"sameAs": ["https://www.instagram.com/whitesprinting/", "https://www.facebook.com/whitesprinting/"]
+};
+</code></pre>
+<p class="text-slate-300 mb-4">#### FAQPage (faq page & per-service FAQ)</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+const faqSchema = (items: FAQEntry[]) => ({
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": items.map(item => ({
+"@type": "Question",
+"name": item.question,
+"acceptedAnswer": {
+"@type": "Answer",
+"text": item.answer
+}
+}))
+});
+</code></pre>
+<p class="text-slate-300 mb-4">#### BreadcrumbList (every content page)</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+const breadcrumbSchema = (items: Breadcrumb[]) => ({
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": items.map((item, i) => ({
+"@type": "ListItem",
+"position": i + 1,
+"name": item.label,
+"item": `${baseUrl}${item.href}`
+}))
+});
+</code></pre>
+<p class="text-slate-300 mb-4">#### Service (per service detail page)</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+const serviceSchema = (service: Service) => ({
+"@context": "https://schema.org",
+"@type": "Service",
+"name": service.title,
+"description": service.description,
+"provider": {
+"@type": "LocalBusiness",
+"name": "Whites Printing Services LLC"
+},
+"areaServed": {
+"@type": "City",
+"name": "Dubai"
+}
+});
+</code></pre>
+<p class="text-slate-300 mb-4">#### Product (per service, if applicable)</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+const productSchema = (service: Service) => ({
+"@context": "https://schema.org",
+"@type": "Product",
+"name": service.title,
+"description": service.description,
+"brand": { "@type": "Brand", "name": "Whites Printing" },
+"offers": {
+"@type": "Offer",
+"price": "Contact for pricing",
+"priceCurrency": "AED",
+"availability": "https://schema.org/InStock",
+"url": `https://www.whitesprinting.ae/services/${service.slug}`
+}
+});
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">10.2 generateMetadata() Factory</h3>
+<p class="text-slate-300 mb-4">Shared helper in <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">src/lib/utils.ts</code> or <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">src/lib/seo.ts</code>:</p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+// src/lib/seo.ts
+import { Metadata } from 'next';
+interface SEOProps {
+title: string;
+description: string;
+slug?: string;
+noIndex?: boolean;
+openGraph?: {
+images?: { url: string; width: number; height: number }[];
+type?: 'website' | 'article';
+};
+}
+export function generateMetadata({
+title,
+description,
+slug = '',
+noIndex = false,
+openGraph,
+}: SEOProps): Metadata {
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.whitesprinting.ae';
+const fullTitle = `${title} | Whites Printing Services Dubai`;
+return {
+title: fullTitle,
+description,
+metadataBase: new URL(baseUrl),
+alternates: {
+canonical: slug ? `${baseUrl}/${slug}` : baseUrl,
+},
+robots: {
+index: !noIndex,
+follow: !noIndex,
+},
+openGraph: {
+title: fullTitle,
+description,
+url: slug ? `${baseUrl}/${slug}` : baseUrl,
+siteName: 'Whites Printing Services LLC',
+locale: 'en_AE',
+type: openGraph?.type || 'website',
+images: openGraph?.images || [{ url: `${baseUrl}/og-image.jpg`, width: 1200, height: 630 }],
+},
+twitter: {
+card: 'summary_large_image',
+title: fullTitle,
+description,
+},
+icons: {
+icon: '/favicon.ico',
+},
+};
+}
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">10.3 sitemap.ts</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+// src/app/sitemap.ts
+import { MetadataRoute } from 'next';
+import { services } from '@/data/services';
+import { industries } from '@/data/industries';
+import { locations } from '@/data/locations';
+export default function sitemap(): MetadataRoute.Sitemap {
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.whitesprinting.ae';
+const staticPages = [
+{ url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
+{ url: `${baseUrl}/services`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+{ url: `${baseUrl}/industries`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+{ url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+{ url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+{ url: `${baseUrl}/quote`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
+{ url: `${baseUrl}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+{ url: `${baseUrl}/offers`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+{ url: `${baseUrl}/technology`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+{ url: `${baseUrl}/privacy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+];
+const servicePages = services.map(service => ({
+url: `${baseUrl}/services/${service.slug}`,
+lastModified: new Date(),
+changeFrequency: 'monthly' as const,
+priority: 0.8,
+}));
+const industryPages = industries.map(industry => ({
+url: `${baseUrl}/industries/${industry.slug}`,
+lastModified: new Date(),
+changeFrequency: 'monthly' as const,
+priority: 0.7,
+}));
+const locationPages = locations.map(location => ({
+url: `${baseUrl}/locations/${location.slug}`,
+lastModified: new Date(),
+changeFrequency: 'monthly' as const,
+priority: 0.6,
+}));
+return [...staticPages, ...servicePages, ...industryPages, ...locationPages];
+}
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">10.4 robots.ts</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+// src/app/robots.ts
+import { MetadataRoute } from 'next';
+export default function robots(): MetadataRoute.Robots {
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.whitesprinting.ae';
+return {
+rules: {
+userAgent: '*',
+allow: '/',
+disallow: ['/api/', '/_next/'],
+},
+sitemap: `${baseUrl}/sitemap.xml`,
+};
+}
+</code></pre>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">11. Implementation Order (6 Phases)</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">Phase A: Layout Shell + Homepage Static Sections</h3>
+<p class="text-slate-300 mb-4"><strong>Goal:</strong> Deployable layout with homepage showing all sections.</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Step</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Task</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Files</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Initialize Next.js project, install deps (shadcn, resend, zod, lucide-react)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`package.json`, `next.config.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Set up `globals.css` with design tokens (navy, cyan, magenta, etc.)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/globals.css`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create root `layout.tsx` with Montserrat + Inter fonts, Toaster</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/layout.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `Navbar` with responsive logic + `MobileDrawer`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/layout/Navbar.tsx`, `MobileDrawer.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `Footer` with 4-column layout</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/layout/Footer.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `WhatsAppButton` floating button</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/layout/WhatsAppButton.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `BottomCTABar` (mobile only)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/shared/BottomCTABar.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `SectionWrapper` + `ScrollAnimate` + `Breadcrumbs`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/shared/`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `(home)/layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(home)/layout.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A10</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `Hero` component</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/home/Hero.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A11</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `ServiceGrid` + `ServiceCard` (basic)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/home/ServiceGrid.tsx`, `components/services/ServiceCard.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A12</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `IndustryScroll` + `IndustryCard` (basic)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/home/IndustryScroll.tsx`, `components/industries/IndustryCard.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A13</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `WhyChoose`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/home/WhyChoose.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A14</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `TechnologyShowcase`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/home/TechnologyShowcase.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A15</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `TestimonialsSection`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/home/TestimonialsSection.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A16</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `OffersSection`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/home/OffersSection.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A17</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `CoverageMap`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/home/CoverageMap.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A18</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build homepage `CTABanner`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/home/CTABanner.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A19</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Compose homepage `page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(home)/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A20</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create `data/` files (services.ts, industries.ts, etc.) with all entries</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`data/*.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A21</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create `constants.ts` with nav items, site info</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`lib/constants.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">A22</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create `types.ts` with all interfaces</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`lib/types.ts`</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Deliverable:</strong> Full homepage at <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">/</code> with all sections, navigation, footer, WhatsApp button.</p>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">Phase B: Services + Industries + Locations Template Pages</h3>
+<p class="text-slate-300 mb-4"><strong>Goal:</strong> All content pages rendering from data files.</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Step</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Task</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Files</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">B1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `(content)/layout.tsx` with Breadcrumbs</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/layout.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">B2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build Services Overview page with ServiceGrid</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/services/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">B3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `ServiceTemplate` + `ServiceSidebar`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/services/ServiceTemplate.tsx`, `ServiceSidebar.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">B4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build Service detail `[slug]/page.tsx` with `generateStaticParams`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/services/[slug]/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">B5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build Industries Overview page</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/industries/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">B6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `IndustryTemplate`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/industries/IndustryTemplate.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">B7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build Industry detail `[slug]/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/industries/[slug]/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">B8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build Locations `[slug]/page.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/locations/[slug]/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">B9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add loading, error, not-found files for all route segments</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`*/(loading</td><td class="border border-slate-700 px-4 py-2 text-slate-300">error</td><td class="border border-slate-700 px-4 py-2 text-slate-300">not-found).tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">B10</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build shared `CTABanner` (shared variant)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/shared/CTABanner.tsx`</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Deliverable:</strong> All 15 service pages, 16 industry pages, 15 location pages with navigation.</p>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">Phase C: Forms + API Routes</h3>
+<p class="text-slate-300 mb-4"><strong>Goal:</strong> Working form submissions with email + WhatsApp notifications.</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Step</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Task</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Files</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `FileUpload` component with drag-drop</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/forms/FileUpload.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `QuoteForm` multi-step</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/forms/QuoteForm.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `CallbackForm`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/forms/CallbackForm.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `ContactForm`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/forms/ContactForm.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create `POST /api/quotes` route</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/api/quotes/route.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create `POST /api/callbacks` route</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/api/callbacks/route.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create `POST /api/contact` route</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/api/contact/route.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create `POST /api/upload` route</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/api/upload/route.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create `GET /api/content/[type]` route</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/api/content/[type]/route.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C10</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build Quote page at `/quote`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/quote/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C11</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build Contact page at `/contact`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/contact/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C12</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Integrate Resend SDK for email sending</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`lib/email.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C13</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Integrate Twilio SDK for WhatsApp replies</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`lib/whatsapp.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C14</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add toast notifications on form success/error</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">C15</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add honeypot spam protection</td><td class="border border-slate-700 px-4 py-2 text-slate-300">API routes</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Deliverable:</strong> All forms functional with file uploads, email notifications, WhatsApp auto-replies.</p>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">Phase D: Interactive Features</h3>
+<p class="text-slate-300 mb-4"><strong>Goal:</strong> Scroll animations, FAQ accordion, WhatsApp context, Google Reviews.</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Step</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Task</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Files</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">D1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `ScrollAnimate` with Intersection Observer</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/shared/ScrollAnimate.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">D2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Wrap all sections with ScrollAnimate</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Homepage + content pages</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">D3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `FAQAccordion` component</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/shared/FAQAccordion.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">D4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build FAQ page at `/faq`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/faq/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">D5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create `WhatsAppContext` and provider</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`context/WhatsAppContext.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">D6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Integrate `setPrefillMessage` on all pages</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Every page file</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">D7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `GoogleReviewsWidget`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/shared/GoogleReviewsWidget.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">D8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add scroll-based animations to homepage sections</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All home components</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">D9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add `prefers-reduced-motion` support</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`ScrollAnimate.tsx` + CSS</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Deliverable:</strong> Animated page transitions, working FAQ, context-aware WhatsApp pre-fill.</p>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">Phase E: Remaining Pages</h3>
+<p class="text-slate-300 mb-4"><strong>Goal:</strong> About, Technology, Offers, Privacy pages complete.</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Step</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Task</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Files</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">E1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `TeamSection`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/about/TeamSection.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">E2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `EquipmentShowcase`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/about/EquipmentShowcase.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">E3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `ProcessFlow`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/about/ProcessFlow.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">E4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build About page at `/about`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/about/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">E5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build Technology page at `/technology`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/technology/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">E6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build Offers page at `/offers`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/offers/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">E7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build Privacy page at `/privacy`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/(content)/privacy/page.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">E8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build 404 page at `not-found.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/not-found.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">E9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build `TrustBadges` component</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`components/shared/TrustBadges.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">E10</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add `error.tsx` and `loading.tsx` to all routes</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All route folders</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Deliverable:</strong> All 15+ pages complete and navigable.</p>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">Phase F: SEO + Performance + Launch Prep</h3>
+<p class="text-slate-300 mb-4"><strong>Goal:</strong> Production-ready website with SEO, analytics, performance optimization.</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Step</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Task</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Files</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add JSON-LD schemas to all pages</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Layout + page files</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create `generateMetadata()` factory function</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`lib/seo.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add `generateMetadata` to every page</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All page files</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create `sitemap.ts`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/sitemap.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Create `robots.ts`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/robots.ts`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add GTM + GA4 scripts to `layout.tsx`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`app/layout.tsx`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add analytics event tracking to forms + WhatsApp button</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Client components</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add canonical URLs to all pages</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Via `generateMetadata`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add Open Graph images (per-page if possible)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Metadata</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F10</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Performance audit (Lighthouse) + optimize</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F11</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Add aria labels, keyboard nav, focus management</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All interactive components</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F12</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Test all forms end-to-end</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F13</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Build production bundle, test</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F14</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Set up environment variables for production</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`.env.production`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">F15</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Deploy to Vercel / hosting</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Deliverable:</strong> Production-ready website with SEO, analytics, accessibility compliance.</p>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">> <strong>End of System Design Document</strong></p>
+<p class="text-slate-300 mb-4">></p>
+<p class="text-slate-300 mb-4">> This document serves as the authoritative blueprint for all development agents working on the Whites Printing Services LLC website. Any deviations from this design must be documented and approved.</p>
+    </main>
+    <footer class="border-t border-slate-800 mt-12 py-8">
+        <div class="max-w-5xl mx-auto px-6 text-center text-slate-500 text-sm">
+            Whites Printing Services LLC — System Architecture
+        </div>
+    </footer>
+</body>
+</html>

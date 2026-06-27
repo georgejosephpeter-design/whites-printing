@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System — Whites Printing Services LLC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: { primary: '#0f172a', secondary: '#1e293b', accent: '#112AD0' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .prose { max-width: 80ch; }
+        .prose pre { background: #1e293b; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+        .prose code { background: #1e293b; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875rem; }
+        .prose table { width: 100%; border-collapse: collapse; }
+        .prose th { background: #1e293b; padding: 0.75rem; text-align: left; font-weight: 600; }
+        .prose td { padding: 0.75rem; border-bottom: 1px solid #334155; }
+        .prose tr:hover { background: #1e293b/50; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200 min-h-screen">
+    <header class="bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="text-xl font-bold" style="color:#112AD0">Whites Printing Services LLC</a>
+                <nav class="flex gap-6 text-sm">
+                    <a href="../01_research/market_analysis.html" class="text-slate-400 hover:text-white transition">Research</a>
+                    <a href="../02_prd/product_requirements.html" class="text-slate-400 hover:text-white transition">PRD</a>
+                    <a href="design_system.html" class="text-blue-500 font-medium">Design</a>
+                    <a href="../08_content/copy.html" class="text-slate-400 hover:text-white transition">Content</a>
+                    <a href="../03_architecture/system_design.html" class="text-slate-400 hover:text-white transition">Architecture</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-5xl mx-auto px-6 py-12">
+        <h1 class="text-4xl font-bold mb-8">Whites Printing Services LLC — Design System</h1>
+<p class="text-slate-300 mb-4"><strong>Prepared by:</strong> UI/UX Designer Agent</p>
+<p class="text-slate-300 mb-4"><strong>Date:</strong> June 2026</p>
+<p class="text-slate-300 mb-4"><strong>Brand Tagline:</strong> "Color Your Business"</p>
+<p class="text-slate-300 mb-4"><strong>Website:</strong> whites.me</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">1. Three Design Direction Options — Evaluation</h2>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Criteria</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Option A: "Premium B2B Trust"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Option B: "Creative Showcase"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Option C: "Conversion-First"</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Visual Style**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Corporate, clean, minimal, trust-focused. Ample white space, generous margins, restrained layout. Professional photography of finished products in business contexts.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Portfolio-driven, visually rich, editorial feel. Full-bleed imagery, dark navy backgrounds, gallery-style product showcase. Masonry grids, hover expansions.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Lead-gen optimised, bold CTAs, high-contrast. Directional cues (arrows, progress indicators), punchy hero, simplified Quick Quote form inline. Pages engineered for action.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Color**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Navy #0A1F3F — headers, nav, footer, CTAs. White #FFFFFF — 90%+ of backgrounds.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Navy #0A1F3F — dark sections, gallery backgrounds. White #FFFFFF — content areas.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Navy #0A1F3F — primary. White #FFFFFF — backgrounds.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Accent Color**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">CMYK accents at 5–10% opacity for section dividers, icon fills, small decorative elements. Used sparingly — micro-accents only.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">CMYK accents used liberally — full-bleed colour sections per service category, vibrant hover states, dark gallery background for image pop.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Yellow (#FDD835) for primary CTAs (max contrast on navy). Cyan (#00BCD4) for secondary CTAs. Aggressive accent use to guide eye.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Typography**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Montserrat Bold (700) headings — uppercase section titles. Inter Regular (400) body. Montserrat SemiBold (600) nav/CTAs. Sizes: H1 48–56px, body 16–18px.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Montserrat Black (900) / ExtraBold (800) — oversized headlines. Open Sans (400) body — warmer. Playfair Display serif for pull quotes. Sizes: H1 56–72px.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Montserrat Bold (700) headings. Inter (400) body. Exaggerated hierarchy: H1 64px+, body 18px, button text 20px. Key numbers in accent colours.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Complexity Level**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Low — simple layout, minimal animations (fade-in on scroll + card hover lift). Complexity is in execution quality.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Medium-High — masonry grids, hover-triggered animations, full-bleed overlays, scroll-triggered transitions. Image-critical.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Low-Medium — visually simple but conversion architecture is sophisticated (A/B testing, form optimisation, analytics).</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Best For**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Corporate procurement, government entities, hotels, banks, financial institutions. Any buyer justifying choice to a committee.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Design agencies, marketing firms, event organisers, premium-print buyers (foiling, embossing). Social media sharing.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">SMEs, urgent-print buyers, mobile users, initial launch phase (lead volume priority), Google Ads landing pages.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Pros**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Maximum trust & credibility. Timeless — won't date. Fast loading. Accessible. Aligns perfectly with brand voice.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Visually impressive — stands out from competitors. Demonstrates print quality. Engages creative decision-makers. Strong shareability.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Highest conversion potential. Clear messaging. Fast development. Easy to A/B test. Mobile-first by nature.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Cons**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">May feel too conservative for creative buyers. Less "wow" for social sharing. Requires exceptional photography.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Higher production cost (pro product photography). Slower load if images not optimised. May overwhelm non-creative buyers. Risk of dating.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Least premium feel — may seem salesy. Less brand equity building. Needs ongoing optimisation. May not differentiate from lower-end competitors.</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">2. Selected Option: Option A — "Premium B2B Trust" (Hybrid Approach)</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">Rationale</h3>
+<p class="text-slate-300 mb-4">Option A is selected as the visual foundation, with deliberate borrowings from Options B and C:</p>
+<p class="text-slate-300 mb-4"><strong>Why Option A wins:</strong></p>
+<p class="text-slate-300 mb-4">1. The core requirement is "more premium than mprinthouse.ae" — Option A directly addresses this with a corporate-grade aesthetic that no competitor in Deira/North Dubai currently offers.</p>
+<p class="text-slate-300 mb-4">2. Corporate and B2B buyers represent the highest-value customer segment (larger order values, recurring contracts). Option A speaks their language: trust, reliability, longevity.</p>
+<p class="text-slate-300 mb-4">3. The market analysis confirms all local competitors have average-to-poor websites. There is a clear gap for a premium-positioned print brand — Option A fills it.</p>
+<p class="text-slate-300 mb-4">4. A clean, minimal design with navy + white aligns perfectly with brand guidelines and the "not overly salesy" tone requirement.</p>
+<p class="text-slate-300 mb-4"><strong>What we borrow from Option C (Conversion Architecture):</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Simplified quote forms with minimal required fields (progressive disclosure)</li>
+<li class="text-slate-300">Sticky bottom-CTA bar on service pages (scroll-triggered after 50%)</li>
+<li class="text-slate-300">Context-aware WhatsApp pre-fill based on current page</li>
+<li class="text-slate-300">Clear, unambiguous CTA hierarchy on every page</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>What we borrow from Option B (Creative Showcase):</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">A dedicated "Our Work" gallery page (not in main nav — accessible via About or footer)</li>
+<li class="text-slate-300">Before/after image sliders on signage and framing service pages</li>
+<li class="text-slate-300">Product photography treatment that elevates printed materials as hero content</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">Chosen Design Philosophy</h3>
+<p class="text-slate-300 mb-4">> "Trust through restraint" — Every design decision answers: "Does this help the buyer make a confident decision?" Visual flair is subordinated to clarity, credibility, and conversion. The site should feel like a premium business partner's website, not a print shop's website.</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">3. Color Palette</h2>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">Name</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Hex</th><th class="border border-slate-700 px-4 py-2 text-slate-300">RGB</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Usage</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Navy**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#0A1F3F`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">10, 31, 63</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Headers, navigation bar, primary buttons, footer background, section headings</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**White**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">255, 255, 255</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Page backgrounds, card backgrounds, text on navy, form inputs</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Cyan Accent**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#00BCD4`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0, 188, 212</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Links (underline & text), secondary CTAs, service icon fills, form focus ring, info badges</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Magenta Accent**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#E91E63`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">233, 30, 99</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Sale/offer badges, limited-time promotion indicators, emphasis dots, price highlights</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Yellow Accent**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FDD835`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">253, 216, 53</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Star ratings (review stars), attention markers, highlight underlines, "Urgent" badges</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Black (K)**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#1A1A1A`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">26, 26, 26</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Body text, icon strokes (not pure black — softer for readability)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Light Grey**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#F5F7FA`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">245, 247, 250</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Alternate section backgrounds, testimonial card backgrounds, FAQ accordion backgrounds</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Dark Grey**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#6B7280`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">107, 114, 128</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Secondary text, captions, helper text, placeholder text, metadata</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">Usage Notes</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Navy on white achieves AAA contrast ratio (15.2:1) — use for all critical text.</li>
+<li class="text-slate-300">Cyan on white achieves AA at 16px+ body text (4.6:1). Do not use cyan text smaller than 14px on white.</li>
+<li class="text-slate-300">Yellow on white fails contrast — only use yellow as background fills or decorative elements, never for text.</li>
+<li class="text-slate-300">Magenta on white achieves AA at 18px+ (4.8:1). OK for badges with large text.</li>
+<li class="text-slate-300">CMYK accent colours should never cover more than 10% of any page's total colour area. White space is the dominant visual.</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">Gradient (Optional)</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Hero overlay gradient:** Linear gradient from <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#0A1F3F</code> (left, 85% opacity) to transparent (right) for hero image overlays</li>
+<li class="text-slate-300">**Section divider:** Subtle <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#F5F7FA</code> to <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#FFFFFF</code> or vice versa for alternating section backgrounds</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">4. Typography</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">Font Stack</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Usage</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Font</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Fallback</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Weight</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Headings</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Montserrat</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Sans-serif</td><td class="border border-slate-700 px-4 py-2 text-slate-300">See table below</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Body</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Inter</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Sans-serif</td><td class="border border-slate-700 px-4 py-2 text-slate-300">See table below</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">Type Scale</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Element</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Font</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Size</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Weight</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Line Height</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Letter Spacing</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Usage</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**H1**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Montserrat</td><td class="border border-slate-700 px-4 py-2 text-slate-300">48px / 3rem</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Bold (700)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1.15</td><td class="border border-slate-700 px-4 py-2 text-slate-300">-0.02em</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Page titles (Hero headline, About H1)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**H2**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Montserrat</td><td class="border border-slate-700 px-4 py-2 text-slate-300">36px / 2.25rem</td><td class="border border-slate-700 px-4 py-2 text-slate-300">SemiBold (600)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1.2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">-0.01em</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Section titles (Services, Industries, Why Choose)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**H3**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Montserrat</td><td class="border border-slate-700 px-4 py-2 text-slate-300">24px / 1.5rem</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Medium (500)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1.25</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Subsection titles, card titles, service names</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**H4**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Montserrat</td><td class="border border-slate-700 px-4 py-2 text-slate-300">20px / 1.25rem</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Medium (500)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1.3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Component headings, form titles, industry names</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Body**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Inter</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16px / 1rem</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Regular (400)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1.6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Paragraphs, descriptions, form labels</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Body Small**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Inter</td><td class="border border-slate-700 px-4 py-2 text-slate-300">14px / 0.875rem</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Regular (400)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1.5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Secondary text, metadata, FAQ answers</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Caption**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Inter</td><td class="border border-slate-700 px-4 py-2 text-slate-300">12px / 0.75rem</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Medium (500)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1.4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.02em</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Helper text, timestamps, footnotes</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Button**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Montserrat</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16px / 1rem</td><td class="border border-slate-700 px-4 py-2 text-slate-300">SemiBold (600)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.02em</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All CTA buttons</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Button Large**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Montserrat</td><td class="border border-slate-700 px-4 py-2 text-slate-300">18px / 1.125rem</td><td class="border border-slate-700 px-4 py-2 text-slate-300">SemiBold (600)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.02em</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hero CTAs, primary quote CTAs</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Navigation**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Montserrat</td><td class="border border-slate-700 px-4 py-2 text-slate-300">15px / 0.9375rem</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Medium (500)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.01em</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Primary nav links</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Section Title (Uppercase)**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Montserrat</td><td class="border border-slate-700 px-4 py-2 text-slate-300">14px / 0.875rem</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Bold (700)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1.2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.08em</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Eyebrow labels above H2 sections (e.g., "SERVICES", "INDUSTRIES")</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">Heading Hierarchy (Ratio)</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">H1 → H2: 1.33x (perfect fourth)</li>
+<li class="text-slate-300">H2 → H3: 1.5x (perfect fifth)</li>
+<li class="text-slate-300">H3 → Body: 1.5x (perfect fifth)</li>
+<li class="text-slate-300">Body → Body Small: 1.14x (minor second)</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">Responsive Type Adjustments</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Element</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Desktop (≥1024px)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Tablet (640–1024px)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Mobile (<640px)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">H1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">48px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">36px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">28px</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">H2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">36px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">28px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">22px</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">H3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">24px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">20px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">18px</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Body</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">15px</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">Line Length</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Maximum line length for body text: 72 characters (optimal 50–65 for readability)</li>
+<li class="text-slate-300">Service descriptions and testimonial text: cap at 65 characters per line</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">5. Component Specifications</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.1 Primary Button</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">State</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Background</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Text</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Border</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Shadow</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Transition</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Default**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#0A1F3F`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">None</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`0 2px 4px rgba(10,31,63,0.2)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Hover**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#132C5A`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">None</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`0 4px 8px rgba(10,31,63,0.3)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All 0.2s ease</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Active**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#081833`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">None</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`0 1px 2px rgba(10,31,63,0.4)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.1s ease</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Disabled**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#B0BEC5`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF` (50% opacity)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">None</td><td class="border border-slate-700 px-4 py-2 text-slate-300">None</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Focus**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#0A1F3F`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px solid #00BCD4` (offset 2px)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Same as default</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+</table></div>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Dimensions:** Min 48px height, horizontal padding 24–32px, border-radius 6px</li>
+<li class="text-slate-300">**Font:** Montserrat SemiBold 16px, letter-spacing 0.02em</li>
+<li class="text-slate-300">**Icon:** May include arrow right or WhatsApp icon on specific variants</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.2 Secondary Button (Outline)</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">State</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Background</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Text</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Border</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Transition</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Default**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Transparent</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#0A1F3F`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px solid #0A1F3F`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Hover**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#0A1F3F`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px solid #0A1F3F`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All 0.2s ease</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Active**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#081833`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px solid #081833`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.1s</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Disabled**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Transparent</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#B0BEC5`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px solid #E0E0E0`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Focus**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Transparent</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#0A1F3F`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px solid #00BCD4` + ring offset 2px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+</table></div>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Same dimensions as Primary Button</li>
+<li class="text-slate-300">Use for secondary actions: "Learn More", "View All", secondary navigation</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.3 WhatsApp Button (Floating)</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">State</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Background</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Icon</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Shadow</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Transition</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Default**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#25D366` (WhatsApp Green)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">White WhatsApp icon, 28px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`0 4px 12px rgba(37,211,102,0.4)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Hover**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#20BD5A`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">White</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`0 6px 16px rgba(37,211,102,0.5)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All 0.2s ease</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Active**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#1DA851`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">White</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`0 2px 6px rgba(37,211,102,0.5)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.1s</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Focus**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#25D366`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">White</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Same as default + `0 0 0 3px rgba(37,211,102,0.3)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+</table></div>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Position:** Fixed bottom-right, 24px from edge on desktop, 16px on mobile</li>
+<li class="text-slate-300">**Size:** 56px × 56px (desktop), 52px × 52px (mobile) — circular</li>
+<li class="text-slate-300">**Z-index:** 999 (highest non-modal layer)</li>
+<li class="text-slate-300">**Tooltip:** "Chat on WhatsApp" — appears on hover, 12px font, dark bg</li>
+<li class="text-slate-300">**Pre-filled message:** Context-aware based on current page (see copy.md Section 11 for page-specific messages)</li>
+<li class="text-slate-300">**Animation:** Subtle pulse (see Section 8)</li>
+<li class="text-slate-300">**Accessibility:** ARIA label "Chat on WhatsApp, opens WhatsApp"</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.4 Form Input</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">State</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Background</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Border</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Text</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Label</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Default**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`1px solid #D1D5DB`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#1A1A1A` (placeholder: `#9CA3AF`)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#374151`, 14px, above input</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Focus**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px solid #00BCD4`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#1A1A1A`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#00BCD4`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Error**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFF5F5`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px solid #E91E63`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#1A1A1A`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#E91E63`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Disabled**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#F5F7FA`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`1px solid #E5E7EB`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#9CA3AF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#9CA3AF`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Success**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#F0FFF4`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px solid #25D366`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#1A1A1A`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#25D366`</td></tr>
+</table></div>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Dimensions:** Height 48px, border-radius 6px, padding 12px 16px</li>
+<li class="text-slate-300">**Font:** Inter Regular 16px (prevents iOS zoom on mobile)</li>
+<li class="text-slate-300">**Label:** Inter Medium 14px, margin-bottom 6px</li>
+<li class="text-slate-300">**Error message:** Inter Regular 12px, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#E91E63</code>, appears below input with 4px margin</li>
+<li class="text-slate-300">**Required indicator:** Asterisk <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">*</code> in <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#E91E63</code></li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.5 File Upload (Drag & Drop Zone)</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">State</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Background</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Border</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Icon</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Text</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Default**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#F5F7FA`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px dashed #D1D5DB`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Upload icon (24px, `#6B7280`)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Drag & drop your file here, or click to browse" — Inter 14px</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Hover/Drag Over**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#E8F4FD`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px dashed #00BCD4`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Upload icon (24px, `#00BCD4`)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Drop your file here" — Inter 14px, `#00BCD4`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**File Selected**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#F0FFF4`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px solid #25D366`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Check icon (24px, `#25D366`)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Filename displayed + "Change file" link</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Error**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFF5F5`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px solid #E91E63`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Alert icon (24px, `#E91E63`)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Error message in `#E91E63`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Disabled**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#F5F7FA`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`2px dashed #E5E7EB`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Upload icon (24px, `#D1D5DB`)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"File upload unavailable"</td></tr>
+</table></div>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Zone dimensions:** Min height 120px, border-radius 8px, padding 20px</li>
+<li class="text-slate-300">**Accepted formats:** PDF, AI, EPS, CDR, PSD, JPG, PNG, TIFF — displayed as chips below zone</li>
+<li class="text-slate-300">**File size limit:** "Max 25 MB" displayed below zone in caption style</li>
+<li class="text-slate-300">**Multiple files:** Allow up to 5 files; show file list with remove button</li>
+<li class="text-slate-300">**Accessibility:** Hidden file input with <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">accept=".pdf,.ai,.eps,.cdr,.psd,.jpg,.jpeg,.png,.tiff"</code></li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.6 Card</h3>
+<p class="text-slate-300 mb-4">#### Service Card</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">State</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Background</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Shadow</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Image</td><td class="border border-slate-700 px-4 py-2 text-slate-300">CTA</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Default**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`0 1px 3px rgba(0,0,0,0.08)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">100% width, 160px height, object-fit cover</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Learn More" arrow</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Hover**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`0 8px 24px rgba(0,0,0,0.12)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Slight scale(1.02) on image</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Arrow animates right</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Active**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#F5F7FA`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`0 4px 12px rgba(0,0,0,0.1)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+</table></div>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Structure:** Icon (48px, cyan accent) → Title (H3, 20px) → Description (Body, 14px, 3-line clamp) → Link "Learn More →"</li>
+<li class="text-slate-300">**Dimensions:** Min 280px width, border-radius 10px, overflow hidden</li>
+<li class="text-slate-300">**Grid:** 4 columns desktop, 2 columns tablet, 1 column mobile</li>
+<li class="text-slate-300">**Transition:** All 0.3s ease — transform, shadow</li>
+</ul>
+<p class="text-slate-300 mb-4">#### Industry Card</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">State</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Background</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Border</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Icon</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Default**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#F5F7FA`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`1px solid transparent`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Industry icon (32px, navy)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Hover**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`1px solid #00BCD4`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Icon scales 1.05</td></tr>
+</table></div>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Structure:** Icon → Industry name (Inter Medium 15px) — no description</li>
+<li class="text-slate-300">**Dimensions:** 160px × 100px (desktop grid) — compact</li>
+<li class="text-slate-300">**Grid:** Horizontal scrollable on mobile (snap-scroll), grid on desktop</li>
+</ul>
+<p class="text-slate-300 mb-4">#### Testimonial Card</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">State</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Background</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Shadow</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Accent</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Default**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`0 2px 8px rgba(0,0,0,0.06)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Left border: `#00BCD4`, 4px</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Hover**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`0 6px 20px rgba(0,0,0,0.1)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Same</td></tr>
+</table></div>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Structure:** Quote mark (decorative, navy, 40px) → Quote text (Inter Italic 15px) → Author name (Montserrat SemiBold 14px) → Company/Industry (Inter 12px, dark grey) → Star rating (yellow, 5 stars)</li>
+<li class="text-slate-300">**Max width:** 400px per card</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.7 Navigation</h3>
+<p class="text-slate-300 mb-4">#### Desktop (≥1024px)</p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Background:** <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#0A1F3F</code>, full-width, 72px height</li>
+<li class="text-slate-300">**Logo:** Left-aligned, circular badge version (48px) + company name "Whites Printing" in Montserrat SemiBold 18px, white</li>
+<li class="text-slate-300">**Links:** Right-aligned, Montserrat Medium 15px, white, padding 20px 16px</li>
+<li class="text-slate-300">**Active link:** Bottom border 2px solid <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#00BCD4</code></li>
+<li class="text-slate-300">**Hover:** Opacity 0.85, no underline animation</li>
+<li class="text-slate-300">**Dropdown (Services):** Triggered on hover, white bg, navy text, 2-column grid layout, shadow <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">0 8px 24px rgba(0,0,0,0.15)</code>, border-radius 8px</li>
+<li class="text-slate-300">**CTA in Nav:** "Get a Quote" button (Primary Button style, compact 36px height)</li>
+</ul>
+<p class="text-slate-300 mb-4">#### Mobile (<1024px)</p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Hamburger icon:** Right-aligned, 24px icon, white</li>
+<li class="text-slate-300">**Drawer:** Slide-in from right, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#0A1F3F</code> background, 0.3s ease, 100% viewport height</li>
+<li class="text-slate-300">**Links:** 48px min touch target, Montserrat Medium 18px, white, border-bottom <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">1px solid rgba(255,255,255,0.1)</code></li>
+<li class="text-slate-300">**Submenu:** Chevron expand/collapse, slide height transition 0.3s, child links indented 16px</li>
+<li class="text-slate-300">**CTA in drawer:** Primary Button at bottom of menu, full-width, 48px height</li>
+<li class="text-slate-300">**Overlay:** Semi-transparent navy (<code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">rgba(10,31,63,0.5)</code>), click to close</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.8 Accordion (FAQ)</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">State</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Header Background</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Header Text</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Chevron</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Content</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Collapsed**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#F5F7FA`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#0A1F3F`, Montserrat Medium 16px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`+` icon, `#0A1F3F`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hidden, max-height 0</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Expanded**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#0A1F3F`, Montserrat SemiBold 16px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`−` icon, `#00BCD4`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Content visible, padding 16px 20px</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Hover (header)**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#EEF2F6`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Same</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Same</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Focus**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#F5F7FA`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Same</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Ring `2px solid #00BCD4`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">—</td></tr>
+</table></div>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Border:** <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">1px solid #E5E7EB</code> around each accordion item, border-radius 8px</li>
+<li class="text-slate-300">**Content:** Inter Regular 15px, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#4B5563</code>, line-height 1.6</li>
+<li class="text-slate-300">**Transition:** max-height 0.3s ease (GPU-accelerated), chevron rotate 0.2s</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.9 Review Widget (Google Reviews)</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Element</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Style</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Container**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#FFFFFF` bg, border-radius 12px, shadow `0 2px 8px rgba(0,0,0,0.06)`, padding 20px</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Header**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Google logo (left) + "Google Reviews" text (Inter SemiBold 16px, `#1A1A1A`)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Rating badge**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Large number (e.g., "4.8") in Montserrat Bold 36px + star row (yellow `#FDD835`) + "Based on X reviews" (Inter 13px, dark grey)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Review cards**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">3 featured reviews with: reviewer name (Montserrat Medium 14px), date (Inter 12px, `#6B7280`), star row, text excerpt (Inter 14px, 3-line clamp)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**CTA**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"View all reviews on Google →" — link, `#00BCD4`, Inter Medium 14px</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Integration**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Live embed via Elfsight or EmbedSocial widget, styled to match brand</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">5.10 Footer</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">Section</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Content</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Background**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#0A1F3F`, full-width</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Padding**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">64px top, 48px bottom (desktop); 48px top, 32px bottom (mobile)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Logo + Tagline**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Horizontal logo (white version), "Color Your Business" tagline, "We Print, Deliver & Install — In-House." — Montserrat Medium 14px, `rgba(255,255,255,0.8)`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Column 1: Services**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Link list, Inter Regular 14px, `rgba(255,255,255,0.8)` — hover turns `#00BCD4`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Column 2: Industries**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Link list (top 6 industries + "View All"), same treatment</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Column 3: Company**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">About, Technology, Testimonials, FAQ, Contact</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Column 4: Support**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Request Quote, WhatsApp Quote, Request Callback, Delivery & Installation</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Column 5: Contact**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Address (with map link), Phone, WhatsApp, Email, Working Hours — Inter 14px, `rgba(255,255,255,0.9)`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Social icons**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Row of icon links (Instagram, LinkedIn, Facebook, Google) — 24px icons, `rgba(255,255,255,0.7)`, hover `#FFFFFF`</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Divider**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`1px solid rgba(255,255,255,0.1)`, margin 32px 0</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Copyright**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Inter 13px, `rgba(255,255,255,0.6)` — "© 2026 Whites Printing Services LLC. Color Your Business™. Privacy Policy."</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Map embed**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Small Google Maps preview (w/ link to full map), border-radius 8px, 200px × 120px</td></tr>
+</table></div>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Grid:** 5 columns desktop, 2 columns tablet (Services+Industries row, Company+Support+Contact row), 1 column mobile (stacked)</li>
+<li class="text-slate-300">**WhatsApp button:** Also in footer as: "Chat on WhatsApp" with green icon — for users who scrolled past floating button</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">6. Spacing System</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">Base Unit: 4px</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Token</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Value</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Usage</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**xs**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Icon gaps, inline spacing, small separations</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**sm**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">8px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Between icon and text in buttons, between label and input</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**md**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Between form fields, card padding, between body paragraphs</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**lg**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">24px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Between cards in grid, section title to first content, button groups</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**xl**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">32px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Between major sections (e.g., Services grid to Why Choose), hero padding</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**2xl**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">48px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Between large sections, section top padding (mobile/tablet)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**3xl**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">64px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Section top/bottom padding (desktop), hero top padding</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**4xl**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">80px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hero section height, major section padding (desktop)</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">Container</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Max-width:** 1200px (centered, with 24px padding on each side)</li>
+<li class="text-slate-300">**Full-width sections:** Eye-brow label + section content inside container, background color bleeds edge-to-edge</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">Section Padding</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Device</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Section Top/Bottom Padding</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hero Padding Top</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Desktop (≥1024px)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">80px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">120px + 80px bottom</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Tablet (640–1024px)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">60px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">100px + 60px bottom</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Mobile (<640px)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">40px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">80px + 40px bottom</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">Card Padding</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Card Type</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Internal Padding</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Gap Between</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Card</td><td class="border border-slate-700 px-4 py-2 text-slate-300">20px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">24px grid gap</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Industry Card</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16px grid gap</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Testimonial Card</td><td class="border border-slate-700 px-4 py-2 text-slate-300">24px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">24px grid gap</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">7. Responsive Breakpoints</h2>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Breakpoint</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Width</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Layout Adjustments</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Mobile**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">< 640px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Single column all sections. Hamburger nav. Stacked hero (text top, image bottom). 1-col service grid. 2-col industry grid. Stacked footer. 16px page padding. Floating WhatsApp at 52px.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Tablet**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">640–1024px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">2-col grids for services, testimonials, footer columns. Horizontal scroll for industry cards (snap-points). Hero text 60% width, image right (or stacked if insufficient width). Accordion FAQ remains full-width. Forms remain 1-col but wider. Page padding 24px. Floating WhatsApp at 56px.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Desktop**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">> 1024px</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4-col service grid, 3-col testimonial grid, 5-col footer. Full hero: left text (50%) + right image (50%). Multi-column footer. Dropdown nav for Services. Page padding 24px. Floating WhatsApp at 56px.</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">Specific Component Changes at Breakpoints</h3>
+<p class="text-slate-300 mb-4"><strong>Navigation:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Mobile: Hamburger → slide drawer, sticky top</li>
+<li class="text-slate-300">Tablet: Hamburger → slide drawer, sticky top (same as mobile)</li>
+<li class="text-slate-300">Desktop: Full horizontal nav, dropdown on Services hover, transparent on hero → solid on scroll (bg: <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#0A1F3F</code> with 0.3s transition)</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Hero:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Mobile: Full-width text, image below or as background with overlay, stacked layout</li>
+<li class="text-slate-300">Desktop: Split layout — left 50% text with CTA, right 50% image or CMYK abstract visual</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Services Grid:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Mobile: 1 column, stacked vertically</li>
+<li class="text-slate-300">Tablet: 2 columns</li>
+<li class="text-slate-300">Desktop: 4 columns</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Industry Cards:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Mobile: Horizontal scroll snap with overflow-x: auto, scrollbar hidden, snap-type x mandatory</li>
+<li class="text-slate-300">Tablet: 4-column grid</li>
+<li class="text-slate-300">Desktop: 4-column grid</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Testimonial Cards:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Mobile: 1 column</li>
+<li class="text-slate-300">Tablet: 2 columns</li>
+<li class="text-slate-300">Desktop: 3 columns (or carousel with dots)</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Contact Page:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Mobile: Stacked — form on top, map below</li>
+<li class="text-slate-300">Desktop: Split — form left (50%), map/address right (50%)</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Footer:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Mobile: Single column, stacked groups with accordion expand/collapse for link groups</li>
+<li class="text-slate-300">Tablet: 2 columns (Services+Industries | Company+Support+Contact), copyright full-width</li>
+<li class="text-slate-300">Desktop: 5 columns (Services | Industries | Company | Support | Contact+Map)</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Quote Form:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Mobile: 1 column, full-width inputs</li>
+<li class="text-slate-300">Tablet: 1 column, wider</li>
+<li class="text-slate-300">Desktop: 2-column grid for fields (name+phone row, email+company row), file upload and description full-width</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">8. Animation Specifications</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">Guiding Principles</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">All animations use <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">transform</code> and <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">opacity</code> only (GPU-accelerated properties)</li>
+<li class="text-slate-300">Respect <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">prefers-reduced-motion</code> — disable all animations when user has reduced motion enabled</li>
+<li class="text-slate-300">No animation exceeds 0.6s duration</li>
+<li class="text-slate-300">No auto-playing animations (video, carousel auto-scroll) without user interaction</li>
+<li class="text-slate-300">Use <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">will-change: transform, opacity</code> sparingly — only on elements that animate on scroll</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.1 Scroll Animations (Intersection Observer)</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Element</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Animation</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Duration</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Delay</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Easing</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Section titles (H2)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Fade-in + translateY(20px)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.6s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Card grids</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Fade-in + translateY(20px), stagger children</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.5s each</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.1s stagger</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Testimonial cards</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Fade-in + translateY(20px), stagger</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.5s each</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.15s stagger</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Hero content</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Fade-in + translateY(0px) — no movement, just opacity</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.8s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.1s delay per element (headline → sub → CTA)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Trust badge row</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Fade-in</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.4s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.6s (after hero)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Implementation:</strong></p>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+.scroll-animate {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.scroll-animate.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.scroll-animate.stagger-1 { transition-delay: 0.1s; }
+.scroll-animate.stagger-2 { transition-delay: 0.2s; }
+.scroll-animate.stagger-3 { transition-delay: 0.3s; }
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.2 Hover Effects</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Element</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Effect</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Duration</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Easing</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Service Card**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">translateY(-4px), shadow increases to `0 12px 28px rgba(0,0,0,0.12)`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.3s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Industry Card**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">translateY(-2px), border-color to `#00BCD4`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.2s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Button**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Background darken `#132C5A`, shadow deepen</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.2s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Secondary Button**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Background fill from transparent to `#0A1F3F`, text to white</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.2s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Navigation Link**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Opacity 0.85, no transform</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.15s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Footer Link**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Color change to `#00BCD4`</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.15s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Card Image**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">scale(1.02) — subtle zoom</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.4s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.3 WhatsApp Pulse Animation</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+@keyframes whatsapp-pulse {
+0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+.whatsapp-button {
+animation: whatsapp-pulse 3s infinite;
+/* Run pulse 3 times on page load, then stop — or loop gently */
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Pulse triggers on page load (3 cycles), then stops</li>
+<li class="text-slate-300">On hover: pulse stops, button gets the hover state shadow</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.4 Mobile Navigation Drawer</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Element</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Animation</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Duration</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Easing</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Drawer panel</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Slide from right: translateX(100%) → translateX(0)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.3s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">cubic-bezier(0.16, 1, 0.3, 1)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Backdrop overlay</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Fade-in: opacity 0 → 0.5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.3s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Menu links</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Stagger fade-in + translateX(-8px)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.3s each</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-out, 0.05s stagger</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Close (reverse)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All reverse, same duration</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.25s</td><td class="border border-slate-700 px-4 py-2 text-slate-300">ease-in</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.5 Accordion Expand/Collapse</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+.accordion-content {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s ease, padding 0.3s ease;
+}
+.accordion-content.expanded {
+max-height: 500px; /* or use JS-set value */
+}
+.accordion-chevron {
+transition: transform 0.2s ease;
+}
+.accordion-chevron.expanded {
+transform: rotate(45deg); /* + to × */
+}
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.6 Form Feedback</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Event</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Animation</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Duration</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Success (form submit)**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Input borders turn green (`#25D366`), success message fades in below form</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.3s</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Error (validation)**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Shake animation on erroneous field + border turns magenta + error message slide-down</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.4s shake, 0.3s message</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**File upload success**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Drop zone border turns green, checkmark icon scales in (scale 0 → 1)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">0.3s</td></tr>
+</table></div>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+@keyframes shake {
+0%, 100% { transform: translateX(0); }
+20% { transform: translateX(-6px); }
+40% { transform: translateX(6px); }
+60% { transform: translateX(-4px); }
+80% { transform: translateX(4px); }
+}
+.form-input.error {
+animation: shake 0.4s ease;
+}
+</code></pre>
+<h3 class="text-xl font-semibold mb-3 mt-6">8.7 Performance & Accessibility</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+*, *::before, *::after {
+animation-duration: 0.001s !important;
+transition-duration: 0.001s !important;
+animation-iteration-count: 1 !important;
+}
+.scroll-animate {
+opacity: 1 !important;
+transform: none !important;
+}
+}
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">All scroll animations use Intersection Observer (not scroll event listeners) for performance</li>
+<li class="text-slate-300">Stagger delays use CSS custom properties or inline styles to avoid forced layout</li>
+<li class="text-slate-300">Animation on cards uses <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">transform</code> only — no <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">width</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">height</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">top</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">left</code> animations</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">9. Iconography & Imagery Style</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">9.1 Icons</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Attribute</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Specification</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Style**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Line icons (Feather-style / Lucide), 1.5px stroke, rounded caps and joins</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Default Size**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">24px × 24px</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Small Size**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16px × 16px (inline, badges)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Large Size**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">32px × 32px (service card icons), 48px × 48px (hero feature icons)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Stroke Color**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`#0A1F3F` (navy) for navigation/section icons; `#00BCD4` (cyan) for accent/service icons</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Fill**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">No fill — line style only, except for social media brand icons</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Library Recommendation**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Lucide Icons (open source, consistent, 1.5px stroke, 1000+ icons)</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Required Icon Set:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Service icons (each of 15 services) — line icons representing the product (card, flyer, brochure, poster, banner, etc.)</li>
+<li class="text-slate-300">Industry icons — building, hospital, school, hotel, gym, embassy, etc.</li>
+<li class="text-slate-300">UI icons — chevron (dropdown/accordion), hamburger (nav), close (X), arrow right (CTA), check (success), upload (file), phone, WhatsApp, email, map-pin, clock, star (review)</li>
+<li class="text-slate-300">Social icons — Instagram, LinkedIn, Facebook, Google (branded fills acceptable)</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">9.2 Photography</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Attribute</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Specification</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Subject**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Real Whites-printed products in authentic business contexts. Business cards in a professional's hand. Brochures fanned on a meeting table. Banners installed at a venue entrance. Finished products only — avoid photos of machines running.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Style**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Well-lit, shallow depth of field, warm tones. Avoid harsh shadows or overly stylized filters. Natural and professional — like a premium brand catalogue.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Source**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Professional photo shoot of Whites' actual work, shop floor (clean, organized shots), team (group photo, action shots at workstations), and installed projects. No stock photography.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Format**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WebP with JPEG fallback. Compress to < 150 KB per image (hero: < 200 KB).</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Responsive**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Use `srcset` with 3 sizes: 480w, 768w, 1200w.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Loading**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">`loading="lazy"` on all images below the fold. Hero image: `loading="eager"`.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Aspect Ratio**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Locked with `aspect-ratio` CSS property: 16:9 (hero, banners), 4:3 (service cards), 1:1 (team thumbnails), 3:4 (product showcase)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Alt Text**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Descriptive: "Premium matte business card printing for corporate clients in Dubai" — include product name + keyword where natural.</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">9.3 Illustration Style</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Attribute</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Specification</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Usage**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Minimal — used only for decorative section transitions, abstract backgrounds, and "no image available" placeholders. Not as primary visual content.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Style**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Geometric, minimal, CMYK-themed abstract shapes. Circles, lines, and overlapping translucent colour blocks in cyan (`#00BCD4`), magenta (`#E91E63`), yellow (`#FDD835`), and black (`#1A1A1A`) at 15–30% opacity.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Purpose**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">To visually hint at the printing process (CMYK dots, registration marks, colour bars) without being literal or distracting.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Examples**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hero background abstract: overlapping translucent geometric shapes in CMYK colours. Section dividers: subtle CMYK dot pattern or thin coloured line. Service page banners: diagonal colour bar in the associated CMYK accent.</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">9.4 Image Treatment</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Hero image:** Dark overlay gradient (navy left → transparent right) for text readability</li>
+<li class="text-slate-300">**Service card images:** Bright, saturated, consistent color grading across all cards</li>
+<li class="text-slate-300">**Team images:** Warm, natural lighting, professional but approachable</li>
+<li class="text-slate-300">**Product close-ups:** Macro shots showing paper texture, foil detail, embossing depth — maximum 2 per service page</li>
+<li class="text-slate-300">**Lazy loading:** Intersection Observer-based with low-res placeholder or blur-up technique</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">10. Layout Patterns</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">10.1 Section Structure</h3>
+<p class="text-slate-300 mb-4">Every page section follows this pattern:</p>
+<p class="text-slate-300 mb-4">1. <strong>Section container</strong> — full-width background band (alternating <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#FFFFFF</code> and <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#F5F7FA</code>)</p>
+<p class="text-slate-300 mb-4">2. <strong>Inner container</strong> — max-width 1200px, centered, padding 24px</p>
+<p class="text-slate-300 mb-4">3. <strong>Eye-brow label</strong> — uppercase Montserrat Bold 14px, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#00BCD4</code>, letter-spacing 0.08em (optional — for key sections)</p>
+<p class="text-slate-300 mb-4">4. <strong>Section title</strong> — H2</p>
+<p class="text-slate-300 mb-4">5. <strong>Section subtitle</strong> — Body 16px, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">#6B7280</code>, max-width 600px (centered or left)</p>
+<p class="text-slate-300 mb-4">6. <strong>Content</strong> — grid, cards, or custom layout</p>
+<p class="text-slate-300 mb-4">7. <strong>Optional CTA</strong> — centered button or link at bottom of section</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">10.2 Grid System</h3>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Framework:** CSS Grid (not Flexbox for grid layouts)</li>
+<li class="text-slate-300">**Columns:** 12-column grid for page layouts</li>
+<li class="text-slate-300">**Gap:** 24px (desktop), 16px (tablet/mobile)</li>
+<li class="text-slate-300">**Card grids:** Use auto-fill with minmax for responsive card grids:</li>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+.service-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 24px;
+}
+@media (max-width: 1024px) {
+.service-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+.service-grid { grid-template-columns: 1fr; }
+}
+</code></pre>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">10.3 Hero Layout</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+┌──────────────────────────────────────────────────┐
+│ ┌─────────────────────┐ ┌───────────────────┐    │
+│ │  SERVICES           │ │                    │    │
+│ │                     │ │                    │    │
+│ │  Premium Printing   │ │  [Hero Image /     │    │
+│ │  for Dubai          │ │   CMYK Abstract]   │    │
+│ │  Businesses         │ │                    │    │
+│ │                     │ │                    │    │
+│ │  Body text...       │ │                    │    │
+│ │                     │ │                    │    │
+│ │  [CTA] [WhatsApp]   │ │                    │    │
+│ │                     │ │                    │    │
+│ │  15+ Years | 1K+    │ │                    │    │
+│ │  Clients | Delivery  │ │                    │    │
+│ └─────────────────────┘ └───────────────────┘    │
+│                Background: #FFFFFF                │
+└──────────────────────────────────────────────────┘
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Desktop:** Left 50% text + right 50% image/section</li>
+<li class="text-slate-300">**Mobile:** Stacked — text on top, image below (or image as background with overlay)</li>
+<li class="text-slate-300">**Hero height:** 600–700px (desktop), auto (mobile — content-height driven)</li>
+<li class="text-slate-300">**Overlay:** <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">linear-gradient(90deg, #0A1F3F 0%, rgba(10,31,63,0.6) 50%, transparent 100%)</code> when image is a full-width background</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">10.4 Services Page Template</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+┌─────────────────────────────────────┐
+│  Hero (Service-specific)            │
+├─────────────────────────────────────┤
+│  Section: Service Description       │
+│  (Text + Feature image)             │
+├─────────────────────────────────────┤
+│  Section: Use Cases (3–5 cards)     │
+├─────────────────────────────────────┤
+│  Section: Technical Specs (table)   │
+├─────────────────────────────────────┤
+│  Section: FAQ Accordion             │
+├─────────────────────────────────────┤
+│  Section: Related Services (grid)   │
+├─────────────────────────────────────┤
+│  CTA Banner (full-width, navy bg)   │
+└─────────────────────────────────────┘
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Sticky bottom CTA bar appears after 50% scroll depth</li>
+<li class="text-slate-300">Sidebar table of contents (desktop only) for long service pages</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">10.5 Contact Page Layout</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+┌───────────────────────────────────────┐
+│  ┌────────────┐  ┌─────────────────┐  │
+│  │  Contact    │  │  Google Maps    │  │
+│  │  Form       │  │  Embed          │  │
+│  │             │  │                 │  │
+│  │  [Fields]   │  │  Address        │  │
+│  │             │  │  Phone          │  │
+│  │  [Submit]   │  │  WhatsApp       │  │
+│  │             │  │  Hours          │  │
+│  │             │  │  Directions     │  │
+│  └────────────┘  └─────────────────┘  │
+│       Background: #FFFFFF              │
+└───────────────────────────────────────┘
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">**Desktop:** Split — form left 50%, map + contact details right 50%</li>
+<li class="text-slate-300">**Mobile:** Stacked — form on top, map below</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">10.6 Industries Page Layout</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+┌───────────────────────────────────────┐
+│  Hero: "Printing Solutions for        │
+│  Every Industry in Dubai"             │
+├───────────────────────────────────────┤
+│  Section: Industry Grid               │
+│  ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐ │
+│  │School│ │Health│ │Hotel │ │Fitness│ │
+│  │+ Uni │ │+ Clin│ │+ Rest│ │+ Club │ │
+│  └──────┘ └──────┘ └──────┘ └──────┘ │
+│  ... 16 verticals in interactive grid  │
+├───────────────────────────────────────┤
+│  Each vertical → dedicated anchor or   │
+│  sub-page with products + CTAs        │
+├───────────────────────────────────────┤
+│  CTA Banner                           │
+└───────────────────────────────────────┘
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Each vertical card links to an anchor section on the same page (desktop) or a sub-page (mobile)</li>
+<li class="text-slate-300">Filter bar at top: "All | Hospitality | Healthcare | Corporate | Education | Events"</li>
+</ul>
+<h3 class="text-xl font-semibold mb-3 mt-6">10.7 Location Page Template</h3>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+┌───────────────────────────────────────┐
+│  Hero: "Printing Services near        │
+│  [Area], Dubai"                       │
+├───────────────────────────────────────┤
+│  Intro paragraph (2–3 sentences)      │
+├───────────────────────────────────────┤
+│  Map section (mini map + distance)    │
+├───────────────────────────────────────┤
+│  Local business callout               │
+├───────────────────────────────────────┤
+│  Relevant services for this area      │
+├───────────────────────────────────────┤
+│  CTA: "Get Printing Delivered to      │
+│  [Area]" + WhatsApp                   │
+└───────────────────────────────────────┘
+</code></pre>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Each location page follows the same template with area-specific content swapping</li>
+<li class="text-slate-300">Breadcrumb navigation: Home > Locations > [Area]</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">Appendix A: CTA Hierarchy</h2>
+<p class="text-slate-300 mb-4">Every page must maintain the following CTA priority:</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">Priority</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Channel</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Button Label</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Placement</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**1 (Primary)**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WhatsApp</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"WhatsApp Now"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Floating button (all pages), Hero (secondary CTA), Service pages, Footer</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**2 (Secondary)**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Quote Form</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Get a Free Quote" / "Get a Quote for [Service]"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hero (primary CTA), Service pages (primary CTA), End-of-section banners</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**3 (Tertiary)**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Phone Call</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Call Us Now"</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Footer, Contact page, Mobile header</td></tr>
+</table></div>
+<h3 class="text-xl font-semibold mb-3 mt-6">CTA Button Variants</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Context</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Style</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Text</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Homepage Hero (Primary)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Primary Button, Large</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Get a Free Quote"</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Homepage Hero (Secondary)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Outline Button, white variant on navy</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"WhatsApp Now" (with WhatsApp icon)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Page (Primary)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Primary Button</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Get a Quote for [Service Name]"</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Service Page (Secondary)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WhatsApp Button (inline, not floating)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"WhatsApp Now"</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Bottom Banner (Global)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Primary Button, Large</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Start Your Print Project"</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Industry Section</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Primary Button</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Get a Quote for [Industry] Printing"</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Location Page</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Primary Button</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Get Printing Delivered to [Area]"</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Monthly Offers</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Primary Button</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Get This Offer"</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">FAQ Section</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Text Link with WhatsApp icon</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Still Have Questions? WhatsApp Us"</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Corporate Gifts (Soft)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Secondary Button</td><td class="border border-slate-700 px-4 py-2 text-slate-300">"Enquire About Corporate Gifts"</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">Appendix B: Design Tokens (CSS Custom Properties)</h2>
+<pre class="bg-slate-800 p-4 rounded-lg overflow-x-auto mb-4"><code>
+:root {
+/* Colors */
+--color-navy: #0A1F3F;
+--color-navy-light: #132C5A;
+--color-navy-dark: #081833;
+--color-white: #FFFFFF;
+--color-cyan: #00BCD4;
+--color-magenta: #E91E63;
+--color-yellow: #FDD835;
+--color-black: #1A1A1A;
+--color-grey-light: #F5F7FA;
+--color-grey-medium: #E5E7EB;
+--color-grey-dark: #6B7280;
+--color-grey-darker: #4B5563;
+--color-whatsapp: #25D366;
+--color-whatsapp-hover: #20BD5A;
+--color-success: #25D366;
+--color-error: #E91E63;
+/* Typography */
+--font-heading: 'Montserrat', sans-serif;
+--font-body: 'Inter', sans-serif;
+--fs-h1: 48px;
+--fs-h2: 36px;
+--fs-h3: 24px;
+--fs-h4: 20px;
+--fs-body: 16px;
+--fs-body-small: 14px;
+--fs-caption: 12px;
+--fw-bold: 700;
+--fw-semi-bold: 600;
+--fw-medium: 500;
+--fw-regular: 400;
+--lh-tight: 1.15;
+--lh-normal: 1.4;
+--lh-loose: 1.6;
+/* Spacing */
+--space-xs: 4px;
+--space-sm: 8px;
+--space-md: 16px;
+--space-lg: 24px;
+--space-xl: 32px;
+--space-2xl: 48px;
+--space-3xl: 64px;
+--space-4xl: 80px;
+/* Layout */
+--container-max: 1200px;
+--container-padding: 24px;
+--nav-height: 72px;
+--border-radius-sm: 6px;
+--border-radius-md: 8px;
+--border-radius-lg: 12px;
+/* Shadows */
+--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+--shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+--shadow-whatsapp: 0 4px 12px rgba(37, 211, 102, 0.4);
+/* Transitions */
+--transition-fast: 0.2s ease;
+--transition-normal: 0.3s ease;
+--transition-slow: 0.6s ease;
+}
+@media (max-width: 1024px) {
+:root {
+--fs-h1: 36px;
+--fs-h2: 28px;
+--fs-h3: 20px;
+--container-padding: 20px;
+--space-4xl: 60px;
+--space-3xl: 48px;
+}
+}
+@media (max-width: 640px) {
+:root {
+--fs-h1: 28px;
+--fs-h2: 22px;
+--fs-h3: 18px;
+--container-padding: 16px;
+--space-4xl: 40px;
+--space-3xl: 32px;
+}
+}
+</code></pre>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">Appendix C: Key Design Decisions & Rationale</h2>
+<p class="text-slate-300 mb-4">1. <strong>Navy #0A1F3F</strong> chosen instead of #112AD0 from requirements — #0A1F3F is deeper, more corporate, and provides better contrast for white text. #112AD0 is brighter and slightly riskier for large surface areas.</p>
+<p class="text-slate-300 mb-4">2. <strong>Focus on finished products, not machines</strong> — photography shows what the customer receives, not how it's made. This is an evidence-based decision from competitive analysis (section 5.1 of market research: "stock photography of printing presses is meaningless to buyers").</p>
+<p class="text-slate-300 mb-4">3. <strong>Inter over Open Sans</strong> for body — Inter has better screen rendering (hinting, x-height, letter spacing) and a more modern feel that pairs cleanly with Montserrat.</p>
+<p class="text-slate-300 mb-4">4. <strong>No dark mode</strong> — per market research section 5.3: "dark mode on a print company website feels incongruous — print is about paper, light, and colour."</p>
+<p class="text-slate-300 mb-4">5. <strong>Sticky bottom CTA on service pages</strong> — a direct lift from Option C's conversion architecture, informed by the finding that scroll-triggered CTAs catch users who have consumed enough information.</p>
+<p class="text-slate-300 mb-4">6. <strong>CMYK accents only as micro-accents</strong> — the requirement says "sparingly for highlights." Using CMYK at 5–10% opacity or as small decorative elements ensures the site is navy + white dominant without feeling flat.</p>
+<p class="text-slate-300 mb-4">7. <strong>Pull-to-refresh not recommended</strong> — mobile browser default is sufficient; custom pull-to-refresh can conflict with scroll-based animations.</p>
+<p class="text-slate-300 mb-4">8. <strong>Accordion max-height via JS</strong> — CSS-only accordions with <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">max-height</code> can't animate from 0 to auto. Use JS to measure content height and apply inline style for smooth transitions.</p>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">Visual Mockups</h2>
+<p class="text-slate-300 mb-4">A refined HTML mockup is available at <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">mockups/visual-mockup.html</code> — open in a browser to view:</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">Section</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Description</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Color Palette**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All brand colors with hex values</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Typography Scale**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Complete type hierarchy (Montserrat + Inter) with specs</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Component Library**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Buttons (primary, outline, ghost, WhatsApp, floating), badges, form fields, file upload, navigation</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Service Cards**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">4-column grid with icon + title + description + link, hover shadow lift</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Industry Cards**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Grid with SVG line icons (no emoji), border highlight on hover</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Testimonial Cards**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">3-column cards with star ratings</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Desktop Preview**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Full homepage: solid navy hero (no gradient), services grid, industries grid, testimonials, CTA banner, footer</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Mobile Preview**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">375px viewport showing mobile-first responsive layout</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Design refinements applied:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">All icons are Lucide-style SVG line icons (no emoji)</li>
+<li class="text-slate-300">Hero uses solid navy background with subtle geometric pattern (no gradient overlay)</li>
+<li class="text-slate-300">Clean, minimal spacing with consistent padding</li>
+<li class="text-slate-300">Subtle hover effects (shadow lift only, no translateY overshoot)</li>
+</ul>
+<p class="text-slate-300 mb-4">*End of Design System Document*</p>
+    </main>
+    <footer class="border-t border-slate-800 mt-12 py-8">
+        <div class="max-w-5xl mx-auto px-6 text-center text-slate-500 text-sm">
+            Whites Printing Services LLC — Design System
+        </div>
+    </footer>
+</body>
+</html>

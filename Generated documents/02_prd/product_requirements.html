@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Requirements — Whites Printing Services LLC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: { primary: '#0f172a', secondary: '#1e293b', accent: '#112AD0' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .prose { max-width: 80ch; }
+        .prose pre { background: #1e293b; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+        .prose code { background: #1e293b; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875rem; }
+        .prose table { width: 100%; border-collapse: collapse; }
+        .prose th { background: #1e293b; padding: 0.75rem; text-align: left; font-weight: 600; }
+        .prose td { padding: 0.75rem; border-bottom: 1px solid #334155; }
+        .prose tr:hover { background: #1e293b/50; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200 min-h-screen">
+    <header class="bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="text-xl font-bold" style="color:#112AD0">Whites Printing Services LLC</a>
+                <nav class="flex gap-6 text-sm">
+                    <a href="../01_research/market_analysis.html" class="text-slate-400 hover:text-white transition">Research</a>
+                    <a href="product_requirements.html" class="text-blue-500 font-medium">PRD</a>
+                    <a href="../04_design/design_system.html" class="text-slate-400 hover:text-white transition">Design</a>
+                    <a href="../08_content/copy.html" class="text-slate-400 hover:text-white transition">Content</a>
+                    <a href="../03_architecture/system_design.html" class="text-slate-400 hover:text-white transition">Architecture</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-5xl mx-auto px-6 py-12">
+        <h1 class="text-4xl font-bold mb-8">Product Requirements Document — Whites Printing Services LLC</h1>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Value</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Project**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Whites Printing Services LLC Website</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Domain**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">whites.me</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Type**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Corporate B2B/B2C Service Website</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Document Version**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1.0</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Date**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">June 2026</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Target Audience**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Corporate procurement, SME owners, marketing coordinators</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">1. Executive Summary</h2>
+<p class="text-slate-300 mb-4">Whites Printing Services LLC is a full-service commercial print shop located near National Paints Metro Station, Deira, Dubai. Operating for 15+ years with a 7-person specialist team and flagship Canon imagePRESS C10000VP technology, Whites serves a diverse client base across 16 industry verticals — from hotels and hospitals to real estate firms and government entities.</p>
+<p class="text-slate-300 mb-4">The whites.me website is being built to transform Whites' digital presence from a basic online brochure into a lead-generation engine. The core business objectives are:</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Objective</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Target Metric</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Generate qualified inbound leads</td><td class="border border-slate-700 px-4 py-2 text-slate-300">≥50 quote form submissions per month (year 1)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Rank locally for printing-related searches</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Top 3 on Google for 10+ target keywords (12 months)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Convert visitors into quote requests via WhatsApp</td><td class="border border-slate-700 px-4 py-2 text-slate-300">≥30% WhatsApp CTR from site visitors</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Establish credibility with UAE corporate/SME clients</td><td class="border border-slate-700 px-4 py-2 text-slate-300">≤35% bounce rate; ≥2 min avg. session duration</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Reduce friction in the enquiry process</td><td class="border border-slate-700 px-4 py-2 text-slate-300">≥15% form-to-lead conversion rate</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Success Metrics (KPIs):</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Lead form submissions (monthly count + conversion rate)</li>
+<li class="text-slate-300">[ ] WhatsApp click-through rate (clicks ÷ sessions)</li>
+<li class="text-slate-300">[ ] Organic traffic growth (month-over-month, GA4)</li>
+<li class="text-slate-300">[ ] Bounce rate (target ≤35%)</li>
+<li class="text-slate-300">[ ] Average session duration (target ≥2 min)</li>
+<li class="text-slate-300">[ ] Google Business Profile insights (direction requests, calls, website clicks)</li>
+<li class="text-slate-300">[ ] Pages indexed in Google Search Console</li>
+<li class="text-slate-300">[ ] Core Web Vitals pass rate (LCP <2.5s, FID <100ms, CLS <0.1)</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">2. User Personas</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">Persona 1: Sarah — Office Manager at a Dubai Hotel</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Attribute</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Name & Role**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Sarah — Office Manager / Executive Assistant</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Age**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">32–45</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Profession**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Office administration at a 4–5 star hotel in Dubai (e.g., Jumeirah, Taj, Rove)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Company Type**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hospitality (hotel chain or independent property)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Tech Comfort**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Moderate — comfortable with WhatsApp, email, basic web forms</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Device Preference**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Desktop at work; Mobile for urgent queries**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Decision-Making**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Sources quotes, presents options to GM/Marketing Director</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Goals:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Send artwork and request a quote for 500 tent cards + 2000 menu inserts before the weekend</li>
+<li class="text-slate-300">Find a printer that has worked with hotels before (understands F&B branding standards)</li>
+<li class="text-slate-300">Confirm delivery to the hotel loading bay</li>
+<li class="text-slate-300">Get a reliable partner for recurring monthly orders (menus, flyers, tent cards)</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Pain Points:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Previous printers delivered late or with colour mismatch against brand guidelines</li>
+<li class="text-slate-300">Wasting time calling for quotes — wants to upload files and get pricing via WhatsApp</li>
+<li class="text-slate-300">Tired of explaining hotel-specific requirements (lamination, spill-resistant finishes)</li>
+<li class="text-slate-300">Cannot easily verify if a print shop is credible from their website alone</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>User Journey:</strong></p>
+<p class="text-slate-300 mb-4">1. Searches "hotel menu printing Dubai" on Google</p>
+<p class="text-slate-300 mb-4">2. Finds whites.me ranking on page 1 with a relevant industry page</p>
+<p class="text-slate-300 mb-4">3. Browses the "Industries" page, sees Hotels & Restaurants section with relevant use cases</p>
+<p class="text-slate-300 mb-4">4. Clicks through to the Menu Printing service page, reads turnarounds</p>
+<p class="text-slate-300 mb-4">5. Clicks "Get a Quote" — uses file upload to attach menu artwork (PDF)</p>
+<p class="text-slate-300 mb-4">6. Fills form: name, hotel name, phone, quantity, deadline</p>
+<p class="text-slate-300 mb-4">7. Receives WhatsApp response within 2 hours</p>
+<p class="text-slate-300 mb-4">8. Confirms order via WhatsApp with payment details</p>
+<p class="text-slate-300 mb-4">9. Tracks delivery via WhatsApp status update</p>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">Persona 2: Khalid — SME Business Owner in Deira</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Attribute</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Name & Role**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Khalid — Owner of a perfume/retail shop</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Age**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">28–50</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Profession**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Small business owner (retail or trading)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Company Type**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">SME (1–20 employees) in Deira, Al Nahda, or Al Qusais</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Tech Comfort**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">High on WhatsApp; moderate on web</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Device Preference**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Mobile-first — rarely uses desktop**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Decision-Making**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Sole decision-maker; cost-conscious but values speed</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Goals:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Get 500 business cards and 200 flyers printed urgently for an upcoming trade show</li>
+<li class="text-slate-300">Receive order at his shop with minimum hassle</li>
+<li class="text-slate-300">Pay easily (cash on delivery or bank transfer)</li>
+<li class="text-slate-300">Build a relationship with a printer who understands SME budgets</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Pain Points:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Big print shops ignore small orders or charge premium rates</li>
+<li class="text-slate-300">Cannot afford to wait 3–5 days for delivery</li>
+<li class="text-slate-300">Finds most printing websites confusing on mobile</li>
+<li class="text-slate-300">Wants everything handled via WhatsApp — no email, no portals</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>User Journey:</strong></p>
+<p class="text-slate-300 mb-4">1. Searches "printing shop Deira Dubai" on Google via mobile</p>
+<p class="text-slate-300 mb-4">2. Finds whites.me location page for Al Nahda/Deira area</p>
+<p class="text-slate-300 mb-4">3. Sees Google Reviews widget with 4.8★ rating and 50+ reviews</p>
+<p class="text-slate-300 mb-4">4. Taps the floating WhatsApp button — pre-filled message: "Hi, I'd like a quote for printing"</p>
+<p class="text-slate-300 mb-4">5. Sends photos of his existing business card design via WhatsApp</p>
+<p class="text-slate-300 mb-4">6. Receives a quote within 30 minutes</p>
+<p class="text-slate-300 mb-4">7. Approves and makes bank transfer</p>
+<p class="text-slate-300 mb-4">8. Request same-day delivery — confirmed by the team</p>
+<p class="text-slate-300 mb-4">9. Receives order by 6 PM — contacts Whites again the next month for banner printing</p>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">Persona 3: Maya — Marketing Agency Coordinator</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Attribute</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Name & Role**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Maya — Marketing Coordinator at a Dubai creative/events agency</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Age**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">25–35</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Profession**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Marketing / Account coordination</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Company Type**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Mid-sized agency (15–50 staff) serving multiple clients</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Tech Comfort**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">High — uses design tools (Canva, Adobe), project management software</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Device Preference**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Desktop for research and file upload; Mobile for on-site coordination**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Decision-Making**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Recommends vendors; final sign-off from Creative Director</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Goals:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Find a printer who can handle varied requirements: roll-up banners for Client A, brochures for Client B, acrylic signage for Client C</li>
+<li class="text-slate-300">Evaluate print quality before committing — wants to see equipment capability and portfolio samples</li>
+<li class="text-slate-300">Upload print-ready artwork and get a consolidated quote across multiple items</li>
+<li class="text-slate-300">Ensure consistent quality across repeat orders for the same client</li>
+<li class="text-slate-300">Brief installation team for on-site event graphics</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>Pain Points:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Needs to justify vendor choice to clients — needs a professional-looking website to share</li>
+<li class="text-slate-300">Frustrated when print output doesn't match screen proof</li>
+<li class="text-slate-300">Wastes time re-explaining requirements to different print shops</li>
+<li class="text-slate-300">Needs a single partner who can do both print AND installation for event work</li>
+</ul>
+<p class="text-slate-300 mb-4"><strong>User Journey:</strong></p>
+<p class="text-slate-300 mb-4">1. Searches "corporate printing services Dubai" on desktop</p>
+<p class="text-slate-300 mb-4">2. Lands on whites.me — immediately scans the Services page with 15 categories</p>
+<p class="text-slate-300 mb-4">3. Clicks "Our Technology" section — impressed by Canon C10000VP specifications</p>
+<p class="text-slate-300 mb-4">4. Browses the portfolio/testimonials section — sees Al Jas Adv and Malabar Gold as named clients</p>
+<p class="text-slate-300 mb-4">5. Adds items to quote: 50 brochures (A4, 24 pages, perfect bound) + 10 roll-up banners + 2 acrylic signs</p>
+<p class="text-slate-300 mb-4">6. Uploads artwork for each item via the quote form</p>
+<p class="text-slate-300 mb-4">7. Selects "Yes, installation required" checkbox</p>
+<p class="text-slate-300 mb-4">8. Receives a detailed WhatsApp quote within 4 hours</p>
+<p class="text-slate-300 mb-4">9. Shares the whites.me link with her Creative Director for approval</p>
+<p class="text-slate-300 mb-4">10. Places the order; receives photo updates during production</p>
+<p class="text-slate-300 mb-4">11. Milan + Razak arrive on-site for installation — sends photos to client</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">3. Feature Specifications</h2>
+<h3 class="text-xl font-semibold mb-3 mt-6">F1: Request a Quote Form</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Request a Quote Form</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Multi-field web form allowing visitors to request a printing quote. Supports file upload (artwork/print files), service selection, quantity, and delivery requirements. Submission triggers email notification to Whites team + WhatsApp follow-up.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**High**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Sarah (corporate), Khalid (SME), Maya (agency)</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a visitor, I want to upload my artwork and describe my print requirements so that I can receive an accurate quote without needing to call.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Form includes fields: Full Name, Phone Number (required), Email, Company Name, Service Selection (dropdown of 15 services), Quantity, File Upload (max 25MB, accepted formats: PDF, AI, EPS, CDR, PSD, JPG, PNG, TIFF), Description/Comments, Delivery Required (checkbox), Installation Required (checkbox)</li>
+<li class="text-slate-300">[ ] File upload supports drag-and-drop and click-to-browse; shows upload progress</li>
+<li class="text-slate-300">[ ] Form submission triggers:</li>
+<li class="text-slate-300">Email notification to Whites sales team with all form data + file attachment links</li>
+<li class="text-slate-300">WhatsApp auto-reply to submitter with quote acknowledgement and expected response time</li>
+<li class="text-slate-300">[ ] CAPTCHA or honeypot spam protection implemented</li>
+<li class="text-slate-300">[ ] Form data stored in CMS/backend for lead tracking</li>
+<li class="text-slate-300">[ ] Mobile: input font size ≥16px (prevents iOS zoom); vertically stacked layout</li>
+<li class="text-slate-300">[ ] Success message displayed on submission: "Thanks! We'll respond via WhatsApp within 2 hours"</li>
+<li class="text-slate-300">[ ] Form appears on: Dedicated "Get a Quote" page, each service sub-page (CTA section), Contact page</li>
+<li class="text-slate-300">[ ] File upload uses secure, scalable storage (not server-local; use cloud storage or CDN)</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F2: WhatsApp Now Floating Button</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F2</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WhatsApp Now Floating Button</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">A sticky, floating WhatsApp button visible on every page of the site. Clicking opens WhatsApp with a pre-filled message. The pre-fill text is contextual: it changes based on the page the user is viewing.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**High**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Khalid (SME — primary use), Sarah, Maya</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a visitor, I want to contact Whites instantly via WhatsApp from any page so that I can get a quick response without filling forms.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Button is fixed-position, bottom-right corner on all pages (including mobile)</li>
+<li class="text-slate-300">[ ] Button is always visible, never overlaps critical content or CTAs</li>
+<li class="text-slate-300">[ ] Icon: WhatsApp logo (green circle with white phone icon)</li>
+<li class="text-slate-300">[ ] Tap/click opens <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">wa.me/971XXXXXXXXX?text={pre-filled-message}</code></li>
+<li class="text-slate-300">[ ] Pre-filled message changes per page context:</li>
+<li class="text-slate-300">Homepage: "Hi, I'd like a quote for printing. Can you help?"</li>
+<li class="text-slate-300">Service sub-page (e.g., Business Cards): "Hi, I'd like a quote for business card printing."</li>
+<li class="text-slate-300">Industries page: "Hi, I'm interested in printing for [industry]."</li>
+<li class="text-slate-300">Contact page: "Hi, I'd like to visit your shop near National Paints Metro."</li>
+<li class="text-slate-300">[ ] Button has a subtle pulse/bounce animation on first visit (to draw attention)</li>
+<li class="text-slate-300">[ ] Accessible: ARIA label "Contact us on WhatsApp" + keyboard accessible</li>
+<li class="text-slate-300">[ ] Mobile: positioned for one-handed thumb reach (bottom-right, 16px margin)</li>
+<li class="text-slate-300">[ ] Track clicks via GA4 event (WhatsApp Click)</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F3: Instant Callback Request Form</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F3</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Instant Callback Request</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">A lightweight, minimal form asking only for name, phone number, and time preference. Designed for visitors who want a phone conversation but don't want to browse the full site. Appears as a slide-in or inline form on key pages.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**High**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Khalid (SME), Sarah (when urgent)</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a busy visitor, I want to request a phone callback with just my name and number so that I can speak to a print expert without filling a long form.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Form fields: Name (required), Phone Number (required), Preferred Call Time (dropdown: "Now", "Within 1 hour", "Within 4 hours", "Tomorrow Morning", "Anytime")</li>
+<li class="text-slate-300">[ ] Optional field: Brief description of requirement (max 200 chars)</li>
+<li class="text-slate-300">[ ] Mobile-optimised: large tap targets, native phone keyboard</li>
+<li class="text-slate-300">[ ] Form submission triggers internal notification + auto-reply SMS/WhatsApp confirming callback time</li>
+<li class="text-slate-300">[ ] Spam protection: honeypot field or rate limiting</li>
+<li class="text-slate-300">[ ] Success message: "Thanks! We'll call you back within [selected time window]"</li>
+<li class="text-slate-300">[ ] Placement: Sticky bottom bar on service pages, inline CTA on Contact page, slide-in after 30s on homepage</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F4: Google Reviews Embedded Widget</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F4</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Google Reviews Embedded Widget</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Live, embeddable widget displaying Google Business Profile reviews on the website. Shows star rating, review count, and latest review excerpts. Auto-updates as new reviews are posted.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**High**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All personas — social proof for trust</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a potential customer, I want to see real Google reviews on the website so that I can verify Whites' reputation before contacting them.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Widget displays current Google star rating (e.g., 4.8 ★)</li>
+<li class="text-slate-300">[ ] Shows total review count (e.g., "Based on 50+ reviews")</li>
+<li class="text-slate-300">[ ] Displays 3–5 latest review excerpts with author name and date</li>
+<li class="text-slate-300">[ ] "Write a Review" link redirects to Google Business Profile review page</li>
+<li class="text-slate-300">[ ] Auto-updates without manual intervention (via Google Business Profile API or third-party service like Elfsight/EmbedSocial)</li>
+<li class="text-slate-300">[ ] Styling matches brand guidelines (navy + white, clean layout)</li>
+<li class="text-slate-300">[ ] Placement: Homepage (Testimonials section), Contact page, About page</li>
+<li class="text-slate-300">[ ] Fallback: if API fails, show static testimonial content</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F5: Live Chat Widget</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F5</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Live Chat Widget</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">A real-time chat widget (Tidio, Tawk.to, or WhatsApp-based) that allows visitors to chat with the Whites team directly from the website. Supports both automated chatbot responses (off-hours) and live human chat (business hours).</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Medium**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Khalid (SME), Maya (agency — quick questions)</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a visitor, I want to ask quick questions via live chat without leaving the website so that I can get immediate answers.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Widget appears as a floating chat bubble (bottom-left or bottom-right, distinct from WhatsApp button)</li>
+<li class="text-slate-300">[ ] Offline mode: captures visitor's email + message when no agent is available</li>
+<li class="text-slate-300">[ ] Online mode: real-time chat with Whites team member</li>
+<li class="text-slate-300">[ ] Pre-chat form (optional): ask for name and phone before connecting</li>
+<li class="text-slate-300">[ ] Canned responses for common questions (turnaround times, delivery areas, payment methods)</li>
+<li class="text-slate-300">[ ] Mobile-responsive: chat window resizes for small screens</li>
+<li class="text-slate-300">[ ] GA4 integration: track chat initiation events</li>
+<li class="text-slate-300">[ ] Choice required for platform: **Tidio** (recommended — WhatsApp-native, free tier) or **Tawk.to** (free, widely used in UAE)</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F6: FAQ Section</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F6</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">FAQ Section</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Search-engine-optimised FAQ content, structured as an accordion component. Includes both general FAQs (site-wide) and per-service FAQs on individual service sub-pages. Targets featured snippet opportunities in Google search.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**High**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Sarah (corporate — due diligence), Maya (agency — technical questions)</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a potential buyer, I want to find answers to common printing questions quickly so that I can make an informed decision without contacting support.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] General FAQ page/section with 10–15 questions covering: turnaround times, delivery areas, file formats, payment methods, minimum order quantities, artwork preparation, colour matching (CMYK/Pantone), rush orders</li>
+<li class="text-slate-300">[ ] Each service sub-page has a dedicated FAQ accordion with 5–7 service-specific questions</li>
+<li class="text-slate-300">[ ] Implement FAQPage structured data (JSON-LD schema) for featured snippet eligibility</li>
+<li class="text-slate-300">[ ] Accordion: click to expand/collapse; smooth animation; only one open at a time (or allow multiple — confirm UX preference)</li>
+<li class="text-slate-300">[ ] Search/filter functionality for FAQ page (if standalone page)</li>
+<li class="text-slate-300">[ ] "Still have questions? Contact us via WhatsApp" CTA below FAQ section</li>
+<li class="text-slate-300">[ ] Content targets long-tail informational queries (e.g., "What file format should I use for business card printing?")</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F7: Monthly Offers / Promotions Section</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F7</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Monthly Offers / Promotions</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">A CMS-updatable panel on the homepage (and optionally a dedicated Offers page) that displays current promotions, seasonal discounts, and package deals. Non-developer staff (Joby/Dimple) can update content without touching code.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Medium**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Khalid (SME — price-sensitive), Sarah (looking for value)</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a business owner, I want to see current printing offers so that I can take advantage of discounts on bulk orders.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Section on homepage with heading "This Month's Offers"</li>
+<li class="text-slate-300">[ ] Each offer card includes: offer title, description, validity period, CTA ("Get This Offer")</li>
+<li class="text-slate-300">[ ] CMS-managed: content, images, CTAs, and visibility (active/inactive) editable via CMS</li>
+<li class="text-slate-300">[ ] Offers can be scheduled (start date + end date)</li>
+<li class="text-slate-300">[ ] Maximum 3–4 offers visible at a time; expired offers auto-hide</li>
+<li class="text-slate-300">[ ] Optional: dedicated <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">/offers</code> page for full list</li>
+<li class="text-slate-300">[ ] Styling: distinct visual treatment (e.g., subtle accent border, badge for "Limited Time") to differentiate from standard content</li>
+<li class="text-slate-300">[ ] Tracking: GA4 event for offer click/conversion</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F8: Industries B2B Landing Page</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F8</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Industries B2B Landing Page</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">A dedicated page (and/or sub-pages) targeting 16 industry verticals. Each vertical section includes: what print products they typically need, why Whites is the right partner, and a vertical-specific CTA. Primary differentiator from competitors.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**High**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Sarah (hotel), Maya (agency with varied clients)</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a marketing professional in the hospitality sector, I want to see a page dedicated to printing for hotels so that I know Whites understands my industry's specific needs.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Single "Industries We Serve" landing page with all 16 verticals listed as sections or linked cards</li>
+<li class="text-slate-300">[ ] Option A: Single page with 16 expandable sections (each with unique H2 heading)</li>
+<li class="text-slate-300">[ ] Option B: 16 individual sub-pages under <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">/industries/hotels</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">/industries/healthcare</code>, etc. — SEO-beneficial but more pages to build</li>
+<li class="text-slate-300">[ ] **Recommendation: Option B** for SEO strength, with Option A as supplementary overview page</li>
+<li class="text-slate-300">[ ] Each vertical section includes:</li>
+<li class="text-slate-300">Industry name and icon</li>
+<li class="text-slate-300">3–5 print products commonly needed by that industry</li>
+<li class="text-slate-300">2–3 sentences on why Whites serves this industry well</li>
+<li class="text-slate-300">"Get a Quote for [Industry]" CTA button</li>
+<li class="text-slate-300">[ ] Horizontal scroll or icon grid on homepage "Industries We Serve" section links to this page</li>
+<li class="text-slate-300">[ ] Vertical-specific CTAs feed into the quote form with pre-selected industry context</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F9: Location-Based SEO Pages</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F9</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Location-Based SEO Pages</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Individual landing pages optimised for local search in 15 target areas around Dubai. Each page targets "printing services near [area]" queries with local business schema, area-specific content, maps, and location-relevant CTAs.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**High**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Khalid (SME searching local), Sarah (for delivery logistics)</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a business owner in Al Nahda, I want to find a printing press near my area so that I can get same-day delivery.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] 15 individual pages for: Abu Hail, Al Qusais, Deira, Al Nahda, Al Mamzar, DAFZA, Dubai Airport Area, Al Garhoud, Dubai Festival City, Dubai Healthcare City, DWTC Area, Sheikh Zayed Road, Downtown Dubai, DIFC, Business Bay</li>
+<li class="text-slate-300">[ ] Each page includes:</li>
+<li class="text-slate-300">H1: "Printing Services in [Area] | Whites Printing Dubai"</li>
+<li class="text-slate-300">Distance callout: "Just [X km] from our shop near National Paints Metro"</li>
+<li class="text-slate-300">Embedded Google Map with directions link</li>
+<li class="text-slate-300">Key sectors/common print needs for that area</li>
+<li class="text-slate-300">Local business structured data (LocalBusiness schema)</li>
+<li class="text-slate-300">Quote form or prominent WhatsApp CTA</li>
+<li class="text-slate-300">Unique content per page (no duplicate)</li>
+<li class="text-slate-300">[ ] Pages accessible via footer link, sitemap, and search — not in main navigation</li>
+<li class="text-slate-300">[ ] Interlinking: each location page links to 2–3 nearby areas</li>
+<li class="text-slate-300">[ ] Meta titles and descriptions unique per area</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F10: Machine / Equipment Showcase</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F10</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Machine / Equipment Showcase</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">A dedicated "Our Technology" section on the homepage (and optionally a page) highlighting Whites' production equipment. Flagship Canon imagePRESS C10000VP featured prominently. Demonstrates technical capability to informed buyers.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Medium**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Maya (agency — quality-conscious), Sarah (corporate due diligence)</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a marketing coordinator evaluating print partners, I want to see what equipment they use so that I can assess their production quality capability.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Section heading: "Our Technology" or "Built on Industry-Leading Equipment"</li>
+<li class="text-slate-300">[ ] Flagship machine (Canon imagePRESS C10000VP) shown first with:</li>
+<li class="text-slate-300">Professional product photo</li>
+<li class="text-slate-300">Spec summary: speed (100 ppm), resolution (2400 dpi), media range (40–350 gsm)</li>
+<li class="text-slate-300">Icon representing "Professional Digital Press"</li>
+<li class="text-slate-300">[ ] Supporting equipment listed in a grid: wide format printer, eco solvent printer, plotter cutter, die cutter, ID card printer, laminator, binding machines</li>
+<li class="text-slate-300">[ ] Each item shown as icon + name (expand on hover/tap for brief description)</li>
+<li class="text-slate-300">[ ] "Powered by Canon C10000VP" badge available for placement on quote form and service pages (quality seal)</li>
+<li class="text-slate-300">[ ] Optional: expand to a dedicated <code class="bg-slate-800 px-1.5 py-0.5 rounded text-sm">/technology</code> page with full equipment list and descriptions</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F11: Team / About Section</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F11</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Team / About Section</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">About Us page and homepage trust section highlighting Whites' 15+ years of UAE experience, 7-person specialist team, and collective expertise. No individual names or photos per requirements — presented as a cohesive team profile.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Medium**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Sarah (corporate due diligence), Maya (agency vetting)</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a corporate buyer, I want to understand Whites' experience and team capability so that I can trust them with my company's print needs.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Homepage section: "Why Choose Whites" with 3–4 trust points:</li>
+<p class="text-slate-300 mb-4">1. 15+ Years UAE Experience</p>
+<p class="text-slate-300 mb-4">2. Canon C10000VP Technology</p>
+<p class="text-slate-300 mb-4">3. 7-Person Specialist Team</p>
+<p class="text-slate-300 mb-4">4. In-House Delivery & Installation</p>
+<li class="text-slate-300">[ ] About page with narrative section:</li>
+<li class="text-slate-300">"A Decade and a Half of Colour" — company story</li>
+<li class="text-slate-300">Team credential summary: "Our 7 specialists bring over 100 years of combined UAE print experience"</li>
+<li class="text-slate-300">Core competencies: prepress, production, finishing, quality control, delivery/installation</li>
+<li class="text-slate-300">[ ] Process visual: "Your Job's Journey" — Design Review → Prepress → Print → Quality Check → Finishing → Packing → Delivery/Install</li>
+<li class="text-slate-300">[ ] Heritage communicated subtly (team stability, industry experience) without naming previous employer (Connect4 Digital Printing)</li>
+<li class="text-slate-300">[ ] Professional imagery: workspace photos, finished products (not individual staff photos)</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F12: Google Maps Embed</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F12</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Google Maps Embed</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Embedded Google Map on the Contact page showing Whites' exact location near National Paints Metro Station (Green Line), Deira. Includes custom pin, directions link, and metro access note.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Medium**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Khalid (SME — walk-in), all visitors needing location</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a customer who wants to visit the shop, I want to see the exact location on a map so that I can navigate there easily.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Google Maps iframe embed on Contact page</li>
+<li class="text-slate-300">[ ] Pin precisely placed at: Near National Paints Metro Station, Deira, Dubai</li>
+<li class="text-slate-300">[ ] Map caption: "Just 2 minutes from National Paints Metro — Exit 2 (Green Line)"</li>
+<li class="text-slate-300">[ ] Below-map information: address, landmarks, metro directions, parking availability</li>
+<li class="text-slate-300">[ ] "Get Directions" link opens Google Maps with pre-filled destination</li>
+<li class="text-slate-300">[ ] Map styling: neutral/light (avoid heavy Google Maps default colours — use custom styling if feasible)</li>
+<li class="text-slate-300">[ ] Mobile: map is tappable, pinch-zoomable; directions link is prominent</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F13: Testimonials Section</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F13</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Testimonials Section</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">A curated testimonial section on the homepage (and optionally About page) featuring real client endorsements. Includes named client references where permission granted (e.g., Al Jas Adv, Malabar Gold, Canadian Specialist Hospital).</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Medium**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All personas — social proof</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a potential client, I want to read testimonials from real businesses so that I can feel confident choosing Whites.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Homepage section: "What Our Clients Say" featuring 3–5 testimonial cards</li>
+<li class="text-slate-300">[ ] Each card: client name/company (where permitted), industry, quote, optional photo (logo or product image)</li>
+<li class="text-slate-300">[ ] Named client references (permission confirmed):</li>
+<li class="text-slate-300">Al Jas Adv,</li>
+<li class="text-slate-300">Malabar Gold LLC,</li>
+<li class="text-slate-300">Canadian Specialist Hospital</li>
+<li class="text-slate-300">[ ] Additional anonymous testimonials as filler (e.g., "— Hotel Marketing Director, Dubai")</li>
+<li class="text-slate-300">[ ] Quote icons or subtle visual styling to distinguish from surrounding content</li>
+<li class="text-slate-300">[ ] Testimonials are CMS-managed (add/edit/remove without developer)</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F14: Contact Form (General)</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F14</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Contact Form (General Enquiry)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">A simpler, general-purpose contact form distinct from the detailed quote form. For non-quote enquiries: general questions, partnership inquiries, visit requests.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Medium**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All personas (general enquiries)</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a website visitor, I want to send a general message to Whites without going through the quote process so that I can ask non-printing questions.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] Fields: Name (required), Phone, Email (required), Subject (dropdown or free text), Message (required)</li>
+<li class="text-slate-300">[ ] No file upload (keeps it separate from quote form)</li>
+<li class="text-slate-300">[ ] CAPTCHA or honeypot spam protection</li>
+<li class="text-slate-300">[ ] Submission triggers email to Whites team</li>
+<li class="text-slate-300">[ ] Auto-reply: "We've received your message and will respond within 24 hours"</li>
+<li class="text-slate-300">[ ] Placement: Contact page, alongside Google Map and contact details</li>
+<li class="text-slate-300">[ ] Mobile-optimised layout</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h3 class="text-xl font-semibold mb-3 mt-6">F15: Services Sub-Pages (15 Categories)</h3>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">Field</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Detail</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature ID**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">F15</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Feature Name**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Services Sub-Pages</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Description**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">15 individual service category sub-pages, each following a standardised template. Each page includes: service description, use cases, turnaround time, CTA to quote, FAQ accordion, and related services links.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Priority**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**High**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Primary Personas**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Maya (agency — detailed research), Sarah (specific orders), Khalid (browsing)</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>User Story:</strong></p>
+<p class="text-slate-300 mb-4">> As a marketing coordinator, I want to see detailed information about each printing service so that I can determine if it meets my project requirements.</p>
+<p class="text-slate-300 mb-4"><strong>Acceptance Criteria:</strong></p>
+<p class="text-slate-300 mb-4">Standardised template per service sub-page:</p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">[ ] **H1**: "[Service Name] in Dubai | Whites Printing" (e.g., "Business Card Printing in Dubai | Whites Printing")</li>
+<li class="text-slate-300">[ ] **Lead section**: 150–200 words describing the service, who needs it, why Whites</li>
+<li class="text-slate-300">[ ] **Use cases**: 3–5 specific industry scenarios (e.g., "Real estate agents need premium business cards for property viewings")</li>
+<li class="text-slate-300">[ ] **Technical specifications**: material options, sizes, finishes, GSM ranges (where applicable)</li>
+<li class="text-slate-300">[ ] **Turnaround time badge**: "Same Day ✓", "24 Hours ✓", "2–3 Days" depending on service</li>
+<li class="text-slate-300">[ ] **Pricing CTA**: "Get a Custom Quote" — no fixed pricing (quote-based model)</li>
+<li class="text-slate-300">[ ] **FAQ accordion**: 5–7 service-specific questions with FAQPage schema for featured snippets</li>
+<li class="text-slate-300">[ ] **Related services**: Cross-links to 3–5 other service pages</li>
+<li class="text-slate-300">[ ] **CTA block**: "Request a Quote" + "WhatsApp Now" — both prominent</li>
+<li class="text-slate-300">[ ] **Trust insert**: ""Your job is handled by a dedicated 7-person team — not a faceless production line"</li>
+<li class="text-slate-300">[ ] **Location note**: "Serving [Service] in Dubai — near National Paints Metro, delivering across UAE"</li>
+</ul>
+<p class="text-slate-300 mb-4">Full list of 15 service categories:</p>
+<p class="text-slate-300 mb-4">1. Business Cards & Stationery</p>
+<p class="text-slate-300 mb-4">2. Flyers & Leaflets</p>
+<p class="text-slate-300 mb-4">3. Brochures & Catalogues</p>
+<p class="text-slate-300 mb-4">4. Posters & Large Format Printing</p>
+<p class="text-slate-300 mb-4">5. Roll-Up & Pop-Up Banners</p>
+<p class="text-slate-300 mb-4">6. Banners & Outdoor Printing</p>
+<p class="text-slate-300 mb-4">7. Foam Board & Forex Board Printing</p>
+<p class="text-slate-300 mb-4">8. Window, Office & Event Graphics</p>
+<p class="text-slate-300 mb-4">9. Acrylic Signs & Stands</p>
+<p class="text-slate-300 mb-4">10. Stamps</p>
+<p class="text-slate-300 mb-4">11. Photo Framing</p>
+<p class="text-slate-300 mb-4">12. Binding Services</p>
+<p class="text-slate-300 mb-4">13. Awards, Certificates & Tent Cards</p>
+<p class="text-slate-300 mb-4">14. Labels, Menus & Invitation Cards</p>
+<p class="text-slate-300 mb-4">15. Corporate Gifts *(soft enquiry only; full promotion deferred)*</p>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">4. Homepage Section Specifications</h2>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">#</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Section</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Description</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Key Content / Elements</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Priority</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Hero**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Above-the-fold headline section with primary branding, strong value proposition, and dual CTAs</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Headline (e.g., "Premium Printing for Dubai Businesses"), subheadline, "Get a Free Quote" button, WhatsApp button, background image (print production or abstract CMYK visual)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Critical**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Services Overview**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Icon grid showing top 8–10 services with links to sub-pages</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Grid of service icons + labels; each card clickable to service sub-page; max 10 services shown, with "View All Services" link</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Critical**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Industries We Serve**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Horizontal scroll or icon grid of 16 industry verticals</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Icon + name per vertical; horizontal scroll on mobile; 2-row grid on desktop; clickable to Industries page or sub-pages</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**High**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Why Choose Whites**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Trust-building section with 3–4 key differentiators</td><td class="border border-slate-700 px-4 py-2 text-slate-300">15+ Years UAE Experience, Canon C10000VP Tech, 7-Person Team, In-House Delivery & Installation. Each point: icon + headline + 1-line description</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Critical**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Our Technology**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Equipment showcase highlight</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Canon imagePRESS C10000VP featured prominently + supporting equipment. Brief specs, professional photo, quality badge</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Medium**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Testimonials / Google Reviews**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Social proof section combining curated testimonials + live Google Reviews widget</td><td class="border border-slate-700 px-4 py-2 text-slate-300">3 featured client testimonials (named where permitted) + embedded Google Reviews widget with live rating and review excerpts</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**High**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Monthly Offers**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Rotating promotional panel (CMS-updatable)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">1–3 offer cards with title, description, validity, and CTA. Distinct visual treatment. CMS-managed</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Medium**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Coverage Area Map**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Visual map showing Whites' Deira base + delivery radius across Dubai</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Stylised map (static or interactive) with shop pin, surrounding area labels, delivery radius overlay. "We deliver across Dubai" caption</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Low-Medium**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Get a Quote CTA Banner**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Full-width conversion banner at bottom of page</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Background image or colour; headline "Ready to Start Your Print Project?"; dual CTAs: "Get a Free Quote" + "WhatsApp Now". May include simplified inline form (name + phone)</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Critical**</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">10</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Footer**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Full footer with contact info, navigation, legal links</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Address, phone, WhatsApp, email, working hours, Google Maps link, quick navigation links, "We Print, Deliver & Install" tagline, social media icons, copyright, privacy policy link</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**High**</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4"><strong>Additional Design Notes:</strong></p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li class="text-slate-300">Sections should reveal with subtle fade-in-on-scroll animations (no heavy parallax or full-screen video)</li>
+<li class="text-slate-300">Trust signals (years in business, Google rating, client logos) should appear within the first 2 scrolls on mobile</li>
+<li class="text-slate-300">Maximum 10 homepage sections — any more dilutes focus</li>
+</ul>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">5. Technical Requirements</h2>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">Category</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Requirement</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Specification</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Performance**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Core Web Vitals</td><td class="border border-slate-700 px-4 py-2 text-slate-300">LCP <2.5s, FID <100ms, CLS <0.1</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Image optimisation</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WebP/AVIF format, responsive srcset, lazy loading for below-fold images</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Bundle size</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Minimise JS/CSS; code-split by page; tree-shake unused CSS (Tailwind purging)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hosting</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Global CDN (Vercel/Netlify recommended) with edge caching</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Responsive Design**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Mobile-first</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All designs approved at 375px first, then tablet (768px), then desktop (1280px+)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Touch targets</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Minimum 48×48px for all interactive elements</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Forms</td><td class="border border-slate-700 px-4 py-2 text-slate-300">16px+ font size to prevent iOS zoom; stacked layout on mobile</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Accessibility**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WCAG compliance</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WCAG 2.1 AA minimum (target AA for all, AAA where feasible)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Colour contrast</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Navy (#0a1f3f) on white meets AAA; all accent colour combinations must be tested</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Keyboard navigation</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All interactive elements reachable via Tab; visible focus indicators</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">ARIA labels</td><td class="border border-slate-700 px-4 py-2 text-slate-300">WhatsApp button, navigation toggle, form elements, live chat widget</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Alt text</td><td class="border border-slate-700 px-4 py-2 text-slate-300">All product/service images have descriptive alt text with relevant keywords</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Browser Support**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Modern browsers</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Latest 2 versions of Chrome, Firefox, Safari, Edge</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Mobile browsers</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Safari iOS, Chrome Android, Samsung Internet</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**SEO**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">On-page SEO</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Unique meta title + description per page; H1 per page; semantic HTML structure</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Structured data</td><td class="border border-slate-700 px-4 py-2 text-slate-300">LocalBusiness schema (Name, Address, Phone, Opening Hours, Geo Coordinates), FAQPage schema, BreadcrumbList</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Technical SEO</td><td class="border border-slate-700 px-4 py-2 text-slate-300">sitemap.xml (auto-generated), robots.txt, canonical URLs, 404 page</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Open Graph</td><td class="border border-slate-700 px-4 py-2 text-slate-300">OG tags for all pages (title, description, image, URL) for social sharing</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**Analytics**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">GA4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Standard setup with conversion events: Quote form submission, WhatsApp click, Call click, Phone number reveal, Scrolling depth (25%, 50%, 75%, 100%)</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Google Search Console</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Property verification, sitemap submission, performance monitoring</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Google Tag Manager</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Manage all tracking tags (GA4, chat widget, marketing pixels) from single container</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">**CMS**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Non-developer updates</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Joby/Dimple can update: monthly offers, testimonials, service content, FAQ, equipment list, team info</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Content modelling</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Structured content types: Service, Offer, Testimonial, FAQ, Team Member, Equipment, Location</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Preview</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Content editors can preview changes before publishing</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300"></td><td class="border border-slate-700 px-4 py-2 text-slate-300">Hosting</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Recommend Sanity (headless) or Decap CMS (git-based) depending on budget/team preference</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">6. Out of Scope (Phase 1)</h2>
+<p class="text-slate-300 mb-4">The following features are explicitly excluded from Phase 1 development:</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><th class="border border-slate-700 px-4 py-2 text-slate-300">#</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Feature</th><th class="border border-slate-700 px-4 py-2 text-slate-300">Rationale</th></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**E-commerce / Cart / Payment Gateway**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Quote-based model is the approved workflow. No cart, checkout, or payment processing at this stage.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**User Authentication / Accounts**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">No login, no user dashboard, no order history portal. All communication via WhatsApp/phone.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Multi-Language Support**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Arabic version deferred. English-only for Phase 1. Arabic may be added in Phase 2 if analytics justify investment.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Corporate Gifts Full Order Flow**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Soft enquiry page only (contact us to discuss). Full product catalogue, pricing, and ordering deferred until trade supplier relationships are confirmed.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Blog / News Section**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Deferred to Phase 2. If the chosen CMS makes blog functionality trivial to add (e.g., Sanity with article schema), it may be included at build time but content strategy is not part of Phase 1 scope.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Online Proofing / Design Tool**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">No browser-based design tool, no online artwork editor. Customers upload print-ready files.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Live Order Tracking**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">No real-time order tracking portal. Updates provided via WhatsApp.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Customer Chat History**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">No persistent chat history or CRM integration in Phase 1. Leads are tracked manually via WhatsApp/email.</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Mobile App**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">No native mobile application. The website is fully responsive and WhatsApp-integrated.</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4">---</p>
+<h2 class="text-2xl font-semibold mb-4 mt-8">7. Open Questions</h2>
+<p class="text-slate-300 mb-4">The following items require stakeholder confirmation before/during development:</p>
+<div class="overflow-x-auto mb-4"><table class="w-full border-collapse">
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">#</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Question</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Options / Notes</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Decision Needed By</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">1</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Client Testimonial Permissions**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Are permissions confirmed for: Al Jas Adv, Malabar Gold LLC, Canadian Specialist Hospital?</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Before content writing</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">2</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Corporate Gifts Trade Supplier Status**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Has at least one trade supplier relationship been confirmed? If yes, the Corporate Gifts page can have stronger CTAs. If no, maintain soft "enquire" only.</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Before content writing</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">3</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Preferred Live Chat Platform**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Options: **Tidio** (recommended — WhatsApp-native, free tier, easy setup), **Tawk.to** (free, widely used in UAE, no WhatsApp native integration), or **WhatsApp Business API only** (no separate chat widget).</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Before architecture phase</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">4</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**CMS Preference**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Options: **Sanity** (recommended — flexible, real-time preview, free tier for 3 users), **Decap CMS** (free, git-based, simpler but less intuitive), or **No CMS** (static site, developer updates only — not recommended).</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Before architecture phase</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">5</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Google Reviews Widget Service**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Options: **Elfsight** (paid, polished widgets), **EmbedSocial** (free/paid), **Custom API integration** (developer time cost).</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Before FE/BE development</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">6</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Phone Number Display Format**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Display as clickable `tel:` link? Show what number(s) — mobile, landline, both?</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Before design phase</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">7</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Working Hours Display**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Confirm Saturday–Thursday hours and Friday closure. Any Ramadan adjustments?</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Before content writing</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">8</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Delivery Charge Policy**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Free delivery above what threshold? Charges for below-threshold orders? Installation cost separate or included?</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Before content writing</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">9</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Hero Image Preference**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Print production imagery (machines/workspace) vs. finished product showcase vs. abstract CMYK visual? Professional photoshoot needed?</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Before design phase</td></tr>
+<tr><td class="border border-slate-700 px-4 py-2 text-slate-300">10</td><td class="border border-slate-700 px-4 py-2 text-slate-300">**Analytics Setup**</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Who will set up GA4 + GSC accounts? Client or development team?</td><td class="border border-slate-700 px-4 py-2 text-slate-300">Before launch phase</td></tr>
+</table></div>
+<p class="text-slate-300 mb-4">---</p>
+<p class="text-slate-300 mb-4">*End of Product Requirements Document — whites.me*</p>
+    </main>
+    <footer class="border-t border-slate-800 mt-12 py-8">
+        <div class="max-w-5xl mx-auto px-6 text-center text-slate-500 text-sm">
+            Whites Printing Services LLC — Product Requirements
+        </div>
+    </footer>
+</body>
+</html>

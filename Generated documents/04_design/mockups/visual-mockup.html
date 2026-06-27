@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whites Printing — Design System Mockup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0A1F3F;
+      --white: #FFFFFF;
+      --cyan: #00BCD4;
+      --magenta: #E91E63;
+      --yellow: #FDD835;
+      --black: #1A1A1A;
+      --grey-50: #F9FAFB;
+      --grey-100: #F3F4F6;
+      --grey-200: #E5E7EB;
+      --grey-400: #9CA3AF;
+      --grey-500: #6B7280;
+      --grey-600: #4B5563;
+      --whatsapp: #25D366;
+      --heading: 'Montserrat', sans-serif;
+      --body: 'Inter', sans-serif;
+      --radius: 6px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--body); background: var(--grey-50); color: var(--black); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 32px; }
+
+    .section-card { background: var(--white); border-radius: 12px; margin-bottom: 24px; box-shadow: var(--shadow-sm); overflow: hidden; }
+    .section-card-header { padding: 24px 32px; border-bottom: 1px solid var(--grey-100); }
+    .section-card-header h2 { font-family: var(--heading); font-size: 18px; font-weight: 600; color: var(--navy); }
+    .section-card-header .label { font-family: var(--heading); font-size: 11px; font-weight: 700; color: var(--cyan); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .section-card-body { padding: 32px; }
+
+    /* Swatches */
+    .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+    .swatch { border-radius: 6px; overflow: hidden; }
+    .swatch-color { height: 64px; display: flex; align-items: flex-end; padding: 6px 8px; }
+    .swatch-color span { font-family: monospace; font-size: 10px; background: rgba(255,255,255,.8); padding: 1px 4px; border-radius: 2px; }
+    .swatch-info { padding: 8px; background: var(--white); }
+    .swatch-info .name { font-size: 12px; font-weight: 600; color: var(--black); }
+    .swatch-info .hex { font-size: 10px; color: var(--grey-400); font-family: monospace; }
+
+    /* Type grid */
+    .type-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .type-table th { text-align: left; padding: 8px 12px; font-weight: 600; color: var(--grey-500); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--grey-100); }
+    .type-table td { padding: 12px; border-bottom: 1px solid var(--grey-100); }
+    .type-table tr:last-child td { border-bottom: none; }
+    .type-table .sample { color: var(--black); }
+    .type-table .meta { font-size: 11px; color: var(--grey-400); font-family: monospace; white-space: nowrap; }
+
+    /* Component grid */
+    .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 800px) { .comp-grid { grid-template-columns: 1fr; } }
+    .comp-panel { border: 1px solid var(--grey-100); border-radius: 8px; padding: 20px; }
+    .comp-panel h4 { font-family: var(--heading); font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--grey-100); }
+    .comp-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+    .comp-row:last-child { margin-bottom: 0; }
+
+    /* Button system */
+    .btn { font-family: var(--heading); font-weight: 600; font-size: 14px; border: none; cursor: default; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+    .btn-primary { background: var(--navy); color: var(--white); padding: 10px 24px; border-radius: var(--radius); }
+    .btn-outline { background: transparent; color: var(--navy); padding: 10px 24px; border-radius: var(--radius); border: 1.5px solid var(--navy); }
+    .btn-ghost { background: transparent; color: var(--navy); padding: 10px 16px; border-radius: var(--radius); }
+    .btn-sm { padding: 6px 14px; font-size: 13px; }
+    .btn-lg { padding: 14px 32px; font-size: 16px; }
+    .btn-whatsapp { background: var(--whatsapp); color: var(--white); padding: 10px 24px; border-radius: var(--radius); }
+    .btn-float { width: 48px; height: 48px; border-radius: 50%; background: var(--whatsapp); color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(37,211,102,0.3); }
+
+    /* SVG icon helper */
+    .icon-svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .icon-svg.md { width: 24px; height: 24px; }
+    .icon-svg.lg { width: 32px; height: 32px; }
+
+    /* Form */
+    .field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+    .field label { font-size: 13px; font-weight: 500; color: #374151; }
+    .field input, .field textarea { font-family: var(--body); font-size: 14px; padding: 10px 14px; border: 1px solid var(--grey-200); border-radius: var(--radius); background: var(--white); color: var(--black); transition: border-color .15s; }
+    .field input:focus, .field textarea:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(0,188,212,0.15); }
+    .field input.error { border-color: var(--magenta); }
+    .field .hint { font-size: 11px; color: var(--grey-400); }
+    .field .err { font-size: 11px; color: var(--magenta); }
+
+    /* Card */
+    .service-card { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition: box-shadow .2s; background: var(--white); }
+    .service-card:hover { box-shadow: var(--shadow-md); }
+    .sc-thumb { height: 140px; background: var(--grey-100); display: flex; align-items: center; justify-content: center; }
+    .sc-body { padding: 16px; }
+    .sc-body .icon-box { width: 36px; height: 36px; border-radius: 6px; background: rgba(0,188,212,0.08); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+    .sc-body .sc-title { font-family: var(--heading); font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .sc-body .sc-desc { font-size: 13px; color: var(--grey-500); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px; }
+    .sc-body .sc-link { font-size: 13px; font-weight: 500; color: var(--navy); display: inline-flex; align-items: center; gap: 4px; }
+    .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    @media (max-width: 900px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .card-grid { grid-template-columns: 1fr; } }
+
+    /* Industry */
+    .ind-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    @media (max-width: 600px) { .ind-grid { grid-template-columns: repeat(2, 1fr); } }
+    .ind-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 12px; border-radius: 8px; background: var(--grey-50); border: 1px solid transparent; transition: border-color .15s, background .15s; cursor: default; }
+    .ind-item:hover { border-color: var(--cyan); background: var(--white); }
+    .ind-item .ind-icon { color: var(--navy); }
+    .ind-item .ind-label { font-size: 13px; font-weight: 500; color: var(--navy); }
+
+    /* Testimonial */
+    .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 900px) { .test-grid { grid-template-columns: 1fr; } }
+    .test-card { background: var(--white); border-radius: 8px; padding: 20px; box-shadow: var(--shadow-sm); }
+    .test-card .stars { color: var(--yellow); font-size: 14px; margin-bottom: 8px; }
+    .test-card .quote { font-size: 13px; color: var(--grey-600); line-height: 1.6; margin-bottom: 12px; font-style: italic; }
+    .test-card .author { font-family: var(--heading); font-size: 13px; font-weight: 600; color: var(--navy); }
+    .test-card .org { font-size: 11px; color: var(--grey-400); }
+
+    /* Badge */
+    .badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 500; }
+    .badge-navy { background: var(--navy); color: var(--white); }
+    .badge-cyan { background: var(--cyan); color: var(--white); }
+    .badge-magenta { background: var(--magenta); color: var(--white); }
+    .badge-yellow { background: var(--yellow); color: #1A1A1A; }
+    .badge-whatsapp { background: var(--whatsapp); color: var(--white); }
+
+    /* Nav */
+    .navbar { background: var(--navy); height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .nav-l { display: flex; align-items: center; gap: 10px; }
+    .nav-l .mark { width: 32px; height: 32px; border-radius: 50%; background: var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--heading); font-size: 14px; font-weight: 700; color: var(--navy); }
+    .nav-l .brand { font-family: var(--heading); font-size: 16px; font-weight: 600; color: var(--white); }
+    .nav-r { display: flex; gap: 20px; align-items: center; }
+    .nav-r a { font-family: var(--heading); font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.85); text-decoration: none; transition: opacity .15s; }
+    .nav-r a:hover { opacity: 1; }
+
+    /* Hero */
+    .hero { background: var(--navy); padding: 72px 48px; display: flex; gap: 48px; align-items: center; }
+    .hero-text { flex: 1; }
+    .hero-text .eyebrow { font-family: var(--heading); font-size: 12px; font-weight: 700; color: var(--cyan); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+    .hero-text h1 { font-family: var(--heading); font-size: 40px; font-weight: 700; color: var(--white); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .hero-text p { font-size: 16px; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 24px; max-width: 480px; }
+    .hero-actions { display: flex; gap: 12px; align-items: center; }
+    .hero-actions .btn-primary { background: var(--white); color: var(--navy); }
+    .hero-actions .btn-outline { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.9); }
+    .hero-visual { width: 420px; height: 320px; border-radius: 8px; background: var(--navy-light); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    @media (max-width: 800px) { .hero { flex-direction: column; padding: 40px 24px; } .hero-visual { width: 100%; height: 200px; } }
+
+    /* Section block */
+    .sec { max-width: 1200px; margin: 0 auto; padding: 48px 0; }
+    .sec-sm { padding: 32px 0; }
+    .sec-label { font-family: var(--heading); font-size: 12px; font-weight: 700; color: var(--cyan); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+    .sec-title { font-family: var(--heading); font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.2; letter-spacing: -0.01em; }
+    .sec-desc { font-size: 15px; color: var(--grey-500); max-width: 560px; line-height: 1.6; margin-bottom: 24px; }
+
+    /* CTA banner */
+    .cta-banner { background: var(--navy); padding: 48px; text-align: center; }
+    .cta-banner h2 { font-family: var(--heading); font-size: 28px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .cta-banner p { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 20px; }
+    .cta-banner .btn-primary { background: var(--white); color: var(--navy); }
+
+    /* Footer */
+    .footer { background: var(--navy); padding: 48px 32px 24px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr; gap: 32px; }
+    @media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .footer-inner { grid-template-columns: 1fr; } }
+    .footer-col h5 { font-family: var(--heading); font-size: 12px; font-weight: 600; color: var(--white); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+    .footer-col p, .footer-col a { font-size: 13px; color: rgba(255,255,255,0.65); display: block; text-decoration: none; margin-bottom: 6px; line-height: 1.5; }
+    .footer-col a:hover { color: var(--cyan); }
+    .footer hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+    .footer .copyright { font-size: 12px; color: rgba(255,255,255,0.4); text-align: center; }
+
+    /* Sticky */
+    .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); padding: 10px 24px; box-shadow: 0 -2px 8px rgba(0,0,0,0.06); display: flex; justify-content: center; gap: 12px; z-index: 100; }
+    .float-wa { position: fixed; bottom: 80px; right: 24px; z-index: 99; }
+
+    /* Mobile preview */
+    .mockup-mobile { width: 360px; border: 1px solid var(--grey-200); border-radius: 16px; overflow: hidden; background: var(--white); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+    .mockup-mobile .navbar { height: 52px; padding: 0 16px; }
+    .mockup-mobile .hero { flex-direction: column; padding: 32px 20px; gap: 0; }
+    .mockup-mobile .hero h1 { font-size: 24px; }
+    .mockup-mobile .hero-text { padding: 0; }
+    .mockup-mobile .hero-visual { display: none; }
+    .mockup-mobile .hero-actions { flex-direction: column; align-items: stretch; }
+    .mockup-mobile .hero-actions .btn { width: 100%; justify-content: center; }
+    .mockup-mobile .sec { padding: 24px 16px; }
+    .mockup-mobile .sec-title { font-size: 20px; }
+    .mockup-mobile .card-grid { grid-template-columns: 1fr; }
+    .mockup-mobile .ind-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Preview toggle */
+    .preview-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 800px) { .preview-row { grid-template-columns: 1fr; } }
+    .preview-frame { border: 1px solid var(--grey-200); border-radius: 8px; overflow: hidden; }
+    .preview-frame .pf-header { background: var(--grey-50); padding: 8px 16px; font-size: 11px; font-weight: 600; color: var(--grey-500); border-bottom: 1px solid var(--grey-200); }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- Color Palette -->
+  <div class="section-card" id="palette">
+    <div class="section-card-header">
+      <div class="label">Design Tokens</div>
+      <h2>Color Palette</h2>
+    </div>
+    <div class="section-card-body">
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch-color" style="background:#0A1F3F"><span>#0A1F3F</span></div><div class="swatch-info"><div class="name">Navy</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#132C5A"><span>#132C5A</span></div><div class="swatch-info"><div class="name">Navy Light</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF;border:1px solid var(--grey-200)"><span>#FFFFFF</span></div><div class="swatch-info"><div class="name">White</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#00BCD4"><span>#00BCD4</span></div><div class="swatch-info"><div class="name">Cyan</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E91E63"><span>#E91E63</span></div><div class="swatch-info"><div class="name">Magenta</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FDD835"><span>#FDD835</span></div><div class="swatch-info"><div class="name">Yellow</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#1A1A1A"><span>#1A1A1A</span></div><div class="swatch-info"><div class="name">Black</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#6B7280"><span>#6B7280</span></div><div class="swatch-info"><div class="name">Grey</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#25D366"><span>#25D366</span></div><div class="swatch-info"><div class="name">WhatsApp</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F3F4F6"><span>#F3F4F6</span></div><div class="swatch-info"><div class="name">Grey 100</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Typography -->
+  <div class="section-card">
+    <div class="section-card-header">
+      <div class="label">Design Tokens</div>
+      <h2>Typography Scale</h2>
+    </div>
+    <div class="section-card-body" style="padding:0;">
+      <table class="type-table">
+        <thead><tr><th>Element</th><th>Sample</th><th>Spec</th></tr></thead>
+        <tbody>
+          <tr><td>H1</td><td class="sample" style="font-family:var(--heading);font-size:36px;font-weight:700;letter-spacing:-0.02em;">Premium Printing for Dubai</td><td class="meta">Montserrat Bold · 36/32/28px · -0.02em</td></tr>
+          <tr><td>H2</td><td class="sample" style="font-family:var(--heading);font-size:28px;font-weight:600;">Our Services</td><td class="meta">Montserrat SemiBold · 28/24/20px · -0.01em</td></tr>
+          <tr><td>H3</td><td class="sample" style="font-family:var(--heading);font-size:20px;font-weight:500;">Business Card Printing</td><td class="meta">Montserrat Medium · 20px</td></tr>
+          <tr><td>Body</td><td class="sample" style="font-family:var(--body);font-size:15px;line-height:1.6;">Full-service commercial printing near National Paints Metro Station. Serving Dubai businesses since 2010.</td><td class="meta">Inter Regular · 15px · 1.6</td></tr>
+          <tr><td>Small</td><td class="sample" style="font-family:var(--body);font-size:13px;">Same-day turnaround available for most print orders.</td><td class="meta">Inter Regular · 13px</td></tr>
+          <tr><td>Caption</td><td class="sample" style="font-family:var(--body);font-size:11px;letter-spacing:0.02em;">Max file size: 25 MB</td><td class="meta">Inter Medium · 11px · 0.02em</td></tr>
+          <tr><td>Button</td><td class="sample" style="font-family:var(--heading);font-size:14px;font-weight:600;letter-spacing:0.02em;">Get a Free Quote</td><td class="meta">Montserrat SemiBold · 14px · 0.02em</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Components -->
+  <div class="section-card">
+    <div class="section-card-header"><div class="label">UI Library</div><h2>Components</h2></div>
+    <div class="section-card-body" style="padding:24px;">
+      <div class="comp-grid">
+        <div class="comp-panel">
+          <h4>Buttons</h4>
+          <div class="comp-row"><span class="btn btn-primary">Get a Free Quote</span><span class="meta" style="font-size:11px;color:var(--grey-400);">Primary</span></div>
+          <div class="comp-row"><span class="btn btn-outline">Learn More</span><span class="meta" style="font-size:11px;color:var(--grey-400);">Outline</span></div>
+          <div class="comp-row"><span class="btn btn-ghost">Learn More</span><span class="meta" style="font-size:11px;color:var(--grey-400);">Ghost</span></div>
+          <div class="comp-row"><span class="btn btn-primary btn-sm">Small</span><span class="btn btn-primary btn-lg">Large</span></div>
+          <div class="comp-row"><span class="btn btn-whatsapp">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </span><span class="btn btn-float"><svg class="icon-svg md" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span></div>
+        </div>
+
+        <div class="comp-panel">
+          <h4>Badges</h4>
+          <div class="comp-row"><span class="badge badge-navy">Default</span><span class="badge badge-cyan">New</span><span class="badge badge-magenta">Sale</span><span class="badge badge-yellow">Offer</span><span class="badge badge-whatsapp">WhatsApp</span></div>
+          <h4 style="margin-top:20px;">Form Fields</h4>
+          <div class="field"><label>Full Name</label><input type="text" placeholder="Enter your name"></div>
+          <div class="field"><label>Email</label><input type="email" placeholder="email@example.com"></div>
+          <div class="field"><label>Phone</label><input type="tel" class="error" value="invalid" placeholder="+971"><span class="err">Please enter a valid phone number</span></div>
+          <div class="field"><label>Message</label><textarea rows="2" placeholder="Tell us about your printing needs..." style="min-height:60px;resize:none;font-family:var(--body);font-size:14px;padding:10px 14px;border:1px solid var(--grey-200);border-radius:var(--radius);"></textarea></div>
+        </div>
+
+        <div class="comp-panel">
+          <h4>File Upload</h4>
+          <div style="border:1.5px dashed var(--grey-200);border-radius:8px;padding:24px 16px;text-align:center;background:var(--grey-50);">
+            <svg class="icon-svg md" style="color:var(--grey-400);margin:0 auto 8px;" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <div style="font-size:13px;color:var(--grey-500);">Drop files here or click to browse</div>
+            <div style="font-size:11px;color:var(--grey-400);margin-top:4px;">PDF, AI, EPS, PSD, JPG, PNG · Max 25 MB</div>
+          </div>
+        </div>
+
+        <div class="comp-panel">
+          <h4>Navigation</h4>
+          <div class="navbar" style="border-radius:6px;">
+            <div class="nav-l">
+              <div class="mark">W</div>
+              <span class="brand">Whites</span>
+            </div>
+            <div class="nav-r">
+              <a href="#">Home</a><a href="#">Services</a><a href="#">Industries</a><a href="#">About</a><a href="#">Contact</a>
+              <span class="btn btn-primary btn-sm" style="background:var(--white);color:var(--navy);padding:6px 14px;font-size:12px;">Get a Quote</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service Cards -->
+  <div class="section-card">
+    <div class="section-card-header"><div class="label">Components</div><h2>Service Cards</h2></div>
+    <div class="section-card-body">
+      <div class="card-grid">
+        <div class="service-card">
+          <div class="sc-thumb"><svg class="icon-svg lg" style="color:var(--navy);" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <div class="sc-body"><div class="icon-box"><svg class="icon-svg" style="color:var(--cyan);" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="sc-title">Business Cards</div><div class="sc-desc">Premium quality business cards, letterheads, and NCR voucher books on a variety of stocks.</div><span class="sc-link">Learn More <svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></div>
+        </div>
+        <div class="service-card">
+          <div class="sc-thumb"><svg class="icon-svg lg" style="color:var(--navy);" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div class="sc-body"><div class="icon-box"><svg class="icon-svg" style="color:var(--cyan);" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="sc-title">Brochures</div><div class="sc-desc">Full-colour brochures and product catalogues perfect for showcasing your offerings.</div><span class="sc-link">Learn More <svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></div>
+        </div>
+        <div class="service-card">
+          <div class="sc-thumb"><svg class="icon-svg lg" style="color:var(--navy);" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div>
+          <div class="sc-body"><div class="icon-box"><svg class="icon-svg" style="color:var(--cyan);" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div><div class="sc-title">Banners</div><div class="sc-desc">Large-format banners, vinyl, fabric printing for outdoor and indoor advertising.</div><span class="sc-link">Learn More <svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></div>
+        </div>
+        <div class="service-card">
+          <div class="sc-thumb"><svg class="icon-svg lg" style="color:var(--navy);" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <div class="sc-body"><div class="icon-box"><svg class="icon-svg" style="color:var(--cyan);" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="sc-title">Signage</div><div class="sc-desc">Acrylic signs, foam boards, roll-up banners, and custom display solutions.</div><span class="sc-link">Learn More <svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Layout Preview -->
+  <div class="section-card">
+    <div class="section-card-header"><div class="label">Layout</div><h2>Desktop Preview</h2></div>
+    <div class="section-card-body" style="padding:0;">
+      <div class="preview-frame">
+        <div class="pf-header">Whites Printing — Homepage (1440px) · Full scroll</div>
+        <div style="background:var(--white);">
+          <!-- Nav -->
+          <div class="navbar">
+            <div class="nav-l"><div class="mark">W</div><span class="brand">Whites</span></div>
+            <div class="nav-r"><a href="#">Home</a><a href="#">Services</a><a href="#">Industries</a><a href="#">About</a><a href="#">Contact</a><span class="btn btn-primary btn-sm" style="background:var(--white);color:var(--navy);">Get a Quote</span></div>
+          </div>
+          <!-- Hero -->
+          <div class="hero" style="border-radius:0;">
+            <div class="hero-text">
+              <div class="eyebrow">Dubai's Premium Print Partner</div>
+              <h1>Premium Printing<br>for Dubai Businesses</h1>
+              <p>Full-service commercial printing near National Paints Metro Station. Business cards, banners, signage, brochures, and more — delivered across the UAE.</p>
+              <div class="hero-actions">
+                <span class="btn btn-primary btn-lg" style="background:var(--white);color:var(--navy);">Get a Free Quote</span>
+                <span class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.4);color:rgba(255,255,255,0.9);">
+                  <svg class="icon-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  WhatsApp Now
+                </span>
+              </div>
+            </div>
+            <div class="hero-visual">
+              <svg width="160" height="160" viewBox="0 0 80 80" style="opacity:0.4;"><circle cx="20" cy="20" r="2" fill="var(--cyan)"/><circle cx="60" cy="15" r="1.5" fill="var(--magenta)"/><circle cx="40" cy="45" r="3" fill="var(--yellow)" opacity="0.5"/><circle cx="65" cy="55" r="2" fill="var(--cyan)"/><rect x="15" y="50" width="12" height="16" rx="1" fill="none" stroke="white" stroke-width="0.5" opacity="0.3"/><rect x="35" y="35" width="16" height="24" rx="1" fill="none" stroke="white" stroke-width="0.5" opacity="0.3"/><rect x="55" y="40" width="10" height="14" rx="1" fill="none" stroke="white" stroke-width="0.5" opacity="0.3"/></svg>
+            </div>
+          </div>
+          <!-- Services -->
+          <div style="padding:48px 24px;">
+            <div style="max-width:1200px;margin:0 auto;">
+              <div class="sec-label">Our Services</div>
+              <h2 class="sec-title">Comprehensive Printing Services</h2>
+              <p class="sec-desc">From business cards to large-format banners, we handle all your printing needs under one roof.</p>
+              <div class="card-grid">
+                <div class="service-card"><div class="sc-thumb"><svg class="icon-svg lg" style="color:var(--navy);" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="sc-body"><div class="sc-title">Business Cards</div><div class="sc-desc">Premium quality business cards, letterheads, and NCR voucher books.</div><span class="sc-link">Learn More →</span></div></div>
+                <div class="service-card"><div class="sc-thumb"><svg class="icon-svg lg" style="color:var(--navy);" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="sc-body"><div class="sc-title">Brochures</div><div class="sc-desc">Full-colour brochures and product catalogues.</div><span class="sc-link">Learn More →</span></div></div>
+                <div class="service-card"><div class="sc-thumb"><svg class="icon-svg lg" style="color:var(--navy);" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div><div class="sc-body"><div class="sc-title">Banners</div><div class="sc-desc">Large-format vinyl, fabric, and outdoor printing.</div><span class="sc-link">Learn More →</span></div></div>
+                <div class="service-card"><div class="sc-thumb"><svg class="icon-svg lg" style="color:var(--navy);" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="sc-body"><div class="sc-title">Signage</div><div class="sc-desc">Acrylic signs, foam boards, and display solutions.</div><span class="sc-link">Learn More →</span></div></div>
+              </div>
+            </div>
+          </div>
+          <!-- Industries -->
+          <div style="padding:48px 24px;background:var(--grey-50);">
+            <div style="max-width:1200px;margin:0 auto;">
+              <div class="sec-label">Industries</div>
+              <h2 class="sec-title">Industries We Serve</h2>
+              <p class="sec-desc">Tailored printing solutions for 16+ industries across Dubai.</p>
+              <div class="ind-grid">
+                <div class="ind-item"><svg class="icon-svg md ind-icon" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M3 10h18"/><path d="M5 6l7-3 7 3"/><rect x="4" y="10" width="16" height="11" rx="2"/></svg><span class="ind-label">Hotels</span></div>
+                <div class="ind-item"><svg class="icon-svg md ind-icon" viewBox="0 0 24 24"><path d="M19 14v6H5v-6"/><path d="M21 10l-9-6-9 6"/><path d="M12 10v4"/><path d="M12 2v2"/></svg><span class="ind-label">Healthcare</span></div>
+                <div class="ind-item"><svg class="icon-svg md ind-icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg><span class="ind-label">Education</span></div>
+                <div class="ind-item"><svg class="icon-svg md ind-icon" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M3 7v14"/><path d="M21 7v14"/><path d="M3 7l9-4 9 4"/></svg><span class="ind-label">Real Estate</span></div>
+                <div class="ind-item"><svg class="icon-svg md ind-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg><span class="ind-label">Events</span></div>
+                <div class="ind-item"><svg class="icon-svg md ind-icon" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="ind-label">Retail</span></div>
+                <div class="ind-item"><svg class="icon-svg md ind-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg><span class="ind-label">Government</span></div>
+                <div class="ind-item"><svg class="icon-svg md ind-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span class="ind-label">Corporate</span></div>
+              </div>
+            </div>
+          </div>
+          <!-- Testimonials -->
+          <div style="padding:48px 24px;">
+            <div style="max-width:1200px;margin:0 auto;">
+              <div class="sec-label">Testimonials</div>
+              <h2 class="sec-title">Trusted by Dubai Businesses</h2>
+              <p class="sec-desc">Hear from our clients across the UAE.</p>
+              <div class="test-grid">
+                <div class="test-card"><div class="stars">★★★★★</div><div class="quote">"Whites has been our trusted print partner for over 3 years. Their quality and turnaround are unmatched."</div><div class="author">Al Jas Adv</div><div class="org">Advertising Agency</div></div>
+                <div class="test-card"><div class="stars">★★★★★</div><div class="quote">"Professional service and exceptional print quality. Our branding materials have never looked better."</div><div class="author">Malabar Gold LLC</div><div class="org">Jewellery Retail</div></div>
+                <div class="test-card"><div class="stars">★★★★★</div><div class="quote">"Reliable, fast, and always delivers on time. The in-house installation team is a huge plus."</div><div class="author">Canadian Specialist Hospital</div><div class="org">Healthcare</div></div>
+              </div>
+            </div>
+          </div>
+          <!-- CTA -->
+          <div class="cta-banner">
+            <h2>Ready to Start Your Print Project?</h2>
+            <p>Get a free quote within 2 hours. Upload your artwork and we'll take it from there.</p>
+            <span class="btn btn-primary btn-lg" style="background:var(--white);color:var(--navy);">Start Your Print Project</span>
+          </div>
+          <!-- Footer -->
+          <div class="footer">
+            <div class="footer-inner">
+              <div><p style="font-size:14px;color:white;font-weight:600;font-family:var(--heading);margin-bottom:8px;">Whites Printing</p><p style="font-size:13px;color:rgba(255,255,255,0.6);">Color Your Business</p><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;">We Print, Deliver & Install — In-House.</p></div>
+              <div><h5>Services</h5><a href="#">Business Cards</a><a href="#">Brochures</a><a href="#">Banners</a><a href="#">Signage</a><a href="#">All Services</a></div>
+              <div><h5>Industries</h5><a href="#">Hotels</a><a href="#">Healthcare</a><a href="#">Education</a><a href="#">Real Estate</a><a href="#">View All</a></div>
+              <div><h5>Company</h5><a href="#">About</a><a href="#">Technology</a><a href="#">FAQ</a><a href="#">Contact</a></div>
+              <div><h5>Contact</h5><p>Near National Paints Metro, Deira</p><a href="#">info@whites.me</a><p>Sat–Thu: 9 AM – 7 PM</p></div>
+            </div>
+            <hr><div class="copyright">© 2026 Whites Printing Services LLC. Color Your Business™.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Preview -->
+  <div class="section-card">
+    <div class="section-card-header"><div class="label">Layout</div><h2>Mobile Preview (375px)</h2></div>
+    <div class="section-card-body" style="display:flex;justify-content:center;background:var(--grey-50);padding:32px;">
+      <div class="mockup-mobile">
+        <div class="navbar" style="height:52px;padding:0 16px;">
+          <div class="nav-l"><div class="mark" style="width:28px;height:28px;font-size:12px;">W</div><span class="brand" style="font-size:14px;">Whites</span></div>
+          <svg class="icon-svg" style="color:white;" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </div>
+        <div class="hero" style="border-radius:0;padding:32px 20px;">
+          <div class="hero-text"><div class="eyebrow" style="font-size:11px;">Dubai's Premium Print Partner</div>
+          <h1 style="font-size:24px;">Premium Printing for Dubai Businesses</h1>
+          <p style="font-size:14px;">Full-service commercial printing near National Paints Metro Station.</p>
+          <div class="hero-actions" style="flex-direction:column;align-items:stretch;">
+            <span class="btn btn-primary btn-lg" style="background:var(--white);color:var(--navy);width:100%;justify-content:center;">Get a Free Quote</span>
+            <span class="btn btn-outline" style="border-color:rgba(255,255,255,0.4);color:rgba(255,255,255,0.9);width:100%;justify-content:center;">WhatsApp Now</span>
+          </div></div>
+        </div>
+        <div style="padding:24px 16px;">
+          <div class="sec-label" style="font-size:11px;">Our Services</div>
+          <h2 style="font-family:var(--heading);font-size:20px;font-weight:700;color:var(--navy);margin-bottom:16px;">Comprehensive Printing</h2>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:6px;background:var(--grey-50);"><svg class="icon-svg" style="color:var(--cyan);" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><div><div style="font-size:14px;font-weight:600;color:var(--navy);font-family:var(--heading);">Business Cards</div><div style="font-size:12px;color:var(--grey-500);">Premium quality, multiple stocks</div></div></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:6px;background:var(--grey-50);"><svg class="icon-svg" style="color:var(--cyan);" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><div><div style="font-size:14px;font-weight:600;color:var(--navy);font-family:var(--heading);">Brochures</div><div style="font-size:12px;color:var(--grey-500);">Full-colour catalogues</div></div></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:6px;background:var(--grey-50);"><svg class="icon-svg" style="color:var(--cyan);" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg><div><div style="font-size:14px;font-weight:600;color:var(--navy);font-family:var(--heading);">Banners</div><div style="font-size:12px;color:var(--grey-500);">Large-format outdoor printing</div></div></div>
+          </div>
+        </div>
+        <div style="padding:32px 16px;background:var(--navy);text-align:center;">
+          <h2 style="font-family:var(--heading);font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px;">Ready to Start?</h2>
+          <p style="font-size:13px;color:rgba(255,255,255,0.8);margin-bottom:16px;">Free quote within 2 hours</p>
+          <span class="btn btn-primary" style="background:var(--white);color:var(--navy);width:100%;justify-content:center;">Get a Free Quote</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:16px;color:var(--grey-400);font-size:12px;">Whites Printing Services LLC · Design System Mockup · June 2026</div>
+</div>
+</body>
+</html>
