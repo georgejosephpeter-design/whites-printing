@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
-import { WhatsAppProvider } from "@/context/WhatsAppContext";
 import JsonLd from "@/components/shared/JsonLd";
 import "./globals.css";
 
@@ -56,10 +55,8 @@ export default function RootLayout({
       className={`${montserrat.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-body">
-        <WhatsAppProvider>
-          <JsonLd />
-          {children}
-        </WhatsAppProvider>
+        <JsonLd />
+        {children}
         <Toaster />
       </body>
     </html>
